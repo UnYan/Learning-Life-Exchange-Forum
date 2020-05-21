@@ -2,17 +2,17 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" type="text/css" href="../static/asserts/css/login.css">
+    <link rel="stylesheet" type="text/css" href="../static/asserts/css/register.css">
     <link rel="shortcut icon" href="../static/asserts/images/login_logo.png" />
-<!--    <link rel='stylesheet' id='main-css-css'  href='../static/asserts/css/main.css?ver=1.0' type='text/css' media='all' />-->
-    <title>登录</title>
+    <!--    <link rel='stylesheet' id='main-css-css'  href='css/main.css?ver=1.0' type='text/css' media='all' />-->
+    <title>注册</title>
 </head>
 <body>
 <div id="content">
     <div class="login-header">
         <img src="../static/asserts/images/login_logo.png">
     </div>
-    <form id="login" action="">
+    <form id="register" action="">
         <div class="login-input-box">
             <span class="icon icon-user"></span>
             <input type="text" placeholder="Please enter your username" required>
@@ -21,19 +21,22 @@
             <span class="icon icon-password"></span>
             <input type="password" placeholder="Please enter your password" required>
         </div>
+        <div class="login-input-box">
+            <span class="icon icon-password"></span>
+            <input type="password" placeholder="Please enter your password again" required>
+        </div>
     </form>
-    <br>
-<!--    <div class="remember-box">-->
-<!--        <label>-->
-<!--            <input type="checkbox">&nbsp;Remember Me-->
-<!--        </label>-->
-<!--    </div>-->
+    <!--    <div class="remember-box">-->
+    <!--        <label>-->
+    <!--            <input type="checkbox">&nbsp;Remember Me-->
+    <!--        </label>-->
+    <!--    </div>-->
     <div class="login-button-box">
-        <input type="submit" value="Login" form="login">
+        <input type="submit" value="Login" form="register">
     </div>
     <div class="logon-box">
         <a href="">Forgot?</a>
-        <a href="register.html">Register</a>
+        <a href="index.html">login</a>
     </div>
 </div>
 </body>
