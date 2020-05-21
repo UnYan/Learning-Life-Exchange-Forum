@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="asserts/css/register.css">
+    <!--    <link rel='stylesheet' id='main-css-css'  href='css/main5152.css?ver=1.0' type='text/css' media='all' />-->
+    <title>注册</title>
+</head>
+<body>
+<div id="content">
+    <div class="login-header">
+        <img src="asserts/images/logo.png">
+    </div>
+    <form action="/register" id="register" method="post" th:action="@{/register}" >
+        <div class="login-input-box">
+            <span class="icon icon-user"></span>
+            <input type="text" name="username" placeholder="Please enter your username">
+        </div>
+        <div class="login-input-box">
+            <span class="icon icon-password"></span>
+            <input type="password" name="password1" placeholder="Please enter your password">
+        </div>
+        <div class="login-input-box">
+            <span class="icon icon-password"></span>
+            <input type="password" name="password2" placeholder="Please enter your password again">
+        </div>
+    </form>
+    <!--    <div class="remember-box">-->
+    <!--        <label>-->
+    <!--            <input type="checkbox">&nbsp;Remember Me-->
+    <!--        </label>-->
+    <!--    </div>-->
+    <div class="login-button-box">
+        <input type="submit" value="Login" form="register">
+    </div>
+    <div class="logon-box">
+        <a href="">Forgot?</a>
+        <a href="/">login</a>
+    </div>
+</div>
+</body>
+</html>
