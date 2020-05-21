@@ -25,15 +25,14 @@ public class RegisterController {
         s=userRepository.findByUsername(username).size();
         if (s!=0){
             map.put("msg", "用户名已存在");
-            return "redirect:/register";
+            return "redirect:/static/register.html";
         }
         if (password1.compareTo(password2)!=0){
             map.put("msg", "密码不一致");
-            return "/static/register.html";
+            return "redirect:/static/register.html";
 
         }
         User tmp =new User();
-        tmp.id=1;
         tmp.username=username;
         tmp.level=1;
         tmp.setPassword(password1);

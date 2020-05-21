@@ -8,12 +8,11 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpSession;
 
-
 @Controller
 public class LoginController {
     @Autowired
     UserRepository userRepository;
-    @PostMapping(value = "/index")
+    @PostMapping(value = {"/index"})
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
                         Model model, HttpSession session){

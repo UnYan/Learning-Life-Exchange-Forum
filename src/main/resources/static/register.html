@@ -3,15 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" type="text/css" href="asserts/css/register.css">
-    <!--    <link rel='stylesheet' id='main-css-css'  href='css/main5152.css?ver=1.0' type='text/css' media='all' />-->
+    <link rel="shortcut icon" href="asserts/images/login_logo.png" />
+    <!--    <link rel='stylesheet' id='main-css-css'  href='asserts/css/main.css?ver=1.0' type='text/css' media='all' />-->
     <title>注册</title>
 </head>
 <body>
 <div id="content">
     <div class="login-header">
-        <img src="asserts/images/logo.png">
+        <img src="asserts/images/login_logo.png">
     </div>
-    <form action="/register" id="register" method="post">
+    <form action="/register" id="register" method="post" th:action="@{/register}" >
+        <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
         <div class="login-input-box">
             <span class="icon icon-user"></span>
             <input type="text" name="username" placeholder="Please enter your username">
@@ -31,7 +33,7 @@
     <!--        </label>-->
     <!--    </div>-->
     <div class="login-button-box">
-        <input type="submit" value="Login" form="register">
+        <input type="submit" value="Register" form="register">
     </div>
     <div class="logon-box">
         <a href="">Forgot?</a>
