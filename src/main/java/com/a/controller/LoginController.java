@@ -12,11 +12,12 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
     @Autowired
     UserRepository userRepository;
-    @PostMapping(value = {"/index"})
+    @PostMapping(value = {"/user/login"})
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
                         Model model, HttpSession session){
         if (userRepository.findByUsernameAndPassword(username,password).size()==1){
+            session.setAttribute("loginUser",username);
             return "redirect:/main.html";
         }
         else {
