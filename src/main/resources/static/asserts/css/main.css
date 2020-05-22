@@ -436,6 +436,16 @@ li.comment > article .avatar {
   background: url("../images/li-arrow.png") no-repeat 8px 15px;
   border-bottom: 1px solid #f2f2f2;
 }
+
+.userspacels input {
+  background-color: #3f4b55;
+  font-size: 14px;
+  line-height: 19px;
+  /*font-weight: 600;*/
+  padding: 5px 40px 5px;
+  color: #fff;
+}
+
 .widget ul li:last-child {
   border-bottom: none;
 }
@@ -874,7 +884,7 @@ h1.search-title span {
 }
 
 /* Contact -----------------------------------------------------------------------------------------------------------*/
-#contact-form label {
+#contact-form, #change-password-form, #mute-form, #no-mute-form label{
   font-weight: 700;
 }
 
@@ -888,7 +898,7 @@ input[type=text].error,
   color: red;
 }
 
-#contact-form .error-container label {
+#contact-form, #change-password-form, #mute-form, #no-mute-form .error-container label {
   font-weight: 400;
 }
 
