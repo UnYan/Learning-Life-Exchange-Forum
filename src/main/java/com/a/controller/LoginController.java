@@ -17,7 +17,7 @@ public class LoginController {
                         @RequestParam("password") String password,
                         Model model, HttpSession session){
         if (userRepository.findByUsernameAndPassword(username,password).size()==1){
-            return "redirect:/main.html";
+            return "redirect:/main";
         }
         else {
             model.addAttribute("msg", "用户名或密码错误");

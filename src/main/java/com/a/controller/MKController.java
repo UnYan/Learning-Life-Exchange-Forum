@@ -10,4 +10,9 @@ public class MKController {
         return "editor/editormd";
     }
 
+    @RequestMapping("/article/addArticle")
+    public String upload(){
+        return "redirect:/main";
+    }
+
 }
