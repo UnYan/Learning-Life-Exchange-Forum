@@ -10,11 +10,11 @@ body{
 #content{
     background-color: rgba(255, 255, 255, 0.95);
     width: 420px;
-    height: 320px;
+    height: 360px;
     border: 1px solid #000000;
     border-radius: 6px;
     padding: 10px;
-    margin-top: 15%;
+    margin-top: 10%;
     margin-left: auto;
     margin-right: auto;
     display: block;
@@ -78,6 +78,13 @@ body{
 
 .login-input-box .icon.icon-password{
     background: url("../images/login_password.png");
+    background-size: 23px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.login-input-box .icon.icon-email{
+    background: url("../images/email_logo.png");
     background-size: 23px;
     background-position: center;
     background-repeat: no-repeat;
