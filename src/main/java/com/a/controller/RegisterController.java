@@ -20,11 +20,12 @@ public class RegisterController {
     public String login(@RequestParam("username") String username,
                         @RequestParam("password1") String password1,
                         @RequestParam("password2") String password2,
+                        @RequestParam("email") String email,
                         Map<String,Object>map)
     {
-        s=userRepository.findByUsername(username).size();
+        s=userRepository.findByUsername(username).size()+userRepository.findByEmail(email).size();
         if (s!=0){
-            map.put("msg", "用户名已存在");
+            map.put("msg", "用户名或邮箱已存在");
             return "redirect:/static/register.html";
         }
         if (password1.compareTo(password2)!=0){
@@ -36,6 +37,7 @@ public class RegisterController {
         tmp.username=username;
         tmp.level=1;
         tmp.setPassword(password1);
+        tmp.email=email;
         System.out.println("----------------------------");
         userRepository.save(tmp);
         return "redirect:/";

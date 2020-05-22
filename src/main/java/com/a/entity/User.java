@@ -13,6 +13,8 @@ public class User {
     private String password;
     @Column(name = "level")
     public  int level;
+    @Column(name = "email")
+    public String email;
 
     public int getId() {
         return id;
