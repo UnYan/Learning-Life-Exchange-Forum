@@ -2,7 +2,7 @@
         <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
         <!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
         <!--[if IE 8]>    <html class="lt-ie9" lang="en-US"> <![endif]-->
-        <!--[if gt IE 8]><!--> <html lang="en-US"> <!--<![endif]-->
+        <!--[if gt IE 8]><!--> <html lang="en-US" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
         <head>
                 <!-- META TAGS -->
                 <meta charset="UTF-8" />
@@ -34,7 +34,7 @@
 
         <body>
                 <!-- Start of Header -->
-                <div class="header-wrapper">
+                <div class="header-wrapper" th:fragment="topbar">
                         <header>
                                 <div class="container">
                                         <div class="logo-container">

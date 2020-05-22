@@ -2,7 +2,7 @@
 <!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
 <!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
 <!--[if IE 8]>    <html class="lt-ie9" lang="en-US"> <![endif]-->
-<!--[if gt IE 8]><!--> <html lang="en-US"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-US" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
 <head>
     <!-- META TAGS -->
     <meta charset="UTF-8" />
@@ -34,43 +34,7 @@
 
 <body>
 <!-- Start of Header -->
-<div class="header-wrapper">
-    <header>
-        <div class="container">
-            <div class="logo-container">
-                <!-- Website Logo -->
-
-                <!--                                                        <img src="../static/asserts/images/title_logo.png" alt="学习生活交流论坛">-->
-
-                <span class="tag-line"><a href="home.html"  title="学习生活交流论坛">学习生活交流论坛</a></span>
-            </div>
-            <!-- Start of Main Navigation -->
-            <nav class="main-nav">
-                <div class="menu-top-menu-container">
-                    <ul id="menu-top-menu" class="clearfix">
-                        <li><a href="">讨论区</a></li>
-                        <li><a href="">刷题板块</a></li>
-                        <li><a href="">校园周边</a></li>
-                        <li><a href="#">课程推荐</a>
-                        </li>
-                        <li><a href="">资源共享</a></li>
-                        <li  class="current-menu-item"><a href="home.html">全部帖子</a></li>
-                        <li><a href="faq.html">通知</a></li>
-                        <li><a href="#">用户名</a>
-                            <ul class="sub-menu">
-                                <li><a href="">个人中心</a></li>
-                                <li><a href="index.html">注销</a></li>
-                                <li><a href="">设置</a></li>
-                                <!--                                                                                <li><a href="">Default Skin</a></li>-->
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <!-- End of Main Navigation -->
-        </div>
-    </header>
-</div>
+<div th:insert="~{home::topbar}"></div>
 <!-- End of Header -->
 
 <!-- Start of Search Wrapper -->
