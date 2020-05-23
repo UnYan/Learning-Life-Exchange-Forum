@@ -17,6 +17,7 @@ public class LoginController {
                         @RequestParam("password") String password,
                         Model model, HttpSession session){
         if (userRepository.findByUsernameAndPassword(username,password).size()==1){
+            session.setAttribute("loginuser",username);
             return "redirect:/main";
         }
         else {

@@ -30,8 +30,8 @@
     </div>
 </div>
 </body>
-<script th:src="@{editormd/js/jquery.min.js}"></script>
-<script th:src="@{editormd/js/editormd.min.js}"></script>
+<script th:src="@{../../static/editormd/js/jquery.min.js}"></script>
+<script th:src="@{../../static/editormd/js/editormd.min.js}"></script>
 
 <script type="text/javascript">
 
@@ -55,7 +55,7 @@
             //图片上传
             imageUpload: true,
             imageFormats: ["jpg", "jpeg", "gif", "png", "bmp", "webp"],
-            imageUploadURL: "/article/file/upload",
+            imageUploadURL: "/uploadimg",
             onload: function () {
                 console.log('onload', this);
             },
