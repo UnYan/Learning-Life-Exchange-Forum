@@ -20,7 +20,6 @@ public class MKController {
         article.author=author;
         article.title=title;
         article.content=content;
-        if (content.)
         articleRepository.save(article);
         return "redirect:/main";
     }
