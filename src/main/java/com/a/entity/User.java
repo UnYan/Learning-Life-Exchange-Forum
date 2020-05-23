@@ -6,8 +6,9 @@ import javax.persistence.*;
 @Table(name = "user")
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
-    @Column(name = "username",length = 20, unique = true)
+    @Column(name = "username",length = 20)
     public String username;
     @Column(name = "password",length = 20)
     private String password;

@@ -38,7 +38,6 @@ public class RegisterController {
         tmp.level=1;
         tmp.setPassword(password1);
         tmp.email=email;
-        System.out.println("----------------------------");
         userRepository.save(tmp);
         return "redirect:/";
     }

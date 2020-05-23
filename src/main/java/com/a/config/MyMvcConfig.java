@@ -14,6 +14,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/main").setViewName("home");
         registry.addViewController("/userspace").setViewName("userspace");
         registry.addViewController("/setting").setViewName("setting");
+        registry.addViewController("/mk").setViewName("editor/editormd");
     }
 
     @Override
