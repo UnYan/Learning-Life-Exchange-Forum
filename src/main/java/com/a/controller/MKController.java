@@ -5,25 +5,26 @@ import com.a.repository.ArticleRepository;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class MKController {
     private static String UPLOADED_FOLDER = "E://";
+    //TODO!!!!! 在添加到服务器之前要测试地址！！！
 
     @Autowired
     ArticleRepository articleRepository;
@@ -31,9 +32,10 @@ public class MKController {
     @RequestMapping("/article/addArticle")
     public String upload(@RequestParam("title") String title,
                          @RequestParam("author") String author,
-                         @RequestParam("content") String content){
+                         @RequestParam("content") String content,
+                         HttpSession session){
         Article article=new Article();
-        article.author=author;
+        article.author=(String) session.getAttribute("loginuser");
         article.title=title;
         article.content=content;
         articleRepository.save(article);
@@ -46,11 +48,6 @@ public class MKController {
         String realPath = UPLOADED_FOLDER;
         String fileName = file.getOriginalFilename();
         System.out.println(fileName);
-/*        File targetFile = new File(realPath, fileName);
-        if(!targetFile.exists()){
-            targetFile.mkdirs();
-        }*/
-        //保存
         try {
             byte[] bytes = file.getBytes();
             Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
@@ -65,7 +62,11 @@ public class MKController {
         }
         System.out.println(resultMap.get("success"));
         return resultMap;
-
-
+    }
+    @GetMapping("/show")
+    public String show(Model model) {
+        Article article = articleRepository.findArticleById(13).get(0);
+        model.addAttribute("article", article);
+        return "editor/article";
     }
 }
