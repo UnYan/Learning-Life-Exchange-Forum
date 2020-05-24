@@ -11,7 +11,7 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
     @Autowired
     UserRepository userRepository;
-    @PostMapping(value = {"/index"})
+    @PostMapping(value = {"/index_login"})
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
                         Model model, HttpSession session){

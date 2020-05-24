@@ -16,7 +16,7 @@ public class RegisterController {
     @Autowired
     UserRepository userRepository;
     int s;
-    @PostMapping(value = "/register")
+    @PostMapping(value = "/register_apply")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password1") String password1,
                         @RequestParam("password2") String password2,

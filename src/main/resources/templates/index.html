@@ -12,7 +12,7 @@
     <div class="login-header">
         <img src="../static/asserts/images/login_logo.png">
     </div>
-    <form action="/index" id="login" method="post" th:action="@{/index}" >
+    <form action="/index_login" id="login" method="post" th:action="@{/index_login}" >
         <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
         <div class="login-input-box">
             <span class="icon icon-user"></span>
@@ -34,7 +34,7 @@
     </div>
     <div class="logon-box">
         <a href="">Forgot?</a>
-        <a href="../static/register.html">Register</a>
+        <a th:href="@{/register}">Register</a>
     </div>
 </div>
 </body>
