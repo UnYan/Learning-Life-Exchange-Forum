@@ -24,4 +24,6 @@ public class Article {
     public Integer category;
     @Column(name = "categoryName", length = 100)
     public String categoryName;
+//    @Column(name = "level")
+//    public int level;
 }

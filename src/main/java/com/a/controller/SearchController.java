@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -16,11 +17,28 @@ public class SearchController {
     @Autowired
     ArticleRepository articleRepository;
     @GetMapping(value = {"/search"})
-    public String search(@RequestParam("searchname") String searchname, Model model){
-        List<Article> articleList =articleRepository.findArticleByTitleContaining(searchname);
+    public String search(@RequestParam("searchname") String searchname,
+                         @RequestParam("way") String way, Model model){
+        List<Article> articleList=null;
+            if(way.compareTo("title")==0) {
+                articleList = articleRepository.findArticleByTitleContaining(searchname);
+                model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
+            }
+            else if(way.compareTo("author")==0) {
+                articleList = articleRepository.findArticleByAuthorContaining(searchname);
+                model.addAttribute("msg", "作者关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
+            }
+//            else if(way.compareTo("levelmore")==0) {
+//                articleList = articleRepository.findArticleByLevelGreaterThan(Integer.parseInt(searchname));
+//                model.addAttribute("msg", "等级关键词:大于"+searchname+"。已找到"+articleList.size()+"个相关帖子");
+//            }
+//            else if(way.compareTo("levelless")==0) {
+//                articleList = articleRepository.findArticleByLevelLessThan(Integer.parseInt(searchname));
+//                model.addAttribute("msg", "等级关键词:小于"+searchname+"。已找到"+articleList.size()+"个相关帖子");
+//            }
 
             model.addAttribute("articles", articleList);
-            model.addAttribute("msg", "关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
+            model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
             return "home";
 
 
