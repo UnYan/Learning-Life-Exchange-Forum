@@ -121,6 +121,20 @@
                                                                         <span class="author" th:text="${article.author}==null?'暂无作者':${article.author}"></span>
                                                                         <span class="category" th:text="${article.categoryName}"></span>
                                                                         <span class="comments"><a href="#" title="Comment on Integrating WordPress with Your Website">3 回复</a></span>
+                                                                        <div th:each="reply:${replys}">
+                                                                                <div th:if = "${article.id eq reply.articleid}" th:text="${reply.content}"></div>
+                                                                        </div>
+                                                                        <form id="Reply" method = "post" th:action="@{/reply}">
+                                                                                <input name="articleid"
+                                                                                       th:value="${article.id}"
+                                                                                       th:hidden="hidden"/>
+                                                                                <div class="layui-form-item">
+                                                                                        <textarea name="rContent" id="rContent"  placeholder="请输入回复内容"  style="min-height:80px;"></textarea>
+                                                                                </div>
+                                                                                <div class="reply-button-box">
+                                                                                        <input type="submit" value="Reply" form="Reply">
+                                                                                </div>
+                                                                        </form>
                                                                         <span class="like-count">66</span>
                                                                 </div><!-- end of post meta -->
 
