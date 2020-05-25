@@ -84,8 +84,8 @@
                                 <h3 class="search-header">来 ! 发 现 !</h3>
                                 <p class="search-tag-line">If you have any question you can ask below or enter what you are looking for!</p>
 
-                                <form id="search-form" class="search-form clearfix" method="get" action="#" autocomplete="off">
-                                        <input class="search-term required" type="text" id="s" name="s" placeholder="搜索全部帖子" title="搜索全部帖子" />
+                                <form action="/search" id="search-form" class="search-form clearfix" method="get"  th:action="@{/search}" autocomplete="off">
+                                        <input class="search-term required" type="text" id="s" name="searchname" placeholder="搜索帖子" title="搜索帖子" />
                                         <input class="search-btn" type="submit" value="搜索" />
                                         <div id="search-error-container"></div>
                                 </form>
