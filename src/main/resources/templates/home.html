@@ -100,26 +100,33 @@
 
                                         <!-- start of page content -->
                                         <div class="span8 main-listing">
-
-                                                <article class="format-standard type-post hentry clearfix">
+<!--                                                <tbody>-->
+<!--                                                        <tr th:each="article:${articles}">-->
+<!--                                                                <td th:text="${article.title}"></tdth>-->
+<!--                                                                <td th:text="${article.author}"></tdth>-->
+<!--                                                                <td th:text="${article.summary}"></tdth>-->
+<!--                                                                <p>-->
+<!--                                                                <p>-->
+<!--                                                        </tr>-->
+<!--                                                </tbody>-->
+                                                <article class="format-standard type-post hentry clearfix" th:each="article:${articles}">
 
                                                         <header class="clearfix">
 
                                                                 <h3 class="post-title">
-                                                                        <a href="single.html">帖子一</a>
+                                                                        <a href="single.html" th:text="${article.title}==null?${article.id}:${article.title}"></a>
                                                                 </h3>
 
                                                                 <div class="post-meta clearfix">
-                                                                        <span class="date">2020.5.20</span>
+                                                                        <span class="date" th:text="${article.date}==null?'暂无日期':${article.date}"></span>
+                                                                        <span class="author" th:text="${article.author}==null?'暂无作者':${article.author}"></span>
                                                                         <span class="category"><a href="#" title="View all posts in Server &amp; Database">生活区</a></span>
                                                                         <span class="comments"><a href="#" title="Comment on Integrating WordPress with Your Website">3 回复</a></span>
                                                                         <span class="like-count">66</span>
                                                                 </div><!-- end of post meta -->
 
                                                         </header>
-
-                                                        <p>简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</p>
-
+                                                        <p th:text="${article.summary}==null?'暂无简介':${article.summary}"></p>
                                                 </article>
 
                                                 <article class="format-standard type-post hentry clearfix">

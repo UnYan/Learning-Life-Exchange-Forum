@@ -1,6 +1,7 @@
 package com.a.entity;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Article {
@@ -12,7 +13,9 @@ public class Article {
     @Column(name = "author", length = 100)
     public String author;
     @Column(name = "summary", length = 200)
-    public String summary;
+    public String summary="简介";
     @Column(name = "content", length = 10000)
     public String content;
+    @Column(name = "date", length = 100)
+    public Date date;
 }

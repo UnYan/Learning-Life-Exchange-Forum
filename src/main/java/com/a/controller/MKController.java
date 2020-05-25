@@ -69,4 +69,10 @@ public class MKController {
         model.addAttribute("article", article);
         return "editor/article";
     }
+    @GetMapping("/main")
+    public String home(Model model) {
+        Collection<Article> articles =articleRepository.findAll();
+        model.addAttribute("articles", articles);
+        return "home";
+    }
 }
