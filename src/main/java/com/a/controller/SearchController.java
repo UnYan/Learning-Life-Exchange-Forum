@@ -20,7 +20,7 @@ public class SearchController {
         List<Article> articleList =articleRepository.findArticleByTitleContaining(searchname);
 
             model.addAttribute("articles", articleList);
-            model.addAttribute("msg", "已找到"+articleList.size()+"个相关帖子");
+            model.addAttribute("msg", "关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
             return "home";
 
 
