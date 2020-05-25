@@ -19,6 +19,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Controller
@@ -28,16 +29,19 @@ public class MKController {
 
     @Autowired
     ArticleRepository articleRepository;
-
+    String[] catrgory_name={"管理员帖子","帖子","校园周边","讨论区","题解"};
     @RequestMapping("/article/addArticle")
     public String upload(@RequestParam("title") String title,
-                         @RequestParam("author") String author,
                          @RequestParam("content") String content,
+                         @RequestParam("category") int category,
                          HttpSession session){
         Article article=new Article();
         article.author=(String) session.getAttribute("loginuser");
         article.title=title;
         article.content=content;
+        article.likes=0;
+        article.category=category;
+        article.categoryName=catrgory_name[category];
         articleRepository.save(article);
         return "redirect:/main";
     }
