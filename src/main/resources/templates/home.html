@@ -113,7 +113,7 @@
                                                         <header class="clearfix">
 
                                                                 <h3 class="post-title">
-                                                                        <a href="single.html" th:text="${article.title}==null?${article.id}:${article.title}"></a>
+                                                                        <a href="single.html" th:text="${article.title}==null?${article.id}:${article.title}" th:href="@{/showBlog/}+${article.id}"></a>
                                                                 </h3>
 
                                                                 <div class="post-meta clearfix">

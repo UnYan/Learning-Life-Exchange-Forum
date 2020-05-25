@@ -8,10 +8,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,7 +23,7 @@ import java.util.*;
 
 @Controller
 public class MKController {
-    private static String UPLOADED_FOLDER = "E://";
+    private static String UPLOADED_FOLDER = "E:\\";
     //TODO!!!!! 在添加到服务器之前要测试地址！！！
 
     @Autowired
@@ -71,9 +68,9 @@ public class MKController {
         System.out.println(resultMap.get("success"));
         return resultMap;
     }
-    @GetMapping("/show")
-    public String show(Model model) {
-        Article article = articleRepository.findArticleById(13);
+    @GetMapping("/showBlog/{id}")
+    public String show(@PathVariable("id") Integer id, Model model) {
+        Article article = articleRepository.findArticleById(id);
         model.addAttribute("article", article);
         return "editor/article";
     }
