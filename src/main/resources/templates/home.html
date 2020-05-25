@@ -100,15 +100,8 @@
 
                                         <!-- start of page content -->
                                         <div class="span8 main-listing">
-<!--                                                <tbody>-->
-<!--                                                        <tr th:each="article:${articles}">-->
-<!--                                                                <td th:text="${article.title}"></tdth>-->
-<!--                                                                <td th:text="${article.author}"></tdth>-->
-<!--                                                                <td th:text="${article.summary}"></tdth>-->
-<!--                                                                <p>-->
-<!--                                                                <p>-->
-<!--                                                        </tr>-->
-<!--                                                </tbody>-->
+
+                                                <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
                                                 <article class="format-standard type-post hentry clearfix" th:each="article:${articles}">
 
                                                         <header class="clearfix">
