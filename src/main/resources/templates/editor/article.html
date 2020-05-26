@@ -73,7 +73,7 @@
                     <textarea style="display:none;" placeholder="markdown" th:text="${article.content}"></textarea>
                 </div>
                     <hr>
-                    <div th:each="reply:${replys}">
+                    <div th:each= "reply:${replys}">
                         <div th:if = "${article.id eq reply.articleid}" >
                             <div th:each="user:${users}">
                                 <a href=""><h4 th:if="${user.id eq reply.userid}" th:text="${user.username}">回复用户名</h4></a>
