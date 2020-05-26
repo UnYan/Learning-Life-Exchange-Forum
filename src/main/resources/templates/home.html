@@ -60,7 +60,15 @@
                                                                 </li>
                                                                 <li><a href="">资源共享</a></li>
                                                                 <li  class="current-menu-item"><a href="main">全部帖子</a></li>
-                                                                <li><a href="faq.html">通知</a></li>
+                                                                <li><a href="faq.html">通知</a>
+                                                                        <ul class="sub-menu">
+                                                                                <li ><a href="" >xxx回复了你的主题</a></li>
+                                                                                <li ><a href="" >xxx点赞了你的回复</a></li>
+                                                                                <li ><a href="" >xxx回复了你的主题</a></li>
+                                                                                <li ><a href="" >xxx点赞了你的回复</a></li>
+                                                                        </ul>
+                                                                </li>
+
                                                                 <li><a>[[${session.loginuser}]]</a>
                                                                         <ul class="sub-menu">
                                                                                 <li ><a href="userspace" >个人中心</a></li>
@@ -127,17 +135,6 @@
                                                                         <div th:each="reply:${replys}">
                                                                                 <div th:if = "${article.id eq reply.articleid}" th:text="${reply.content}"></div>
                                                                         </div>
-                                                                        <form id="Reply" method = "post" th:action="@{/reply}">
-                                                                                <input name="articleid"
-                                                                                       th:value="${article.id}"
-                                                                                       th:hidden="hidden"/>
-                                                                                <div class="layui-form-item">
-                                                                                        <textarea name="rContent" id="rContent"  placeholder="请输入回复内容"  style="min-height:80px;"></textarea>
-                                                                                </div>
-                                                                                <div class="reply-button-box">
-                                                                                        <input type="submit" value="Reply" form="Reply">
-                                                                                </div>
-                                                                        </form>
                                                                         <span class="like-count">66</span>
                                                                 </div><!-- end of post meta -->
 
