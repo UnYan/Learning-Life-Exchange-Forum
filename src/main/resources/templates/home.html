@@ -122,7 +122,7 @@
                                                                         <span class="date" th:text="${article.date}==null?'暂无日期':${article.date}"></span>
                                                                         <span class="author" th:text="${article.author}==null?'暂无作者':${article.author}"></span>
                                                                         <span class="category" th:text="${article.categoryName}"></span>
-                                                                        <span class="comments"><a href="#" title="Comment on Integrating WordPress with Your Website">3 回复</a></span>
+                                                                        <span class="comments"><a href="#" th:text="${article.reply_cnt}+回复" th:href="@{/showBlog/}+${article.id}">3 回复</a></span>
                                                                         <div th:each="reply:${replys}">
                                                                                 <div th:if = "${article.id eq reply.articleid}" th:text="${reply.content}"></div>
                                                                         </div>

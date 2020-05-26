@@ -47,6 +47,8 @@ public class MKController {
         article.likes=0;
         article.category=category;
         article.categoryName=catrgory_name[category];
+        article.date=new Date();
+        article.reply_cnt=0;
         articleRepository.save(article);
         return "redirect:/main";
     }
