@@ -212,6 +212,7 @@ form.search-form p{
   font-size: 14px;
   line-height: 22px;
 }
+
 .search-class {
   width: 65px;
   height: 49px;
@@ -229,7 +230,6 @@ form.search-form p{
 form.search-form input.search-btn:hover {
   background-color: #4b5760;
 }
-
 #search-error-container label {
   color: #fff;
   padding: 5px;
@@ -698,10 +698,28 @@ ul.articles li.article-entry:last-child {
   background: url("../images/like.png") no-repeat 4px -24px;
   color: #395996;
 }
-
-.like-btn .like-it {
+.like-btn .comment-btn {
+  font-weight: bold;
   display: inline-block;
-  height: 20px;
+  height: 40px;
+  line-height: 20px;
+  padding: 5px 13px;
+  /*padding-left: 25px;*/
+  background: #fafafa ;
+  cursor: pointer;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #8cd24e;
+}
+.like-btn .comment-btn:hover {
+  background: #b6b6b6 ;
+  color: #fff;
+}
+.like-btn .like-it {
+  font-weight: bold;
+  display: inline-block;
+  height: 40px;
   line-height: 20px;
   padding: 5px 13px;
   padding-left: 25px;

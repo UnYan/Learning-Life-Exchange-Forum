@@ -56,6 +56,9 @@
   -ms-appearance: none;
   appearance: none;
 }
+
+
+
 .editormd ::-webkit-scrollbar {
   height: 10px;
   width: 7px;
