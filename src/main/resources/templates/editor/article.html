@@ -73,6 +73,16 @@
                     <textarea style="display:none;" placeholder="markdown" th:text="${article.content}"></textarea>
                 </div>
                     <hr>
+                    <div th:each="reply:${replys}">
+                        <div th:if = "${article.id eq reply.articleid}" >
+                            <div th:each="user:${users}">
+                                <a href=""><h4 th:if="${user.id eq reply.userid}" th:text="${user.username}">回复用户名</h4></a>
+                                <blockquote>
+                                    <p th:text="${reply.content}">回复</p>
+                                </blockquote>
+                            </div>
+                        </div>
+                    </div>
                     <a href=""><h4 th>回复用户名</h4></a>
                     <blockquote>
                         <p>回复</p>
@@ -103,11 +113,13 @@
 <!--                    </div>-->
 
 
-                    <form action="#" method="post" id="commentform">
-
+                    <form th:action="/reply" method="post" id="commentform">
+                        <input name="articleid"
+                               th:value="${article.id}"
+                               th:hidden="hidden"/>
                         <div>
                             <label for="comment">内容</label>
-                            <textarea class="span8" name="comment" id="comment" cols="58" rows="10"></textarea>
+                            <textarea class="span8" name="rContent" id="comment" cols="58" rows="10"></textarea>
                         </div>
 
                         <div>

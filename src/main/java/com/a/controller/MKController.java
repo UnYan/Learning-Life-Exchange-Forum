@@ -2,8 +2,10 @@ package com.a.controller;
 
 import com.a.entity.Article;
 import com.a.entity.Reply;
+import com.a.entity.User;
 import com.a.repository.ArticleRepository;
 import com.a.repository.ReplyRepository;
+import com.a.repository.UserRepository;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,6 +32,8 @@ public class MKController {
     ArticleRepository articleRepository;
     @Autowired
     ReplyRepository replyRepository ;
+    @Autowired
+    UserRepository userRepository ;
     String[] catrgory_name={"管理员帖子","帖子","校园周边","讨论区","题解"};
     @RequestMapping("/article/addArticle")
     public String upload(@RequestParam("title") String title,
@@ -72,6 +76,10 @@ public class MKController {
     public String show(@PathVariable("id") Integer id, Model model) {
         Article article = articleRepository.findArticleById(id);
         model.addAttribute("article", article);
+        Collection<Reply> replys = replyRepository.findAll();
+        model.addAttribute("replys",replys);
+        Collection<User> users = userRepository.findAll();
+        model.addAttribute("users",users);
         return "editor/article";
     }
     @GetMapping("/main")
