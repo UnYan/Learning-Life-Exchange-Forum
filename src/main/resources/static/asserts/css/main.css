@@ -6,7 +6,9 @@ body {
 a:hover {
   text-decoration: none;
 }
-
+.article-info span{
+  color: gray;
+}
 blockquote {
   background: whitesmoke url("../images/quote.png") no-repeat 20px 25px;
   border: 1px solid #e8e8e8;
@@ -203,6 +205,26 @@ form.search-form input.search-btn {
   font-weight: 600;
   padding: 14px 30px 15px;
   color: #fff;
+}
+form.search-form p{
+  color: #fff;
+  margin-bottom: 0;
+  font-size: 14px;
+  line-height: 22px;
+}
+.search-class {
+  width: 65px;
+  height: 49px;
+  position: relative;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 600;
+  margin-bottom: 0;
+}
+.select-opt {
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 600;
 }
 form.search-form input.search-btn:hover {
   background-color: #4b5760;
@@ -446,6 +468,18 @@ li.comment > article .avatar {
   color: #fff;
 }
 
+.userspacels a {
+  background-color: #3f4b55;
+  font-size: 14px;
+  line-height: 19px;
+  /*font-weight: 600;*/
+  padding: 8px 40px 8px;
+  color: #fff;
+}
+.userspacels a:hover{
+  background-color: #4b5760;
+}
+
 .widget ul li:last-child {
   border-bottom: none;
 }
@@ -468,6 +502,18 @@ li.comment > article .avatar {
   font-weight: 600;
   padding: 14px 30px 15px;
   color: #fff;
+}
+
+.support-widget a{
+  background-color: #3f4b55;
+  font-size: 14px;
+  line-height: 19px;
+  font-weight: 600;
+  padding: 14px 30px 15px;
+  color: #fff;
+}
+.support-widget a:hover{
+  background-color: #4b5760;
 }
 
 .support-widget h3 {
@@ -1385,6 +1431,8 @@ a#scroll-top:hover {
   .search-area-wrapper form.search-form input.search-term {
     width: 60%;
   }
+
+
 
   /* Comments */
   .commentlist li.comment .children {

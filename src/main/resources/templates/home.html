@@ -16,7 +16,7 @@
                 
 
                 <!-- Style Sheet-->
-                <link rel="stylesheet" href="style.css"/>
+<!--                <link rel="stylesheet" href="style.css"/>-->
                 <link rel='stylesheet' id='bootstrap-css-css'  href='../static/asserts/css/bootstrap5152.css?ver=1.0' type='text/css' media='all' />
                 <link rel='stylesheet' id='responsive-css-css'  href='../static/asserts/css/responsive5152.css?ver=1.0' type='text/css' media='all' />
                 <link rel='stylesheet' id='pretty-photo-css-css'  href='../static/asserts/js/prettyphoto/prettyPhotoaeb9.css' type='text/css' media='all' />
@@ -85,16 +85,18 @@
                                 <p class="search-tag-line">If you have any question you can ask below or enter what you are looking for!</p>
 
                                 <form action="/search" id="search-form" class="search-form clearfix" method="get"  th:action="@{/search}" autocomplete="off">
-                                        <select name="way">
-                                                <option  value="title">帖子</option>
-                                                <option  value="author">作者</option>
+                                        <select name="way" class="search-class">
+                                                <option  value="title" class="select-opt">帖子</option>
+                                                <option  value="author" class="select-opt">作者</option>
 <!--                                             <option  value="levelmore">等级大于</option>-->
 <!--                                             <option  value="levelless">等级小于</option>-->
                                         </select>
                                         <input class="search-term required" type="text" id="s" name="searchname" placeholder="搜索帖子" title="搜索帖子" />
                                         <input class="search-btn" type="submit" value="搜索" />
                                         <div id="search-error-container"></div>
+                                        <p  th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
                                 </form>
+
                         </div>
                 </div>
                 <!-- End of Search Wrapper -->
@@ -107,7 +109,7 @@
                                         <!-- start of page content -->
                                         <div class="span8 main-listing">
 
-                                                <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+
                                                 <article class="format-standard type-post hentry clearfix" th:each="article:${articles}">
 
                                                         <header class="clearfix">
@@ -255,7 +257,6 @@
                                                 <section class="widget">
                                                         <div class="support-widget">
                                                                 <a th:href="@{/mk}">发布帖子</a>
-<!--                                                                <p class="intro">Need more support? If you did not found an answer, contact us for further help.</p>-->
                                                         </div>
                                                 </section>
 
