@@ -76,10 +76,26 @@
                     <div th:each= "reply:${replys}">
                         <div th:if = "${article.id eq reply.articleid}" >
                             <div th:each="user:${users}">
-                                <a href=""><h4 th:if="${user.id eq reply.userid}" th:text="${user.username}">回复用户名</h4></a>
-                                <blockquote>
-                                    <p th:text="${reply.content}">回复</p>
-                                </blockquote>
+                                <div th:if="${ reply.content != null && user.id eq reply.userid}">
+                                    <a href=""><h4  th:text="${user.username}">回复用户名</h4></a>
+                                    <blockquote>
+                                        <p th:text="${reply.content}">回复</p>
+                                    </blockquote>
+                                    <form th:action="@{/reply/r} + ${reply.id}" method="post" >
+                                        <input name="articleid"
+                                               th:value="${article.id}"
+                                               th:hidden="hidden"/>
+                                        <div>
+                                            <label th:for="${reply.id}">内容</label>
+                                            <textarea class="span8" name="rContent" th:id = "${reply.id}" cols="58" rows="10"></textarea>
+                                        </div>
+
+                                        <div>
+                                            <input class="btn" name="submit" type="submit"  value="发布">
+                                        </div>
+
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -113,7 +129,7 @@
 <!--                    </div>-->
 
 
-                    <form th:action="@{/reply}" method="post" id="commentform">
+                    <form th:action="@{/reply/a} + ${article.id}" method="post" id="commentform">
                         <input name="articleid"
                                th:value="${article.id}"
                                th:hidden="hidden"/>
