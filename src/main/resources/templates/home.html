@@ -61,9 +61,10 @@
                                                                 <li><a href="">资源共享</a></li>
                                                                 <li  class="current-menu-item"><a href="main">全部帖子</a></li>
                                                                 <li><a href="faq.html">通知</a></li>
-                                                                <li><a href="#">[[${session.loginuser}]]</a>
+                                                                <li>[[${session.loginuser}]]</a>
                                                                         <ul class="sub-menu">
-                                                                                <li><a href="userspace" >个人中心</a></li>
+                                                                                <li ><a href="userspace" >个人中心</a></li>
+                                                                                <li th:if="${user.level == 0}"><a href="administrators" >管理中心</a></li>
                                                                                 <li><a href="/">注销</a></li>
                                                                                 <li><a href="setting">设置</a></li>
 <!--                                                                                <li><a href="">Default Skin</a></li>-->

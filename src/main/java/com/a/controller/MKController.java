@@ -85,9 +85,11 @@ public class MKController {
         return "editor/article";
     }
     @GetMapping("/main")
-    public String home(Model model) {
+    public String home(Model model,HttpSession session) {
         Collection<Article> articles =articleRepository.findAll();
         model.addAttribute("articles", articles);
+        User user = userRepository.findByUsername((String)session.getAttribute("loginuser")).get(0);
+        model.addAttribute("user",user);
         Collection<Reply> replys = replyRepository.findAll();
         model.addAttribute("replys",replys);
         return "home";
