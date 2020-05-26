@@ -113,7 +113,7 @@
 <!--                    </div>-->
 
 
-                    <form th:action="/reply" method="post" id="commentform">
+                    <form th:action="@{/reply}" method="post" id="commentform">
                         <input name="articleid"
                                th:value="${article.id}"
                                th:hidden="hidden"/>
