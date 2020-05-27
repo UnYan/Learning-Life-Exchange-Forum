@@ -13,6 +13,6 @@ public interface ArticleRepository extends JpaRepository<Article,Integer> {
 //    List<Article> findArticleByLevelLessThan(int i);
     List<Article> findArticleByAuthorContaining(String author);
     List<Article> findArticleByTitleContaining(String title);
-    List<Article> findArticleByTitle(String title);
+    List<Article> findArticleByCategoryName(String category);
     Article findArticleById(int id);
 }

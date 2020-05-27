@@ -36,7 +36,6 @@ public class SearchController {
 //                articleList = articleRepository.findArticleByLevelLessThan(Integer.parseInt(searchname));
 //                model.addAttribute("msg", "等级关键词:小于"+searchname+"。已找到"+articleList.size()+"个相关帖子");
 //            }
-
             model.addAttribute("articles", articleList);
             model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
             return "home";

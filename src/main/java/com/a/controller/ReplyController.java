@@ -53,7 +53,7 @@ public class ReplyController {
         reply.create_time = new Date();
         reply = replyRepository.save(reply);
         System.out.println(reply.content);
-        return "redirect:/showBlog/" + articleid;
+        return "redirect:/main";
 
     }
     @PostMapping("/reply/r{id}")
@@ -84,7 +84,7 @@ public class ReplyController {
         reply.create_time = new Date();
         reply = replyRepository.save(reply);
         System.out.println(reply.content);
-        return "redirect:/showBlog/" + articleid;
+        return "redirect:/main";
 
     }
 

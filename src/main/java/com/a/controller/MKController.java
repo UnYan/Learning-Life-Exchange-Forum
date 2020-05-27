@@ -34,7 +34,7 @@ public class MKController {
     ReplyRepository replyRepository ;
     @Autowired
     UserRepository userRepository ;
-    String[] catrgory_name={"管理员帖子","帖子","校园周边","讨论区","题解"};
+    String[] catrgory_name={"管理员帖子","资源共享","校园周边","讨论区","题解","课程推荐"};
     @RequestMapping("/article/addArticle")
     public String upload(@RequestParam("title") String title,
                          @RequestParam("content") String content,
@@ -90,6 +90,14 @@ public class MKController {
         model.addAttribute("articles", articles);
         User user = userRepository.findByUsername((String)session.getAttribute("loginuser")).get(0);
         model.addAttribute("user",user);
+        Collection<Reply> replys = replyRepository.findAll();
+        model.addAttribute("replys",replys);
+        return "home";
+    }
+    @GetMapping("/course")
+    public String course(Model model) {
+        Collection<Article> courses =articleRepository.findArticleByCategoryName("课程推荐");
+        model.addAttribute("articles", courses);
         Collection<Reply> replys = replyRepository.findAll();
         model.addAttribute("replys",replys);
         return "home";

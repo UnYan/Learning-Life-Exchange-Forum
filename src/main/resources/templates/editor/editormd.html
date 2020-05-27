@@ -33,28 +33,24 @@
 <!-- Start of Header -->
 <div th:insert="~{home::topbar}"></div>
 <!-- End of Header -->
-<div class="layui-fluid" style="background-image: url('../../static/asserts/images/editormd-bg3.jpg')">
+<div class="layui-fluid" style="background-image: url('../../static/asserts/images/editormd-bg.jpg')">
     <div class="layui-row layui-col-space15">
         <div class="layui-col-md12">
             <!--博客表单-->
             <form name="mdEditorForm" >
-
-<!--                <label><input name="category" type="radio" value="1" />帖子 </label>-->
-<!--                <label><input name="category" type="radio" value="2" />校园周边 </label>-->
-<!--                <label><input name="category" type="radio" value="3" />讨论区 </label>-->
-<!--                <label><input name="category" type="radio" value="4" />题解 </label>-->
                 <br>
                 <div align="center" class="editormd-class">
-                    <select name="" class="search-class" style="height: 37px; margin-bottom: 0">
-                        <option  value="1" class="select-opt">帖子</option>
+                    <select name="category" class="search-class" style="height: 37px; margin-bottom: 0; width: 100px">
+                        <option  value="1" class="select-opt">资源共享</option>
                         <option  value="2" class="select-opt">校园周边</option>
                         <option  value="3" class="select-opt">讨论区</option>
-                        <option  value="4" class="select-opt">题解</option>
+                        <option  value="4" class="select-opt">刷题</option>
+                        <option  value="5" class="select-opt">课程推荐</option>
+
                     </select>
 
                     <span style="color: #4b5760; font-size: 17px;line-height: 19px;font-weight: 600;">标题：<input type="text" name="title" style="margin-bottom: 0"></span>
                 </div><br>
-<!--                <input type="text" name="author" th:value="${session.user.username}" hidden>-->
                 <div id="article-content">
                     <textarea name="content" id="content" style="display:none;"></textarea>
                 </div>
