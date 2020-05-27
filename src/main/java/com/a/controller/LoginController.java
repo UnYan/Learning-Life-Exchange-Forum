@@ -21,7 +21,8 @@ public class LoginController {
         }
         else {
             model.addAttribute("msg", "用户名或密码错误");
-            return "redirect:/";
+            //return "redirect:/";
+            return "index";
         }
     }
 }
