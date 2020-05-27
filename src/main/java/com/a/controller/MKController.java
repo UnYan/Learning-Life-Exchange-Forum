@@ -94,4 +94,12 @@ public class MKController {
         model.addAttribute("replys",replys);
         return "home";
     }
+    @GetMapping("/course")
+    public String course(Model model) {
+        Collection<Article> courses =articleRepository.findArticleByCategoryName("课程推荐");
+        model.addAttribute("courses", courses);
+        Collection<Reply> replys = replyRepository.findAll();
+        model.addAttribute("replys",replys);
+        return "home";
+    }
 }
