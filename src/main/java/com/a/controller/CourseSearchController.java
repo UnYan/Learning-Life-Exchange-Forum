@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-
+//这个不知道是干啥的，问倪某
 @Controller
 public class CourseSearchController {
     @Autowired
