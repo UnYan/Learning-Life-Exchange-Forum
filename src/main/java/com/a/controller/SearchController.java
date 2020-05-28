@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -36,8 +38,8 @@ public class SearchController {
 //                articleList = articleRepository.findArticleByLevelLessThan(Integer.parseInt(searchname));
 //                model.addAttribute("msg", "等级关键词:小于"+searchname+"。已找到"+articleList.size()+"个相关帖子");
 //            }
+
             model.addAttribute("articles", articleList);
-            model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
             return "home";
 
 

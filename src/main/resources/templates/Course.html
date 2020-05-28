@@ -34,48 +34,7 @@
 
 <body>
 <!-- Start of Header -->
-<div class="header-wrapper" th:fragment="topbar">
-    <header>
-        <div class="container">
-            <div class="logo-container">
-                <!-- Website Logo -->
-
-                <!--                                                        <img src="../static/asserts/images/title_logo.png" alt="学习生活交流论坛">-->
-
-                <span class="tag-line"><a href="main"  title="学习生活交流论坛">学习生活交流论坛</a></span>
-            </div>
-            <!-- Start of Main Navigation -->
-            <nav class="main-nav">
-                <div class="menu-top-menu-container">
-                    <ul id="menu-top-menu" class="clearfix">
-                        <li><a href="">讨论区</a></li>
-                        <li><a href="">刷题板块</a></li>
-                        <li><a href="">校园周边</a></li>
-                        <li><a href="#">课程推荐</a>
-                            <!--                                                                        <ul class="sub-menu">-->
-                            <!--                                                                                <li><a href="full-width.html">Full Width</a></li>-->
-                            <!--                                                                                <li><a href="elements.html">Elements</a></li>-->
-                            <!--                                                                                <li><a href="page.html">Sample Page</a></li>-->
-                            <!--                                                                        </ul>-->
-                        </li>
-                        <li><a href="">资源共享</a></li>
-                        <li  class="current-menu-item"><a href="main">全部帖子</a></li>
-                        <li><a href="faq.html">通知</a></li>
-                        <li><a href="#">[[${session.loginuser}]]</a>
-                            <ul class="sub-menu">
-                                <li><a href="userspace" >个人中心</a></li>
-                                <li><a href="/">注销</a></li>
-                                <li><a href="setting">设置</a></li>
-                                <!--                                                                                <li><a href="">Default Skin</a></li>-->
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-            <!-- End of Main Navigation -->
-        </div>
-    </header>
-</div>
+<div th:insert="~{home::topbar}"></div>
 <!-- End of Header -->
 
 <!-- Start of Search Wrapper -->
@@ -117,7 +76,7 @@
                         </h3>
 
                         <div class="post-meta clearfix">
-                            <span class="date" th:text="${article.date}==null?'暂无日期':${article.date}"></span>
+                            <span class="date" th:text="${article.dateformat}==null?'暂无日期':${article.dateformat}"></span>
                             <span class="author" th:text="${article.author}==null?'暂无作者':${article.author}"></span>
                             <span class="category" th:text="${article.categoryName}"></span>
                             <span class="comments"><a href="#" title="Comment on Integrating WordPress with Your Website">3 回复</a></span>
@@ -142,100 +101,100 @@
                     <p th:text="${article.summary}==null?'暂无简介':${article.summary}"></p>
                 </article>
 
-                <article class="format-standard type-post hentry clearfix">
+<!--                <article class="format-standard type-post hentry clearfix">-->
 
-                    <header class="clearfix">
+<!--                    <header class="clearfix">-->
 
-                        <h3 class="post-title">
-                            <a href="single.html">帖子二</a>
-                        </h3>
+<!--                        <h3 class="post-title">-->
+<!--                            <a href="single.html">帖子二</a>-->
+<!--                        </h3>-->
 
-                        <div class="post-meta clearfix">
-                            <span class="date">2020.5.21</span>
-                            <span class="category"><a href="#" title="View all posts in Advanced Techniques">刷题</a></span>
-                            <span class="comments"><a href="#" title="Comment on Using Javascript">0 回复</a></span>
-                            <span class="like-count">18</span>
-                        </div><!-- end of post meta -->
+<!--                        <div class="post-meta clearfix">-->
+<!--                            <span class="date">2020.5.21</span>-->
+<!--                            <span class="category"><a href="#" title="View all posts in Advanced Techniques">刷题</a></span>-->
+<!--                            <span class="comments"><a href="#" title="Comment on Using Javascript">0 回复</a></span>-->
+<!--                            <span class="like-count">18</span>-->
+<!--                        </div>&lt;!&ndash; end of post meta &ndash;&gt;-->
 
-                    </header>
+<!--                    </header>-->
 
-                    <p>简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</p>
+<!--                    <p>简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</p>-->
 
-                </article>
+<!--                </article>-->
 
-                <article class=" type-post format-image hentry clearfix">
+<!--                <article class=" type-post format-image hentry clearfix">-->
 
-                    <header class="clearfix">
+<!--                    <header class="clearfix">-->
 
-                        <h3 class="post-title">
-                            <a href="single.html">带图片的帖子</a>
-                        </h3>
+<!--                        <h3 class="post-title">-->
+<!--                            <a href="single.html">带图片的帖子</a>-->
+<!--                        </h3>-->
 
-                        <div class="post-meta clearfix">
-                            <span class="date">2020.5.22</span>
-                            <span class="category"><a href="#" title="View all posts in Designing in WordPress">校园周边</a></span>
-                            <span class="comments"><a href="#" title="Comment on Using Images">0 回复</a></span>
-                            <span class="like-count">7</span>
-                        </div><!-- end of post meta -->
+<!--                        <div class="post-meta clearfix">-->
+<!--                            <span class="date">2020.5.22</span>-->
+<!--                            <span class="category"><a href="#" title="View all posts in Designing in WordPress">校园周边</a></span>-->
+<!--                            <span class="comments"><a href="#" title="Comment on Using Images">0 回复</a></span>-->
+<!--                            <span class="like-count">7</span>-->
+<!--                        </div>&lt;!&ndash; end of post meta &ndash;&gt;-->
 
-                    </header>
+<!--                    </header>-->
 
-                    <a href="#" title="Using Images"><img width="770" height="501" src="../static/asserts/images/424.jpg" class="attachment-std-thumbnail wp-post-image" alt="Living room"></a>
+<!--                    <a href="#" title="Using Images"><img width="770" height="501" src="../static/asserts/images/424.jpg" class="attachment-std-thumbnail wp-post-image" alt="Living room"></a>-->
 
-                    <p>简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</p>
+<!--                    <p>简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</p>-->
 
-                </article>
+<!--                </article>-->
 
-                <article class="type-post  format-video hentry clearfix">
+<!--                <article class="type-post  format-video hentry clearfix">-->
 
-                    <header class="clearfix">
+<!--                    <header class="clearfix">-->
 
-                        <h3 class="post-title">
-                            <a href="single.html">带视频的帖子</a>
-                        </h3>
+<!--                        <h3 class="post-title">-->
+<!--                            <a href="single.html">带视频的帖子</a>-->
+<!--                        </h3>-->
 
-                        <div class="post-meta clearfix">
-                            <span class="date">2020.5.23</span>
-                            <span class="category"><a href="#" title="View all posts in WordPress Plugins">校园周边</a></span>
+<!--                        <div class="post-meta clearfix">-->
+<!--                            <span class="date">2020.5.23</span>-->
+<!--                            <span class="category"><a href="#" title="View all posts in WordPress Plugins">校园周边</a></span>-->
 
-                            <span class="comments"><a href="#" title="Comment on Using Video">0 回复</a></span>
+<!--                            <span class="comments"><a href="#" title="Comment on Using Video">0 回复</a></span>-->
 
-                            <span class="like-count">7</span>
-                        </div><!-- end of post meta -->
+<!--                            <span class="like-count">7</span>-->
+<!--                        </div>&lt;!&ndash; end of post meta &ndash;&gt;-->
 
-                    </header>
-                    <div class="post-video">
-                        <div class="video-wrapper">
-                            <iframe src="../static/asserts/images/yc.mp4" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>
-                        </div>
-                    </div>
+<!--                    </header>-->
+<!--                    <div class="post-video">-->
+<!--                        <div class="video-wrapper">-->
+<!--                            <iframe src="../static/asserts/images/yc.mp4" width="500" height="281" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen=""></iframe>-->
+<!--                        </div>-->
+<!--                    </div>-->
 
-                    <p>简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</p>
+<!--                    <p>简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</p>-->
 
-                </article>
+<!--                </article>-->
 
-                <article class=" type-post  format-standard hentry clearfix">
+<!--                <article class=" type-post  format-standard hentry clearfix">-->
 
-                    <header class="clearfix">
+<!--                    <header class="clearfix">-->
 
-                        <h3 class="post-title">
-                            <a href="single.html">帖子</a>
-                        </h3>
+<!--                        <h3 class="post-title">-->
+<!--                            <a href="single.html">帖子</a>-->
+<!--                        </h3>-->
 
-                        <div class="post-meta clearfix">
-                            <span class="date">2020.5.20</span>
-                            <span class="category"><a href="#" title="View all posts in Website Dev">无聊灌水</a></span>
+<!--                        <div class="post-meta clearfix">-->
+<!--                            <span class="date">2020.5.20</span>-->
+<!--                            <span class="category"><a href="#" title="View all posts in Website Dev">无聊灌水</a></span>-->
 
-                            <span class="comments"><a href="#" title="Comment on WordPress Site Maintenance">0 回复</a></span>
+<!--                            <span class="comments"><a href="#" title="Comment on WordPress Site Maintenance">0 回复</a></span>-->
 
-                            <span class="like-count">15</span>
-                        </div><!-- end of post meta -->
+<!--                            <span class="like-count">15</span>-->
+<!--                        </div>&lt;!&ndash; end of post meta &ndash;&gt;-->
 
-                    </header>
+<!--                    </header>-->
 
-                    <p>简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</p>
+<!--                    <p>简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介</p>-->
 
-                </article>
+<!--                </article>-->
 
                 <div id="pagination">
                     <a href="#" class="btn active">1</a>

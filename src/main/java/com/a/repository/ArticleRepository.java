@@ -14,5 +14,6 @@ public interface ArticleRepository extends JpaRepository<Article,Integer> {
     List<Article> findArticleByAuthorContaining(String author);
     List<Article> findArticleByTitleContaining(String title);
     List<Article> findArticleByCategoryName(String category);
+    List<Article> findArticleByCategory(int category);
     Article findArticleById(int id);
 }

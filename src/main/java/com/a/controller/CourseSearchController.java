@@ -6,8 +6,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
-
+//这个不知道是干啥的，问倪某
 @Controller
 public class CourseSearchController {
     @Autowired
@@ -33,6 +35,7 @@ public class CourseSearchController {
 //                articleList = articleRepository.findArticleByLevelLessThan(Integer.parseInt(searchname));
 //                model.addAttribute("msg", "等级关键词:小于"+searchname+"。已找到"+articleList.size()+"个相关帖子");
 //            }
+
         int l=articleList.size();
         for(int i=0;i<l;i++){
             if(articleList.get(i).categoryName.compareTo("课程推荐")==0){

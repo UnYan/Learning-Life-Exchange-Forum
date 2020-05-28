@@ -40,8 +40,8 @@
 <!-- Start of Search Wrapper -->
 <div class="search-area-wrapper">
     <div class="search-area container">
-        <h3 class="search-header">用 户 名</h3>
-        <p class="search-tag-line">你 的 权 限 等 级 为</p>
+        <h3 class="search-header">[[${session.loginuser}]]</h3>
+        <p class="search-tag-line">你的权限等级为[[${session.level}]]</p>
 
         <form id="search-form" class="search-form clearfix" method="get" action="#" autocomplete="off">
             <input class="search-term required" type="text" id="s" name="s" placeholder="搜索我的帖子" title="搜索我的帖子" />

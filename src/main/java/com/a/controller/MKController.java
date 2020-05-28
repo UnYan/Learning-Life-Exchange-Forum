@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -27,6 +28,7 @@ import java.util.*;
 public class MKController {
     private static String UPLOADED_FOLDER = "E:\\";
     //TODO!!!!! 在添加到服务器之前要测试地址！！！
+    String[] catrgory_name={"管理员帖子","资源共享","校园周边","讨论区","题解","课程推荐"};
 
     @Autowired
     ArticleRepository articleRepository;
@@ -34,7 +36,7 @@ public class MKController {
     ReplyRepository replyRepository ;
     @Autowired
     UserRepository userRepository ;
-    String[] catrgory_name={"管理员帖子","资源共享","校园周边","讨论区","题解","课程推荐"};
+
     @RequestMapping("/article/addArticle")
     public String upload(@RequestParam("title") String title,
                          @RequestParam("content") String content,
@@ -47,7 +49,9 @@ public class MKController {
         article.likes=0;
         article.category=category;
         article.categoryName=catrgory_name[category];
-        article.date=new Date();
+        article.date = new Date();
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        article.dateformat=format.format(article.date);
         article.reply_cnt=0;
         articleRepository.save(article);
         return "redirect:/main";
