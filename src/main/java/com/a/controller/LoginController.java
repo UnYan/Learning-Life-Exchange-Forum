@@ -17,6 +17,7 @@ public class LoginController {
                         Model model, HttpSession session){
         if (userRepository.findByUsernameAndPassword(username,password).size()==1){
             session.setAttribute("loginuser",username);
+            session.setAttribute("level",userRepository.findByUsernameAndPassword(username,password).get(0).level);
             return "redirect:/main";
         }
         else {

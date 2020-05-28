@@ -14,7 +14,6 @@ import java.util.List;
 public class CategoryController {
     @Autowired
     ArticleRepository articleRepository;
-
     @GetMapping("/category/{id}")
     public String search(@PathVariable("id") Integer id, Model model){
         List<Article> list=articleRepository.findArticleByCategory(id);

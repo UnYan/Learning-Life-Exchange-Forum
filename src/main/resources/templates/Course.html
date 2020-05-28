@@ -76,7 +76,7 @@
                         </h3>
 
                         <div class="post-meta clearfix">
-                            <span class="date" th:text="${article.date}==null?'暂无日期':${article.date}"></span>
+                            <span class="date" th:text="${article.dateformat}==null?'暂无日期':${article.dateformat}"></span>
                             <span class="author" th:text="${article.author}==null?'暂无作者':${article.author}"></span>
                             <span class="category" th:text="${article.categoryName}"></span>
                             <span class="comments"><a href="#" title="Comment on Integrating WordPress with Your Website">3 回复</a></span>

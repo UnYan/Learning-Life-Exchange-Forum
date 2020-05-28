@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
@@ -48,7 +49,9 @@ public class MKController {
         article.likes=0;
         article.category=category;
         article.categoryName=catrgory_name[category];
-        article.date=new Date();
+        article.date = new Date();
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        article.dateformat=format.format(article.date);
         article.reply_cnt=0;
         articleRepository.save(article);
         return "redirect:/main";

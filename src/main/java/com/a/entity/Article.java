@@ -26,6 +26,7 @@ public class Article {
     public String categoryName;
     @Column(name = "reply_cnt")
     public Integer reply_cnt;
+    public String dateformat;
 //    @Column(name = "level")
 //    public int level;
 }
