@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Inform{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id")
+    @Column(name = "id"）
     public int id;
     @Column(name = "articleId")
     public String articleId;
