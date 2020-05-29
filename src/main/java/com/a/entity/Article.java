@@ -16,8 +16,6 @@ public class Article {
     public String summary;
     @Column(name = "content", length = 10000)
     public String content;
-    @Column(name = "date", length = 100)
-    public Date date;
     @Column(name = "likes", length = 100)
     public Integer likes;
     @Column(name = "category", length = 100)
