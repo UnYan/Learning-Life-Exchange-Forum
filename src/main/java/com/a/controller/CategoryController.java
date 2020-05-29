@@ -16,14 +16,8 @@ public class CategoryController {
     ArticleRepository articleRepository;
     @GetMapping("/category/{id}")
     public String search(@PathVariable("id") Integer id, Model model){
-        List<Article> list;
-        if(id == 0){
-            list=articleRepository.findAll();
-        }
-        else {
-            list = articleRepository.findArticleByCategory(id);
-        }
+        List<Article> list=articleRepository.findArticleByCategory(id);
         model.addAttribute("articles",list);
-        return "redirect:/main";
+        return "Course";
     }
 }
