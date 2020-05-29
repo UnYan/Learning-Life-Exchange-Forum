@@ -77,11 +77,11 @@
                     <div th:each= "reply:${replys}">
                         <div >
                             <div th:each="user:${users}">
-                                <div th:if="${ reply.content != null && user.id eq reply.userid}" class="comment-username" th:id="${reply.id}">
+                                <div th:if="${ reply.content != null && user.id eq reply.userid}" class="comment-username">
                                     <hr>
                                     <h4 ><a href="" th:text="${user.username}">回复用户名</a></h4>
                                     <blockquote>
-                                        <p th:text="${reply.content}">回复</p>
+                                        <p th:text="${reply.content}" th:id="${reply.id}">回复</p>
                                     </blockquote>
                                     <ul id="menu-top-menu" class="clearfix">
 
@@ -90,7 +90,7 @@
                                         <button class="like-it " formaction="" style="height: 30px">66</button>
                                         <button class="comment-btn " formaction="" style="height: 30px" onclick="document.getElementById('comment-area').hidden=!(document.getElementById('comment-area').hidden)">回复</button>
                                         <span th:each = "reply1:${reply1s}" >
-                                            <a href="#respond"><button class="comment-btn " formaction="" style="height: 30px" th:if = "${reply1.replyid eq reply.id}" th:text="${reply1.content} + 回复了此贴" ></button></a>
+                                            <a th:href="@{#} + ${reply1.replyid}"><button class="comment-btn " formaction="" style="height: 30px" th:if = "${reply1.replyid eq reply.id}" th:text="${reply1.content} + 回复了此贴" ></button></a>
                                         </span>
                                     </div>
                                     <form th:action="@{/reply/r} + ${reply.id}" method="post" >
