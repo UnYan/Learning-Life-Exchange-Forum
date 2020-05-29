@@ -37,16 +37,17 @@
         <h3 class="search-header">来 ! 发 现 !</h3>
         <p class="search-tag-line">If you have any question you can ask below or enter what you are looking for!</p>
 
-        <form action="/course" id="search-form" class="search-form clearfix" method="get"  th:action="@{/course}" autocomplete="off">
-            <select name="way">
-                <option  value="title">帖子</option>
-                <option  value="author">作者</option>
+        <form action="/search" id="search-form" class="search-form clearfix" method="get"  th:action="@{/search}" autocomplete="off">
+            <select name="way" class="search-class">
+                <option  value="title" class="select-opt">帖子</option>
+                <option  value="author" class="select-opt">作者</option>
                 <!--                                             <option  value="levelmore">等级大于</option>-->
                 <!--                                             <option  value="levelless">等级小于</option>-->
             </select>
             <input class="search-term required" type="text" id="s" name="searchname" placeholder="搜索帖子" title="搜索帖子" />
             <input class="search-btn" type="submit" value="搜索" />
             <div id="search-error-container"></div>
+            <p  th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
         </form>
     </div>
 </div>
