@@ -84,11 +84,9 @@
                                     <div th:each = "reply1:${reply1s}" >
                                         <span th:if = "${reply1.replyid eq reply.id}" th:text="${reply1.userid} + 回复了此贴" >
                                             <ul class="sub-menu">
-                                                                                <li ><a href="userspace" >个人中心</a></li>
-                                                <!-- <li th:if="${user.level == 0}"><a href="administrators" >管理中心</a></li> !-->
-                                                                                <li><a href="/">注销</a></li>
-                                                                                <li><a href="setting">设置</a></li>
-                                                <!--                                                                                <li><a href="">Default Skin</a></li>-->
+                                                <li ><a href="userspace" >个人中心</a></li>
+                                                <li><a href="/">注销</a></li>
+                                                <li><a href="setting">设置</a></li>
                                             </ul>
                                         </span>
                                     </div>
