@@ -18,6 +18,6 @@ public class CategoryController {
     public String search(@PathVariable("id") Integer id, Model model){
         List<Article> list=articleRepository.findArticleByCategory(id);
         model.addAttribute("articles",list);
-        return "Course";
+        return "home";
     }
 }
