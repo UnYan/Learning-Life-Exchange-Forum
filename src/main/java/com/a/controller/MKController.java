@@ -23,6 +23,8 @@ import java.nio.file.Paths;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Controller
 public class MKController {
@@ -37,6 +39,20 @@ public class MKController {
     @Autowired
     UserRepository userRepository ;
 
+    private static String[] s={"(!\\[[^]]+\\]\\([^)]+\\))","(!\\[\\]\\([^)]+\\))","([^!]\\[[^]]+\\]\\([^)]+\\))","([-]{12})","([#]{1,6})"};
+    private static String[] target={"[图片]","[图片]","[超链接]","",""};
+    public String replacemk(String origin,String cur,String tar){
+        StringBuffer sb = new StringBuffer();
+        Pattern p = Pattern.compile(cur);
+        Matcher m = p.matcher(origin);
+
+        while (m.find())
+        {
+            m.appendReplacement(sb, tar);
+        }
+        m.appendTail(sb);
+        return sb.toString();
+    }
     @RequestMapping("/article/addArticle")
     public String upload(@RequestParam("title") String title,
                          @RequestParam("content") String content,
@@ -49,10 +65,16 @@ public class MKController {
         article.likes=0;
         article.category=category;
         article.categoryName=catrgory_name[category];
-        article.date = new Date();
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-        article.dateformat=format.format(article.date);
+        article.dateformat=format.format(new Date());
         article.reply_cnt=0;
+        for (int i=0;i<s.length;i++){
+            content=replacemk(content,s[i],target[i]);
+        }
+        if (content.length()>30) article.summary=content.substring(0,30);
+        else article.summary=content;
+        System.out.println(article.summary);
+        System.out.println(article.title);
         articleRepository.save(article);
         return "redirect:/main";
     }

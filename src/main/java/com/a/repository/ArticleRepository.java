@@ -8,7 +8,6 @@ import java.util.List;
 
 public interface ArticleRepository extends JpaRepository<Article,Integer> {
     List<Article> findArticleByAuthor(String author);
-    List<Article> findArticleByDate(Date date);
 //    List<Article> findArticleByLevelGreaterThan(int i);
 //    List<Article> findArticleByLevelLessThan(int i);
     List<Article> findArticleByAuthorContaining(String author);
