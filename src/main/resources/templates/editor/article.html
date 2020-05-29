@@ -73,7 +73,7 @@
                         <a href="#respond"><button class="comment-btn " formaction="" style="height: 30px;margin-right: 0;margin-bottom: 0">回复</button></a>
                     </div>
                     <div th:each= "reply:${replys}">
-                        <div th:if = "${article.id eq reply.articleid}" >
+                        <div >
                             <div th:each="user:${users}">
                                 <div th:if="${ reply.content != null && user.id eq reply.userid}" class="comment-username">
                                     <hr>
@@ -81,8 +81,8 @@
                                     <blockquote>
                                         <p th:text="${reply.content}">回复</p>
                                     </blockquote>
-                                    <div th:each = "reply1:${replys}" >
-                                        <span th:if = "${reply1.replyid eq reply.id}" th:text="${reply1.userid} 回复了此贴"></span>
+                                    <div th:each = "reply1:${reply1s}" >
+                                        <span th:if = "${reply1.replyid eq reply.id}" th:text="${reply1.userid}"+"回复了此贴" ></span>
                                     </div>
                                     <div class="like-btn">
                                         <button class="like-it " formaction="" style="height: 30px">66</button>

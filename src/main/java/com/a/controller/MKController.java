@@ -104,8 +104,9 @@ public class MKController {
     public String show(@PathVariable("id") Integer id, Model model) {
         Article article = articleRepository.findArticleById(id);
         model.addAttribute("article", article);
-        Collection<Reply> replys = replyRepository.findAll();
+        Collection<Reply> replys = replyRepository.findByArticleid(id);
         model.addAttribute("replys",replys);
+        model.addAttribute("reply1s",replys);
         Collection<User> users = userRepository.findAll();
         model.addAttribute("users",users);
         return "editor/article";
