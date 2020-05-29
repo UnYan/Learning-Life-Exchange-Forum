@@ -12,23 +12,17 @@
 
                 <link rel="shortcut icon" href="../static/asserts/images/login_logo.png" />
 
-
-                
-
                 <!-- Style Sheet-->
-<!--                <link rel="stylesheet" href="style.css"/>-->
                 <link rel='stylesheet' id='bootstrap-css-css'  href='../static/asserts/css/bootstrap5152.css?ver=1.0' type='text/css' media='all' />
                 <link rel='stylesheet' id='responsive-css-css'  href='../static/asserts/css/responsive5152.css?ver=1.0' type='text/css' media='all' />
                 <link rel='stylesheet' id='pretty-photo-css-css'  href='../static/asserts/js/prettyphoto/prettyPhotoaeb9.css' type='text/css' media='all' />
                 <link rel='stylesheet' id='main-css-css'  href='../static/asserts/css/main.css' type='text/css' media='all' />
-<!--                <link rel='stylesheet' id='custom-css-css'  href='../static/asserts/css/custom.html' type='text/css' media='all' />-->
 
 
                 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
                 <!--[if lt IE 9]>
                 <script src="../static/asserts/js/html5.js"></script></script>
                 <![endif]-->
-
 
         </head>
 
@@ -39,10 +33,7 @@
                                 <div class="container">
                                         <div class="logo-container">
                                                 <!-- Website Logo -->
-
-<!--                                                        <img src="../static/asserts/images/title_logo.png" alt="学习生活交流论坛">-->
-
-                                                <span class="tag-line"><a href="main"  title="学习生活交流论坛">学习生活交流论坛</a></span>
+                                                <span class="tag-line"><a href="/main"  title="学习生活交流论坛">学习生活交流论坛</a></span>
                                         </div>
                                         <!-- Start of Main Navigation -->
                                         <nav class="main-nav">
@@ -51,28 +42,22 @@
                                                                 <li><a th:href="@{/category/3}">讨论区</a></li>
                                                                 <li><a th:href="@{/category/4}">刷题板块</a></li>
                                                                 <li><a th:href="@{/category/2}">校园周边</a></li>
-                                                                <li><a th:href="@{/category/5}">课程推荐</a>
-                                                                        <!--                                                                        <ul class="sub-menu">-->
-                                                                        <!--                                                                                <li><a href="full-width.html">Full Width</a></li>-->
-                                                                        <!--                                                                                <li><a href="elements.html">Elements</a></li>-->
-                                                                        <!--                                                                                <li><a href="page.html">Sample Page</a></li>-->
-                                                                        <!--                                                                        </ul>-->
-                                                                </li>
-                                                                <li><a href="">资源共享</a></li>
+                                                                <li><a th:href="@{/category/5}">课程推荐</a></li>
+                                                                <li><a th:href="@{/category/5}">资源共享</a></li>
                                                                 <li  class="current-menu-item"><a th:href="@{/main}">全部帖子</a></li>
                                                                 <li><a href="faq.html">通知</a>
                                                                         <ul class="sub-menu">
                                                                                 <li ><a href="" >xxx回复了你的主题</a></li>
                                                                                 <li ><a href="" >xxx点赞了你的回复</a></li>
                                                                                 <li ><a href="" >xxx回复了你的主题</a></li>
-                                                                                <li ><a href="" >系统通知</a></li>
+                                                                                <li ><a href="" >xxx点赞了你的回复</a></li>
                                                                         </ul>
                                                                 </li>
 
                                                                 <li><a>[[${session.loginuser}]]</a>
                                                                         <ul class="sub-menu">
-                                                                                <li ><a th:href="userspace" >个人中心</a></li>
-                                                                                <!--<li th:if="${user.level == 0}"><a th:href="administrators" >管理中心</a></li>!-->
+                                                                                <li ><a href="userspace" >个人中心</a></li>
+                                                                                <li th:if="${user.level == 0}"><a href="administrators" >管理中心</a></li>
                                                                                 <li><a href="/">注销</a></li>
                                                                                 <li><a href="setting">设置</a></li>
 <!--                                                                                <li><a href="">Default Skin</a></li>-->

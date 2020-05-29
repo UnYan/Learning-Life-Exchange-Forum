@@ -12,16 +12,11 @@
 
     <link rel="shortcut icon" href="../static/asserts/images/login_logo.png" />
 
-
-
-
     <!-- Style Sheet-->
-    <link rel="stylesheet" href="style.css"/>
     <link rel='stylesheet' id='bootstrap-css-css'  href='../static/asserts/css/bootstrap5152.css?ver=1.0' type='text/css' media='all' />
     <link rel='stylesheet' id='responsive-css-css'  href='../static/asserts/css/responsive5152.css?ver=1.0' type='text/css' media='all' />
     <link rel='stylesheet' id='pretty-photo-css-css'  href='../static/asserts/js/prettyphoto/prettyPhotoaeb9.css' type='text/css' media='all' />
     <link rel='stylesheet' id='main-css-css'  href='../static/asserts/css/main.css' type='text/css' media='all' />
-    <!--                <link rel='stylesheet' id='custom-css-css'  href='../static/asserts/css/custom.html' type='text/css' media='all' />-->
 
 
     <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -64,51 +59,53 @@
                     <h1 class="post-title">
                         禁言
                     </h1>
-                    <hr>
-                    <p></p>
+                    <hr><br>
+                    <form id="mute-form" class="row" action="" method="post">
+
+                        <div class="span2">
+                            <label for="mute username">禁言用户名<span>*</span> </label>
+                        </div>
+                        <div class="span6">
+                            <input type="text" name="mute username" id="mute username" class="required input-xlarge" value="" title="* Please provide your old password">
+                        </div>
+
+                        <div class="span6 offset2 bm30">
+                            <input type="submit" name="submit" value="确认" class="btn btn-inverse">
+                        </div>
+                    </form>
                 </article>
-
-
-                <form id="mute-form" class="row" action="" method="post">
-
-                    <div class="span2">
-                        <label for="mute username">禁言用户名<span>*</span> </label>
-                    </div>
-                    <div class="span6">
-                        <input type="text" name="mute username" id="mute username" class="required input-xlarge" value="" title="* Please provide your old password">
-                    </div>
-
-                    <div class="span6 offset2 bm30">
-                        <input type="submit" name="submit" value="确认" class="btn btn-inverse">
-                    </div>
-                </form>
-            </div>
-
-            <div class="span8 page-content">
-
                 <article class="type-page hentry clearfix">
                     <h1 class="post-title">
                         解除禁言
                     </h1>
-                    <hr>
-                    <p></p>
+                    <hr><br>
+                    <form id="no-mute-form" class="row" action="" method="post">
+
+                        <div class="span2">
+                            <label for="no mute username">解除禁言用户名<span>*</span> </label>
+                        </div>
+                        <div class="span6">
+                            <input type="text" name="no mute username" id="no mute username" class="required input-xlarge" value="" title="* Please provide your old password">
+                        </div>
+                        <div class="span6 offset2 bm30">
+                            <input type="submit" name="submit" value="确认" class="btn btn-inverse">
+                        </div>
+                    </form>
                 </article>
-
-
-                <form id="no-mute-form" class="row" action="" method="post">
-
-                    <div class="span2">
-                        <label for="no mute username">解除禁言用户名<span>*</span> </label>
-                    </div>
-                    <div class="span6">
-                        <input type="text" name="no mute username" id="no mute username" class="required input-xlarge" value="" title="* Please provide your old password">
-                    </div>
-                    <div class="span6 offset2 bm30">
-                        <input type="submit" name="submit" value="确认" class="btn btn-inverse">
-                    </div>
-                </form>
             </div>
             <!-- end of page content -->
+
+            <!-- start of sidebar -->
+            <aside class="span4 page-sidebar">
+
+                <section class="widget">
+                    <div class="support-widget">
+                        <a th:href="@{/mk}">发布通知</a>
+                    </div>
+                </section>
+
+            </aside>
+            <!-- end of sidebar -->
         </div>
     </div>
 </div>
