@@ -87,7 +87,7 @@
 
                                     </ul>
                                     <div class="like-btn">
-                                        <button class="like-it " formaction="" style="height: 30px">66</button>
+                                        <button class="like-it "  style="height: 30px"  th:formaction="@{/reply/like/r} + ${reply.id}"  th:action="@{/reply/like/r} + ${reply.id}" th:method="post" th:text="${reply.likes}">66</button>
                                         <button class="comment-btn " formaction="" style="height: 30px" onclick="document.getElementById('comment-area').hidden=!(document.getElementById('comment-area').hidden)">回复</button>
                                         <span th:each = "reply1:${reply1s}" >
                                             <a th:href="@{#} + ${reply1.replyid}"><button class="comment-btn " formaction="" style="height: 30px" th:if = "${reply1.replyid eq reply.id}" th:text="${reply1.content} + 回复了此贴" ></button></a>
