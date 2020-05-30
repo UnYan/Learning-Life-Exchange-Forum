@@ -13,7 +13,7 @@
         <img src="../static/asserts/images/login_logo.png">
     </div>
     <form action="/register_apply" id="register" method="post" th:action="@{/register_apply}" >
-        <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+        <p class="error-msg" style="color: red; text-align: center; font-size: 12px; line-height: 5px" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
         <div class="login-input-box">
             <span class="icon icon-user"></span>
             <input type="text" name="username" placeholder="Please enter your username">
