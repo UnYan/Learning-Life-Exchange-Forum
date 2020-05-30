@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 public class MKController {
     private static String UPLOADED_FOLDER = "E:\\";
     //TODO!!!!! 在添加到服务器之前要测试地址！！！
-    String[] catrgory_name={"管理员帖子","资源共享","校园周边","讨论区","题解","课程推荐","课程"};
+    String[] catrgory_name={"管理员帖子","资源共享","校园周边","讨论区","题解","课程推荐","公告","课程"};
 
     @Autowired
     ArticleRepository articleRepository;
@@ -123,10 +123,18 @@ public class MKController {
     }
     @GetMapping("/course")
     public String course(Model model) {
+        List<Article> coursesList=null;
+        coursesList=articleRepository.findArticleByCategoryName("课程");
+        int l=coursesList.size();
+        while(l>4){
+            coursesList.remove(l-1);
+            l--;
+        }
+        model.addAttribute("courses", coursesList);
         Collection<Article> courses =articleRepository.findArticleByCategoryName("课程推荐");
         model.addAttribute("articles", courses);
         Collection<Reply> replys = replyRepository.findAll();
         model.addAttribute("replys",replys);
-        return "home";
+        return "Course";
     }
 }

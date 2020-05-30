@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -19,10 +20,11 @@ public class SearchController {
     @Autowired
     ArticleRepository articleRepository;
     @GetMapping(value = {"/search"})
-    public String search(@RequestParam("searchname") String searchname,
-                         @RequestParam("way") String way, Model model){
+    public String search(@RequestParam("way") String way,
+                         @RequestParam("searchname") String searchname,
+                          Model model){
         List<Article> articleList=null;
-        List<Article> sumList=null;
+        List<Article> sumList=new ArrayList<>();
             if(way.compareTo("title")==0) {
                 articleList = articleRepository.findArticleByTitleContaining(searchname);
                 model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");

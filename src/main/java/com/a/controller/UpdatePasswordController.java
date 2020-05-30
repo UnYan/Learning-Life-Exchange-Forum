@@ -59,6 +59,7 @@ public class UpdatePasswordController {
             tmp.setPassword(password1);
             userRepository.save(tmp);
             model.addAttribute("msg", "修改成功");
+            System.out.println(1);
             return "/setting";
         }
     }

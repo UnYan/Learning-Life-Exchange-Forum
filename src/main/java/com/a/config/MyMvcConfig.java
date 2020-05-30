@@ -18,6 +18,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/register").setViewName("register");
         registry.addViewController("/retrivepassword").setViewName("retrivepassword");
         registry.addViewController("/retrievepassword").setViewName("retrievepassword");
+        registry.addViewController("/Course").setViewName("Course");
     }
 
     @Override
