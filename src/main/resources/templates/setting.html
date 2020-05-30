@@ -67,29 +67,32 @@
                     <hr>
                     <p></p>
                 </article>
+                <form id="contact-form" class="row" th:action="@{/settingupdatepassword}" method="post">
+                    <p class="error-msg" style="color: red; text-align: center; font-size: 12px; line-height: 5px" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
 
-
-                <form id="contact-form" class="row" action="" method="post">
-
+                    <div class="span2">
+                        <label for="old password">邮箱<span>*</span> </label>
+                    </div>
+                    <div class="span6">
+                        <input type="text" name="email" id="email" class="required input-xlarge" value="" title="* Please provide your old password">
+                    </div>
                     <div class="span2">
                         <label for="old password">原密码<span>*</span> </label>
                     </div>
                     <div class="span6">
-                        <input type="text" name="old password" id="old password" class="required input-xlarge" value="" title="* Please provide your old password">
+                        <input type="password" name="oldpassword" id="old password" class="required input-xlarge" value="" title="* Please provide your old password">
                     </div>
-
                     <div class="span2">
                         <label for="new password">新密码<span>*</span></label>
                     </div>
                     <div class="span6">
-                        <input type="text" name="new password" id="new password" class="required input-xlarge" value="" title="* Please provide your new password">
+                        <input type="password" name="newpassword" id="new password" class="required input-xlarge" value="" title="* Please provide your new password">
                     </div>
-
                     <div class="span2">
                         <label for="confirm password">确认新密码</label>
                     </div>
                     <div class="span6">
-                        <input type="text" name="confirm password" id="confirm password" class="required input-xlarge" value="" title="* Please confirm your new password">
+                        <input type="password" name="confirmpassword" id="confirm password" class="required input-xlarge" value="" title="* Please confirm your new password">
                     </div>
 
 <!--                    <div class="span2">-->
