@@ -19,6 +19,7 @@ public class CourseSearchController {
                          @RequestParam("way") String way, Model model){
         List<Article> articleList=null;
         List<Article> courseList=null;
+        List<Article> coursesList=null;
         if(way.compareTo("title")==0) {
             articleList = articleRepository.findArticleByTitleContaining(searchname);
             model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
@@ -35,13 +36,19 @@ public class CourseSearchController {
 //                articleList = articleRepository.findArticleByLevelLessThan(Integer.parseInt(searchname));
 //                model.addAttribute("msg", "等级关键词:小于"+searchname+"。已找到"+articleList.size()+"个相关帖子");
 //            }
-
-        int l=articleList.size();
+        coursesList=articleRepository.findArticleByCategoryName("课程");
+        int l=coursesList.size();
+        while(l>4){
+            coursesList.remove(l-1);
+            l--;
+        }
+        l=articleList.size();
         for(int i=0;i<l;i++){
             if(articleList.get(i).categoryName.compareTo("课程推荐")==0){
                 courseList.add(articleList.get(i));
             }
         }
+        model.addAttribute("courses", coursesList);
         model.addAttribute("articles", courseList);
         model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
         return "home";

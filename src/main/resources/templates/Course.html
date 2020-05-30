@@ -60,7 +60,39 @@
 
             <!-- start of page content -->
             <div class="span8 main-listing">
+                <article class="format-standard type-post hentry clearfix" th:each="course:${courses}">
 
+                    <header class="clearfix">
+
+                        <h3 class="post-title">
+                            <a href="single.html" th:text="${course.title}==null?${course.id}:${course.title}" th:href="@{/showBlog/}+${course.id}"></a>
+                        </h3>
+
+                        <div class="post-meta clearfix">
+                            <span class="date" th:text="${course.dateformat}==null?'暂无日期':${course.dateformat}"></span>
+                            <span class="author" th:text="${course.author}==null?'暂无作者':${course.author}"></span>
+                            <span class="category" th:text="${course.categoryName}"></span>
+                            <span class="comments"><a href="#" title="Comment on Integrating WordPress with Your Website">3 回复</a></span>
+                            <div th:each="reply:${replys}">
+                                <div th:if = "${course.id eq reply.articleid}" th:text="${reply.content}"></div>
+                            </div>
+                            <form id="Reply" method = "post" th:action="@{/reply}">
+                                <input name="articleid"
+                                       th:value="${course.id}"
+                                       th:hidden="hidden"/>
+                                <div class="layui-form-item">
+                                    <textarea name="rContent" id="rContent"  placeholder="请输入回复内容"  style="min-height:80px;"></textarea>
+                                </div>
+                                <div class="reply-button-box">
+                                    <input type="submit" value="Reply" form="Reply">
+                                </div>
+                            </form>
+                            <span class="like-count">66</span>
+                        </div><!-- end of post meta -->
+
+                    </header>
+                    <p th:text="${course.summary}==null?'暂无简介':${course.summary}"></p>
+                </article>
                 <p style="color: red" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
                 <article class="format-standard type-post hentry clearfix" th:each="article:${articles}">
 

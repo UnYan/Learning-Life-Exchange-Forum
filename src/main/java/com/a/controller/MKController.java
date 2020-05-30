@@ -30,7 +30,7 @@ import java.util.regex.Pattern;
 public class MKController {
     private static String UPLOADED_FOLDER = "E:\\";
     //TODO!!!!! 在添加到服务器之前要测试地址！！！
-    String[] catrgory_name={"管理员帖子","资源共享","校园周边","讨论区","题解","课程推荐"};
+    String[] catrgory_name={"管理员帖子","资源共享","校园周边","讨论区","题解","课程推荐","课程"};
 
     @Autowired
     ArticleRepository articleRepository;

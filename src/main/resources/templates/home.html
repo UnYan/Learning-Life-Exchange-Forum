@@ -119,9 +119,8 @@
                                                                         <span class="comments"><a href="#" th:text="${article.reply_cnt}+回复" th:href="@{/showBlog/}+${article.id}">3 回复</a></span>
                                                                         <span class="like-count">66</span>
                                                                 </div><!-- end of post meta -->
-
+                                                                <p th:text="${article.summary}==null?'暂无简介':${article.summary}"></p>
                                                         </header>
-                                                        <p th:text="${article.summary}==null?'暂无简介':${article.summary}"></p>
                                                 </article>
 
                                                 <div id="pagination">

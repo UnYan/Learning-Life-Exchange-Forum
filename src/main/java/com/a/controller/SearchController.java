@@ -22,6 +22,7 @@ public class SearchController {
     public String search(@RequestParam("searchname") String searchname,
                          @RequestParam("way") String way, Model model){
         List<Article> articleList=null;
+        List<Article> sumList=null;
             if(way.compareTo("title")==0) {
                 articleList = articleRepository.findArticleByTitleContaining(searchname);
                 model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
@@ -38,8 +39,13 @@ public class SearchController {
 //                articleList = articleRepository.findArticleByLevelLessThan(Integer.parseInt(searchname));
 //                model.addAttribute("msg", "等级关键词:小于"+searchname+"。已找到"+articleList.size()+"个相关帖子");
 //            }
-
-            model.addAttribute("articles", articleList);
+        int l=articleList.size();
+        for(int i=0;i<l;i++){
+            if(articleList.get(i).categoryName.compareTo("课程")!=0){
+                sumList.add(articleList.get(i));
+            }
+        }
+            model.addAttribute("articles", sumList);
             return "home";
 
 
