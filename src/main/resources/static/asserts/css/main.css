@@ -717,7 +717,7 @@ ul.articles li.article-entry:last-child {
   background: url("../images/like.png") no-repeat 4px -24px;
   color: #395996;
 }
-.like-btn .comment-btn {
+.like-btn .comment-btn .downfile-btn{
   font-weight: bold;
   display: inline-block;
   height: 40px;
@@ -731,7 +731,7 @@ ul.articles li.article-entry:last-child {
   border-radius: 3px;
   color: #8cd24e;
 }
-.like-btn .comment-btn:hover {
+.like-btn .comment-btn .downfile-btn:hover {
   background: #b6b6b6 ;
   color: #fff;
 }

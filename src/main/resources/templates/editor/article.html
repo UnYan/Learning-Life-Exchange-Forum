@@ -92,6 +92,7 @@
                                         <span th:each = "reply1:${reply1s}" >
                                             <a th:href="@{#} + ${reply1.replyid}"><button class="comment-btn " formaction="" style="height: 30px" th:if = "${reply1.replyid eq reply.id}" th:text="${reply1.content} + 回复了此贴" ></button></a>
                                         </span>
+                                        <a href="" download><button class="comment-btn "  style="height: 30px">下载文件</button></a>
                                     </div>
                                     <form th:action="@{/reply/r} + ${reply.id}" method="post" >
                                         <input name="articleid"
