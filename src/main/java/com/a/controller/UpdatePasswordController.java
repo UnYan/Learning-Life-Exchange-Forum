@@ -51,7 +51,7 @@ public class UpdatePasswordController {
             model.addAttribute("msg", "新密码不一致");
             return "/setting";
         }
-        else if (tmp.getPassword().compareTo(password2)!=0){
+        else if (tmp.getPassword().compareTo(oldpassword)!=0){
             model.addAttribute("msg", "原密码错误");
             return "/setting";
         }

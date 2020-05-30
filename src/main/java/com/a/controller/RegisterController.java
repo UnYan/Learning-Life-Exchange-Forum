@@ -26,11 +26,11 @@ public class RegisterController {
         s=userRepository.findByUsername(username).size()+userRepository.findByEmail(email).size();
         if (s!=0){
             map.put("msg", "用户名或邮箱已存在");
-            return "redirect:/register";
+            return "/register";
         }
         if (password1.compareTo(password2)!=0){
             map.put("msg", "密码不一致");
-            return "redirect:/register";
+            return "/register";
 
         }
         User tmp =new User();
