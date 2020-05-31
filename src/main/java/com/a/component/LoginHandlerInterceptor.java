@@ -1,4 +1,4 @@
-package com.a.conponent;
+package com.a.component;
 
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
