@@ -113,23 +113,25 @@ public class MKController {
     }
     @GetMapping("/main")
     public String home(Model model,HttpSession session) {
-        Collection<Article> articles =articleRepository.findAll();
-        model.addAttribute("articles", articles);
+        List<Article> articles =articleRepository.findAll();
+        List<Article> sumList = new ArrayList<>();
+        int l=articles.size();
+        for(int i=0;i<l;i++){
+            if(articles.get(i).categoryName.compareTo("课程")!=0){
+                sumList.add(articles.get(i));
+            }
+        }
+        model.addAttribute("articles", sumList);
         User user = userRepository.findByUsername((String)session.getAttribute("loginuser")).get(0);
         model.addAttribute("user",user);
         Collection<Reply> replys = replyRepository.findAll();
         model.addAttribute("replys",replys);
         return "home";
     }
-    @GetMapping("/course")
+    @GetMapping("/Course")
     public String course(Model model) {
         List<Article> coursesList=null;
         coursesList=articleRepository.findArticleByCategoryName("课程");
-        int l=coursesList.size();
-        while(l>4){
-            coursesList.remove(l-1);
-            l--;
-        }
         model.addAttribute("courses", coursesList);
         Collection<Article> courses =articleRepository.findArticleByCategoryName("课程推荐");
         model.addAttribute("articles", courses);
