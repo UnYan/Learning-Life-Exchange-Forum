@@ -32,7 +32,7 @@
 
 <body>
 <!-- Start of Header -->
-<div th:insert="~{home::topbar}"></div>
+<div th:replace="commons/bar::topbar(activeUri='setting')"></div>
 <!-- End of Header -->
 
 <!-- Start of Search Wrapper -->
