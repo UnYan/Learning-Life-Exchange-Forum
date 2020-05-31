@@ -111,7 +111,7 @@ public class MKController {
         model.addAttribute("users",users);
         return "editor/article";
     }
-    @GetMapping("/main")
+    @RequestMapping("/main")
     public String home(Model model,HttpSession session) {
         List<Article> articles =articleRepository.findAll();
         List<Article> sumList = new ArrayList<>();

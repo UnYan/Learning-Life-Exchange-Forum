@@ -70,7 +70,11 @@
 
                     </div>
                     <div class="like-btn">
-                        <button class="like-it " formaction="" style="height: 30px;position: relative; margin-right: 0">66</button>
+                        <form id="like-it-form1" th:action="@{/reply/like/a} + ${article.id}" method="post" style="display: inline">
+                            <button class="like-it" style="height: 30px">66</button>
+                            <input type="hidden" name="post_id" th:value="${article.id}">
+                            <input type="hidden" name="action" value="like_it">
+                        </form>
                         <a href="#respond"><button class="comment-btn " style="height: 30px;margin-right: 0;margin-bottom: 0">回复</button></a>
                         <a href="" download><button class="comment-btn "  style="height: 30px">下载文件</button></a>
                     </div>
@@ -86,7 +90,7 @@
                                         <p th:text="${reply.content}" th:id="${reply.id}">回复</p>
                                     </blockquote>
                                     <div class="like-btn">
-                                        <form id="like-it-form" action="" method="post" style="display: inline">
+                                        <form id="like-it-form" th:action="@{/reply/like/r} + ${reply.id}" method="post" style="display: inline">
                                             <button class="like-it" style="height: 30px">66</button>
                                             <input type="hidden" name="post_id" th:value="${reply.id}">
                                             <input type="hidden" name="action" value="like_it">

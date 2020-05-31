@@ -22,6 +22,12 @@ public class Reply {
     public int replyid;
     @Column(name = "likes")
     public int likes;
+    public Integer new_like;
+    public Integer new_like_id;
+    public Integer new_reply;
+    public Integer new_reply_id;
+
+
 
     public int getId() {
         return id;

@@ -25,6 +25,10 @@ public class Article {
     @Column(name = "reply_cnt")
     public Integer reply_cnt;
     public String dateformat;
+    public Integer new_like;
+    public Integer new_like_id;
+    public Integer new_reply;
+    public Integer new_reply_id;
 //    @Column(name = "level")
 //    public int level;
 }

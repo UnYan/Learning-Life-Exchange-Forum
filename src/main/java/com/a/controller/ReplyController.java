@@ -55,8 +55,19 @@ public class ReplyController {
         Article article = articleRepository.findArticleById(Integer.parseInt(articleid));
         reply.articleid = article.id;
         reply.create_time = new Date();
+
+        reply.new_like=0;//给reply的这些属性初始化
+        reply.new_reply=0;
+        reply.new_reply_id=0;
+        reply.new_like_id=0;
+
         reply = replyRepository.save(reply);
         System.out.println(reply.content);
+
+        articleRepository.addReply(Integer.parseInt(articleid));//给newreply属性加一
+        articleRepository.addNewReply(Integer.parseInt(articleid));
+        articleRepository.setNewReplyId(Integer.parseInt(articleid),user.id);
+
         return "redirect:/main";
 
     }
@@ -101,6 +112,11 @@ public class ReplyController {
         Article article = articleRepository.findArticleById(Integer.parseInt(articleid));
         User user = userRepository.findByUsername((String)session.getAttribute("loginuser")).get(0);
         Likes likes = likesRepository.findByArticleidAndUserid(Integer.parseInt(articleid),user.id);
+
+        articleRepository.addLikes(Integer.parseInt(articleid));//给文章表中的likes属性++
+        articleRepository.addNewLikes(Integer.parseInt(articleid));//给newlike属性++
+        articleRepository.setNewLikeId(Integer.parseInt(articleid),(Integer) session.getAttribute("userid"));
+
         if(likes == null){
             likes.userid = user.id;
             likes.articleid = Integer.parseInt(articleid);
@@ -137,6 +153,9 @@ public class ReplyController {
                 likes.status = 1;
             likesRepository.save(likes);
         }
+        replyRepository.addLikes(Integer.parseInt(replyid));//同上
+        replyRepository.addNewLikes(Integer.parseInt(replyid));
+        replyRepository.setNewLikeId(Integer.parseInt(replyid),(Integer) session.getAttribute("userid"));
         return "editor/article";
     }
 }
