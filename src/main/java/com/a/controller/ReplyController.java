@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -110,7 +111,8 @@ public class ReplyController {
 
         Article article = articleRepository.findArticleById(Integer.parseInt(articleid));
         User user = userRepository.findByUsername((String)session.getAttribute("loginuser")).get(0);
-        Likes likes = likesRepository.findByArticleidAndUserid(Integer.parseInt(articleid),user.id);
+        Likes likes = likesRepository.findByArticleidAndUseridAndReplyid(Integer.parseInt(articleid),user.id,0);
+        //因为reply的赞也会保存article id，故仅根据userId，articleId可能存在结果不唯一的情况，只查询article的赞，它的replyId为0，此时可以查询正确。
 
         if(likes == null){
             articleRepository.addLikes(Integer.parseInt(articleid));//给文章表中的likes属性++
@@ -141,6 +143,7 @@ public class ReplyController {
 
     @PostMapping("/reply/like/r{id}")
     public String likeR(@PathVariable("id") String replyid,
+                        @RequestParam("article_id") String articleid,
                         HttpServletRequest request,
                         HttpSession session){
         User user = userRepository.findByUsername((String)session.getAttribute("loginuser")).get(0);
@@ -149,6 +152,7 @@ public class ReplyController {
             Likes like=new Likes();
             like.userid = user.id;
             like.replyid = Integer.parseInt(replyid);
+            like.articleid = Integer.parseInt(articleid);
             like.status = 1;
             likesRepository.save(like);
             replyRepository.addLikes(Integer.parseInt(replyid));//同上
