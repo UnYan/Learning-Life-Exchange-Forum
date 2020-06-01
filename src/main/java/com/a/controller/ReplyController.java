@@ -106,18 +106,16 @@ public class ReplyController {
     @PostMapping("/reply/like/a{id}")
     public String likeA(@PathVariable("id") String articleid,
                         HttpServletRequest request,
-                        //String[] rContent,
                         HttpSession session){
 
         Article article = articleRepository.findArticleById(Integer.parseInt(articleid));
         User user = userRepository.findByUsername((String)session.getAttribute("loginuser")).get(0);
         Likes likes = likesRepository.findByArticleidAndUserid(Integer.parseInt(articleid),user.id);
 
-        articleRepository.addLikes(Integer.parseInt(articleid));//给文章表中的likes属性++
-        articleRepository.addNewLikes(Integer.parseInt(articleid));//给newlike属性++
-        articleRepository.setNewLikeId(Integer.parseInt(articleid),(Integer) session.getAttribute("userid"));
-
         if(likes == null){
+            articleRepository.addLikes(Integer.parseInt(articleid));//给文章表中的likes属性++
+            articleRepository.addNewLikes(Integer.parseInt(articleid));//给newlike属性++
+            articleRepository.setNewLikeId(Integer.parseInt(articleid),(Integer) session.getAttribute("userid"));
             Likes like=new Likes();
             like.userid = user.id;
             like.articleid = Integer.parseInt(articleid);
@@ -125,10 +123,16 @@ public class ReplyController {
             likesRepository.save(like);
         }
         else {
-            if (likes.status == 0)
+            if (likes.status == 0){
                 likes.status = 1;
-            else
+                articleRepository.addLikes(Integer.parseInt(articleid));//给文章表中的likes属性++
+                articleRepository.addNewLikes(Integer.parseInt(articleid));//给newlike属性++
+                articleRepository.setNewLikeId(Integer.parseInt(articleid),(Integer) session.getAttribute("userid"));
+            }
+            else {
                 likes.status = 0;
+                articleRepository.reduceLikes(Integer.parseInt(articleid));//给文章表中的likes属性--
+            }
             likesRepository.save(likes);
         }
         return "redirect:/showBlog/"+articleid;
@@ -138,9 +142,7 @@ public class ReplyController {
     @PostMapping("/reply/like/r{id}")
     public String likeR(@PathVariable("id") String replyid,
                         HttpServletRequest request,
-                        //String[] rContent,
                         HttpSession session){
-        System.out.println("1");
         User user = userRepository.findByUsername((String)session.getAttribute("loginuser")).get(0);
         Likes likes = likesRepository.findByReplyidAndUserid(Integer.parseInt(replyid),user.id);
         if(likes == null){
@@ -149,17 +151,23 @@ public class ReplyController {
             like.replyid = Integer.parseInt(replyid);
             like.status = 1;
             likesRepository.save(like);
+            replyRepository.addLikes(Integer.parseInt(replyid));//同上
+            replyRepository.addNewLikes(Integer.parseInt(replyid));
+            replyRepository.setNewLikeId(Integer.parseInt(replyid),(Integer) session.getAttribute("userid"));
         }
         else {
-            if (likes.status == 1)
+            if (likes.status == 1) {
                 likes.status = 0;
-            else
+                replyRepository.reduceLikes(Integer.parseInt(replyid));//同上
+            }
+            else {
                 likes.status = 1;
+                replyRepository.addLikes(Integer.parseInt(replyid));//同上
+                replyRepository.addNewLikes(Integer.parseInt(replyid));
+                replyRepository.setNewLikeId(Integer.parseInt(replyid),(Integer) session.getAttribute("userid"));
+            }
             likesRepository.save(likes);
         }
-        replyRepository.addLikes(Integer.parseInt(replyid));//同上
-        replyRepository.addNewLikes(Integer.parseInt(replyid));
-        replyRepository.setNewLikeId(Integer.parseInt(replyid),(Integer) session.getAttribute("userid"));
         return "redirect:/showBlog/"+replyRepository.findReplyById(Integer.parseInt(replyid)).articleid;
     }
 }

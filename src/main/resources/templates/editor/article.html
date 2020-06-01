@@ -71,7 +71,7 @@
                     </div>
                     <div class="like-btn">
                         <form id="like-it-form1" th:action="@{/reply/like/a} + ${article.id}" method="post" style="display: inline">
-                            <button class="like-it" style="height: 30px">66</button>
+                            <button class="like-it" style="height: 30px" th:text="${article.likes}">66</button>
                             <input type="hidden" name="post_id" th:value="${article.id}">
                             <input type="hidden" name="action" value="like_it">
                         </form>
@@ -91,7 +91,7 @@
                                     </blockquote>
                                     <div class="like-btn">
                                         <form id="like-it-form" th:action="@{/reply/like/r} + ${reply.id}" method="post" style="display: inline">
-                                            <button class="like-it" style="height: 30px">66</button>
+                                            <button class="like-it" style="height: 30px" th:text="${reply.likes}">66</button>
                                             <input type="hidden" name="post_id" th:value="${reply.id}">
                                             <input type="hidden" name="action" value="like_it">
                                         </form>
