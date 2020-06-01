@@ -68,7 +68,7 @@ public class ReplyController {
         articleRepository.addNewReply(Integer.parseInt(articleid));
         articleRepository.setNewReplyId(Integer.parseInt(articleid),user.id);
 
-        return "redirect:/main";
+        return "redirect:/showBlog/"+articleid;
 
     }
     @PostMapping("/reply/r{id}")
@@ -99,7 +99,7 @@ public class ReplyController {
         reply.create_time = new Date();
         reply = replyRepository.save(reply);
         System.out.println(reply.content);
-        return "redirect:/main";
+        return "redirect:/showBlog/"+articleid;
 
     }
 
@@ -118,9 +118,11 @@ public class ReplyController {
         articleRepository.setNewLikeId(Integer.parseInt(articleid),(Integer) session.getAttribute("userid"));
 
         if(likes == null){
-            likes.userid = user.id;
-            likes.articleid = Integer.parseInt(articleid);
-            likes.status = 1;
+            Likes like=new Likes();
+            like.userid = user.id;
+            like.articleid = Integer.parseInt(articleid);
+            like.status = 1;
+            likesRepository.save(like);
         }
         else {
             if (likes.status == 0)
@@ -129,7 +131,7 @@ public class ReplyController {
                 likes.status = 0;
             likesRepository.save(likes);
         }
-        return "editor/article";
+        return "redirect:/showBlog/"+articleid;
     }
 
 
@@ -142,9 +144,11 @@ public class ReplyController {
         User user = userRepository.findByUsername((String)session.getAttribute("loginuser")).get(0);
         Likes likes = likesRepository.findByReplyidAndUserid(Integer.parseInt(replyid),user.id);
         if(likes == null){
-            likes.userid = user.id;
-            likes.replyid = Integer.parseInt(replyid);
-            likes.status = 1;
+            Likes like=new Likes();
+            like.userid = user.id;
+            like.replyid = Integer.parseInt(replyid);
+            like.status = 1;
+            likesRepository.save(like);
         }
         else {
             if (likes.status == 1)
@@ -156,6 +160,6 @@ public class ReplyController {
         replyRepository.addLikes(Integer.parseInt(replyid));//同上
         replyRepository.addNewLikes(Integer.parseInt(replyid));
         replyRepository.setNewLikeId(Integer.parseInt(replyid),(Integer) session.getAttribute("userid"));
-        return "editor/article";
+        return "redirect:/showBlog/"+replyRepository.findReplyById(Integer.parseInt(replyid)).articleid;
     }
 }
