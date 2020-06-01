@@ -723,24 +723,24 @@ ul.articles li.article-entry:last-child {
   height: 40px;
   line-height: 20px;
   padding: 5px 13px;
-  padding-left: 25px;
+  background-color: white;
   cursor: pointer;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  color: #8cd24e;
+  color: #535b61;
 }
-.like-btn .comment-btn :hover {
-  background: #b6b6b6 ;
-  color: #fff;
-}
-.like-btn .comment-btn.already-voted {
-  cursor: default;
-}
-.like-btn .comment-btn.already-voted:hover {
-  color: #8cd24e;
-}
-.like-btn .like-it,.comment-btn {
+/*.like-btn .comment-btn :hover {*/
+/*  background: #b6b6b6 ;*/
+/*  color: #fff;*/
+/*}*/
+/*.like-btn .comment-btn.already-voted {*/
+/*  cursor: default;*/
+/*}*/
+/*.like-btn .comment-btn.already-voted:hover {*/
+/*  color: #535b61;*/
+/*}*/
+.like-btn .like-it {
   font-weight: bold;
   display: inline-block;
   height: 40px;
@@ -752,18 +752,18 @@ ul.articles li.article-entry:last-child {
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
   border-radius: 3px;
-  color: #8cd24e;
+  color: #535b61;
 }
-.like-btn .like-it,.comment-btn:hover {
+.like-btn .like-it:hover {
   background: #b6b6b6 url("../images/like-btn.png") no-repeat 10px 10px;
   color: #fff;
 }
-.like-btn .like-it,.comment-btn.already-voted {
+.like-btn .like-it.already-voted {
   cursor: default;
 }
-.like-btn .like-it,.comment-btn.already-voted:hover {
+.like-btn .like-it.already-voted:hover {
   background: #fafafa url("../images/like-btn.png") no-repeat 10px -20px;
-  color: #8cd24e;
+  color: #535b61;
 }
 
 .hentry.type-post .post-title {
@@ -1474,7 +1474,13 @@ a#scroll-top:hover {
     width: 60%;
   }
 
-
+  /* Profile */
+  .profile{
+    margin:10px auto
+  }
+  .profile img{
+    border-radius:50%
+  }
 
   /* Comments */
   .commentlist li.comment .children {

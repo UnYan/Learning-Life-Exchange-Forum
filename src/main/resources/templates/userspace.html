@@ -22,7 +22,35 @@
     <!--[if lt IE 9]>
     <script src="../static/asserts/js/html5.js"></script></script>
     <![endif]-->
+    <script>
+        $(function(){
+            $("#userHead").click(function(){
+                $("#btn_file").click();//隐藏了input:file样式，点击头像就可以选择文件
+                $("#btn_file").on("change",function(){
+                    var objUrl = getObjectUrl(this.files[0]);//获取图片的路径，该路径不是图片在本地的路径
+                    if(objUrl){
+                        $("userHead").attr("src",objUrl);//将图片路径存入src,显示图片
+                    }
+                });
 
+            });
+
+
+        });
+
+        function getObjectUrl(file){
+            var url = null;
+            if(window.createObjectURL != undefined){//basic
+                url = window.createObjectURL(file);
+            }else if(window.URL != undefined){//mozila(firefox)
+                url = window.URL.createObjectURL(file);
+            }else if(window.webkitURL != undefined){//webkit or chrome
+                url = window.webkitURL.createObjectURL(file);
+            }
+            return url;
+
+        }
+    </script>
 
 </head>
 
@@ -34,6 +62,10 @@
 <!-- Start of Search Wrapper -->
 <div class="search-area-wrapper">
     <div class="search-area container">
+        <div class="profile" style="margin:10px auto;text-align:center;width: 120px">
+            <label for="profile"><img alt="" src="../static/asserts/images/profile.png" style="border-radius:50%" height="100" width="100"><br></label>
+            <input type="file" style="display: none" id="profile" formaction="">
+        </div>
         <h3 class="search-header">[[${session.loginuser}]]</h3>
         <p class="search-tag-line">你的权限等级为 [[${session.level}]]</p>
 

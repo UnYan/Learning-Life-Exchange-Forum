@@ -96,7 +96,7 @@
                                             <input type="hidden" name="action" value="like_it">
                                         </form>
 <!--                                        <button class="like-it "  style="height: 30px"  th:formaction="@{/reply/like/r} + ${reply.id}"  th:action="@{/reply/like/r} + ${reply.id}" th:method="post" th:text="${reply.likes}">66</button>-->
-                                        <button class="comment-btn" formaction="" style="height: 30px" onclick="document.getElementById('comment-area').hidden=!(document.getElementById('comment-area').hidden)">回复</button>
+                                        <button class="comment-btn" formaction="" style="height: 30px" th:onclick="'javascript:document.getElementById(\'comment-area' + ${reply.id}+'\').hidden=!(document.getElementById(\'comment-area' + ${reply.id}+'\').hidden)'">回复</button>
                                         <span th:each = "reply1:${reply1s}" >
                                             <a th:href="@{#} + ${reply1.replyid}"><button class="comment-btn " formaction="" style="height: 30px" th:if = "${reply1.replyid eq reply.id}" th:text="${reply1.content} + 回复了此贴" ></button></a>
                                         </span>
@@ -107,7 +107,7 @@
                                                th:value="${article.id}"
                                                th:hidden="hidden"/>
                                         <br>
-                                        <div thid="comment-area" hidden="hidden">
+                                        <div th:id="@{comment-area} + ${reply.id}" hidden="hidden">
                                             <textarea class="span8" name="rContent" th:id = "${reply.id}" cols="20" rows="5"></textarea>
                                             <input class="btn" name="submit" type="submit"  value="发布">
                                         </div>
