@@ -1,5 +1,6 @@
 package com.a.repository;
 
+import com.a.entity.Article;
 import com.a.entity.Reply;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -12,6 +13,8 @@ public interface ReplyRepository extends JpaRepository<Reply,Integer> {
     Reply findReplyById(int id);
     List<Reply> findByArticleid(int id);
     List<Reply> findByReplyid(int id);
+    @Query(value="select * from reply where userid=?1 and (new_like>0 or new_reply>0) ", nativeQuery=true)
+    List<Reply> findReplyByNotice(Integer userid);
     @Transactional
     @Modifying
     @Query(value="update reply set likes=likes+1 where id=?1", nativeQuery=true)

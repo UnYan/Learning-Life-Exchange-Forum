@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface ArticleRepository extends JpaRepository<Article,Integer> {
+    Article findArticleById(int  id);
     List<Article> findArticleByAuthor(String author);
 //    List<Article> findArticleByLevelGreaterThan(int i);
 //    List<Article> findArticleByLevelLessThan(int i);
@@ -17,7 +18,8 @@ public interface ArticleRepository extends JpaRepository<Article,Integer> {
     List<Article> findArticleByTitleContaining(String title);
     List<Article> findArticleByCategoryName(String category);
     List<Article> findArticleByCategory(int category);
-    Article findArticleById(int id);
+    @Query(value="select * from article where author=?1 and (new_like>0 or new_reply>0) ", nativeQuery=true)
+    List<Article> findArticleByNotice(String name);
     @Transactional
     @Modifying
     @Query(value="update article set reply_cnt=reply_cnt+1 where id=?1", nativeQuery=true)
