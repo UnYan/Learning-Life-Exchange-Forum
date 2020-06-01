@@ -49,7 +49,7 @@ public class MainController {
                 noticeBuff.add(new Notice(userRepository.findUserById(i.new_reply_id).username+s+"回复了你的一篇文章","/showBlog/"+i.id));
             }
         }
-
+//
         List<Reply> nReply = replyRepository.findReplyByNotice(user.id);
         for (Reply i:nReply){
             if (i.new_like>0){
