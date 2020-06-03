@@ -16,7 +16,7 @@
         <p class="error-msg" style="color: red; text-align: center; font-size: 12px; line-height: 5px" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
         <div class="login-input-box">
             <span class="icon icon-user"></span>
-            <input type="text" name="username" placeholder="Please enter your username" required>
+            <input type="text" name="username" id="username" placeholder="Please enter your username" required>
         </div>
         <div class="login-input-box">
             <span class="icon icon-password"></span>
@@ -30,7 +30,7 @@
 <!--        </label>-->
 <!--    </div>-->
     <div class="login-button-box">
-        <input type="submit" value="Login" form="login">
+        <input type="submit" value="Login" form="login" onclick="submit()">
     </div>
     <div class="logon-box">
         <a th:href="@{/retrievepassword}">Forgot?</a>
@@ -38,4 +38,17 @@
     </div>
 </div>
 </body>
+<script>
+    function submit(){
+        var str = document.getElementById("username").value.trim();
+        setInfo(str);
+
+    }
+    //储存数据  
+    function setInfo(name) {
+        var storage = window.sessionStorage;
+        storage.setItem("username", name);
+    }
+
+</script>
 </html>

@@ -16,24 +16,24 @@
             <nav class="main-nav">
                 <div class="menu-top-menu-container">
                     <ul id="menu-top-menu" class="clearfix">
-                        <li><a th:style="${activeUri=='category/3'?'color: white':''}"th:href="@{/category/3}">讨论区</a></li>
-                        <li><a th:style="${activeUri=='category/4'?'color: white':''}"th:href="@{/category/4}">刷题板块</a></li>
-                        <li><a th:style="${activeUri=='category/2'?'color: white':''}"th:href="@{/category/2}">校园周边</a></li>
-                        <li><a th:style="${activeUri=='Course'?'color: white':''}" th:href="@{/Course}">课程推荐</a></li>
-                        <li><a th:style="${activeUri=='category/1'?'color: white':''}"th:href="@{/category/1}">资源共享</a></li>
-                        <li><a th:style="${activeUri=='main'?'color: white':''}" th:href="@{/main}">全部帖子</a></li>
+                        <li><a th:href="@{/chatting}" onclick="submit()">讨论区</a></li>
+                        <li><a th:href="@{/category/4}">刷题板块</a></li>
+                        <li><a th:href="@{/category/2}">校园周边</a></li>
+                        <li><a style="color: #46A3FF" th:style="${activeUri=='Course'?'color: #46A3FF':''}" th:href="@{/Course}">课程推荐</a></li>
+                        <li><a th:href="@{/category/1}">资源共享</a></li>
+                        <li><a style="color: #46A3FF" th:style="${activeUri=='main'?'color: #46A3FF':''}" th:href="@{/main}">全部帖子</a></li><!--class="current-menu-item"-->
                         <li><a href="faq.html">通知</a>
                             <ul class="sub-menu" >
                                 <li th:each="notice:${notices}"><a th:href="@{${notice.href}}" href="/main" th:text="${notice.msg}" ></a></li>
                             </ul>
                         </li>
 
-                        <li><a>[[${session.loginuser}]]</a>
+                        <li><a id="username">[[${session.loginuser}]]</a>
                             <ul class="sub-menu">
-                                <li ><a style="color: #46A3FF" th:style="${activeUri=='userspace'?'color: white':''}" th:href="@{/userspace}" >个人中心</a></li>
-                                <li style="color: #46A3FF" th:style="${activeUri=='administrators'?'color: white':''}" th:if="${session.level == 0}"><a href="administrators" >管理中心</a></li>
+                                <li ><a style="color: #46A3FF" th:style="${activeUri=='userspace'?'color: #46A3FF':''}" th:href="@{/userspace}" >个人中心</a></li>
+                                <li style="color: #46A3FF" th:style="${activeUri=='administrators'?'color: #46A3FF':''}" th:if="${session.level == 0}"><a href="administrators" >管理中心</a></li>
                                 <li><a th:href="@{/}">注销</a></li>
-                                <li><a style="color: #46A3FF" th:style="${activeUri=='setting'?'color: white':''}" th:href="@{/setting}">设置</a></li>
+                                <li><a style="color: #46A3FF" th:style="${activeUri=='setting'?'color: #46A3FF':''}" th:href="@{/setting}">设置</a></li>
                                 <!--                                                                                <li><a href="">Default Skin</a></li>-->
                             </ul>
                         </li>

@@ -1,0 +1,81 @@
+<!doctype html>
+<!--[if lt IE 7]> <html class="lt-ie9 lt-ie8 lt-ie7" lang="en-US"> <![endif]-->
+<!--[if IE 7]>    <html class="lt-ie9 lt-ie8" lang="en-US"> <![endif]-->
+<!--[if IE 8]>    <html class="lt-ie9" lang="en-US"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en-US" xmlns:th="http://www.thymeleaf.org"> <!--<![endif]-->
+<head>
+    <!-- META TAGS -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>学习生活交流论坛</title>
+
+    <link rel="shortcut icon" href="../static/asserts/images/login_logo.png" />
+
+    <!-- Style Sheet-->
+    <link rel='stylesheet' id='bootstrap-css-css'  href='../static/asserts/css/bootstrap5152.css?ver=1.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='responsive-css-css'  href='../static/asserts/css/responsive5152.css?ver=1.0' type='text/css' media='all' />
+    <link rel='stylesheet' id='pretty-photo-css-css'  href='../static/asserts/js/prettyphoto/prettyPhotoaeb9.css' type='text/css' media='all' />
+    <link rel='stylesheet' id='main-css-css'  href='../static/asserts/css/main.css' type='text/css' media='all' />
+
+
+    <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+    <script src="../static/asserts/js/html5.js"></script></script>
+    <![endif]-->
+
+</head>
+
+<body>
+<!-- Start of Header -->
+<div th:replace="commons/bar::topbar(activeUri='main')"></div>
+<!-- End of Header -->
+
+<!-- End of Search Wrapper -->
+
+<script type="text/javascript">
+    var socket;
+
+        if (!window.WebSocket) {
+        window.WebSocket = window.MozWebSocket;
+    }
+    if (window.WebSocket) {
+        socket = new WebSocket("ws://localhost:8888/websocket");
+        socket.onmessage = function(event) {
+            var ta = document.getElementById('responseText');
+            ta.value = ta.value + '\n' + event.data
+        };
+        socket.onopen = function(event) {
+            var ta = document.getElementById('responseText');
+            ta.value += "连接开启!";
+        };
+        socket.onclose = function(event) {
+            var ta = document.getElementById('responseText');
+            ta.value = ta.value + "连接被关闭";
+        };
+    } else {
+        alert("你的浏览器不支持 WebSocket！");
+    }
+    function send(message) {
+        if (!window.WebSocket) {
+            return;
+        }
+        if (socket.readyState == WebSocket.OPEN) {
+            socket.send(sessionStorage.getItem("username")+message);
+        } else {
+            alert("连接没有开启.");
+        }
+    }
+</script>
+<form onsubmit="return false;">
+    <h1><center>讨论区</center></h1>
+    <center><textarea id="responseText" style="width: 1000px; height: 600px;"></textarea></center>
+    <center><input type="text" name="message"  style="width: 820px" value="">
+    <input type="button" value="发送消息" onclick="send(':'+this.form.message.value)">
+    <input type="button" onclick="javascript:document.getElementById('responseText').value=''" value="清空聊天记录"></center>
+</form>
+<br>
+<br>
+
+</body>
+</html>
