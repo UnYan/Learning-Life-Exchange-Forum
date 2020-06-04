@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
@@ -24,13 +25,12 @@ public class userSpaceController {
     public String login(Model model, HttpSession session){
         String username= (String) session.getAttribute("loginuser");
         List<Article> coursesList=null;
-        List<Article> articlesList=new ArrayList<>();
         coursesList=articleRepository.findArticleByAuthor(username);
         model.addAttribute("articles", coursesList);
         return "userspace";
         }
-    @GetMapping(value = {"/otheruserspace"})
-    public String visit(@RequestParam("username") String username,Model model, HttpSession session){
+    @GetMapping("/otheruserspace/{author}")
+    public String show(@PathVariable("author") String username, Model model,HttpSession session) {
         List<Article> coursesList=null;
         List<Article> articlesList=new ArrayList<>();
         coursesList=articleRepository.findArticleByAuthor(username);
@@ -40,4 +40,5 @@ public class userSpaceController {
         session.setAttribute("otherlevel",userRepository.findByUsername(username).get(0).level);
         return "otheruserspace";
     }
+
     }

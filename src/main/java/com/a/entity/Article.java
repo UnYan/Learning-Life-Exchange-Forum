@@ -18,9 +18,11 @@ public class Article {
     public String content;
     @Column(name = "likes", length = 100)
     public Integer likes;
-    public int getlikes(){
+
+    public Integer getlikes() {
         return likes;
     }
+
     @Column(name = "category", length = 100)
     public Integer category;
     @Column(name = "categoryName", length = 100)

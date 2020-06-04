@@ -21,6 +21,7 @@ public class CategoryController {
     public String search(@PathVariable("id") Integer id, Model model){
         List<Article> list=articleRepository.findArticleByCategory(id);
         model.addAttribute("articles",list);
+        // if (id == 5) return "course";
         List<Article> hot = articleRepository.findAll();
         hot.sort(comparing(Article::getlikes).reversed());
         List<Article> sidebar = new ArrayList<>();
@@ -28,9 +29,10 @@ public class CategoryController {
             sidebar.add(hot.get(i));
         }
         model.addAttribute("sidebar",sidebar);
-        if(id==5)
-            return "course";
-        return "home";
+        if (id == 1) return "home1";
+        else if (id == 2) return "home2";
+        else if (id == 4) return "home4";
+        else return "home";
 
     }
 }

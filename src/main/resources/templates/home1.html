@@ -71,11 +71,11 @@
                                                                 </h3>
 
                                                                 <div class="post-meta clearfix">
-                                                                        <span class="date" th:text="${article.dateformat}==null?'暂无日期':${article.dateformat}"></span>
-                                                                        <span class="author" th:text="${article.author}==null?'暂无作者':${article.author}"></span>
+                                                                        <span class="date"  th:text="${article.dateformat}==null?'暂无日期':${article.dateformat}"></span>
+                                                                        <span  class="author"><a th:href="@{/otheruserspace/}+${article.author}" th:text="${article.author}" ></a></span>
                                                                         <span  class="category" th:text="${article.categoryName}" ></span>
-                                                                        <span class="comments"><a href="#" th:text="${article.reply_cnt}+回复" th:href="@{/showBlog/}+${article.id}">3 回复</a></span>
-                                                                        <span class="like-count">66</span>
+                                                                        <span class="comments"><a href="#" th:text="${article.reply_cnt}+回复" th:href="@{/showBlog/}+${article.id}"></a></span>
+                                                                        <span class="like-count" th:text="${article.likes}"></span>
                                                                 </div><!-- end of post meta -->
                                                                 <p th:text="${article.summary}==null?'暂无简介':${article.summary}"></p>
                                                         </header>
@@ -105,28 +105,16 @@
 
                                                 <section class="widget">
                                                         <h3 class="title">最热帖子</h3>
-                                                        <ul class="articles">
-                                                                <li class="article-entry standard">
-                                                                        <h4><a href="single.html">帖子一</a></h4>
-                                                                        <span class="article-meta">25 Feb, 2013 标签：<a href="#" title="生活区">生活区</a></span>
-                                                                        <span class="like-count">66</span>
+                                                        <ol class="articles">
+                                                                <li class="article-entry standard" th:each="course:${sidebar}">
+                                                                        <h4><a href="single.html" th:text="${course.title}==null?${course.id}:${course.title}" th:href="@{/showBlog/}+${course.id}"></a></h4>
+                                                                        <span class="date" th:text="${course.dateformat}==null?'暂无日期':${course.dateformat}"></span>
+                                                                        <span  class="author"><a th:href="@{/otheruserspace/}+${course.author}" th:text="${course.author}" ></a></span>
+                                                                        <span class="category" th:text="${course.categoryName}"></span>
+                                                                        <span class="like" th:text="${course.likes}" ></span>
+
                                                                 </li>
-                                                                <li class="article-entry standard">
-                                                                        <h4><a href="single.html">帖子二</a></h4>
-                                                                        <span class="article-meta">24 Feb, 2013 标签：<a href="#" title="生活区">生活区</a></span>
-                                                                        <span class="like-count">15</span>
-                                                                </li>
-                                                                <li class="article-entry video">
-                                                                        <h4><a href="single.html">帖子三</a></h4>
-                                                                        <span class="article-meta">23 Feb, 2013 标签：<a href="#" title="生活区">生活区</a></span>
-                                                                        <span class="like-count">8</span>
-                                                                </li>
-                                                                <li class="article-entry image">
-                                                                        <h4><a href="single.html">帖子四</a></h4>
-                                                                        <span class="article-meta">22 Feb, 2013 标签：<a href="#" title="生活区">生活区</a></span>
-                                                                        <span class="like-count">6</span>
-                                                                </li>
-                                                        </ul>
+                                                        </ol>
                                                 </section>
 
                                         </aside>

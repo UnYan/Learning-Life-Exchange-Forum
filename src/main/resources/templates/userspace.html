@@ -102,10 +102,7 @@
 
                                     <div class="post-meta clearfix">
                                         <span class="date" th:text="${article.dateformat}==null?'暂无日期':${article.dateformat}"></span>
-                                        <form id="author" th:action="@{/otheruserspace}" method="get" style="display: inline">
-                                            <button class="like-it" style="height: 30px" th:text="${article.author}==null?'暂无作者':${article.author}"></button>
-                                            <input type="hidden" name="username" th:value="${article.author}">
-                                        </form>
+                                        <span class="author" th:text="${article.author}==null?'暂无作者':${article.author}"></span>
                                         <span  class="category" th:text="${article.categoryName}" ></span>
                                         <span class="comments"><a href="#" th:text="${article.reply_cnt}+回复" th:href="@{/showBlog/}+${article.id}">3 回复</a></span>
                                         <span class="like-count">66</span>

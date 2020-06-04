@@ -111,6 +111,13 @@ public class MKController {
         model.addAttribute("reply1s",replys);
         Collection<User> users = userRepository.findAll();
         model.addAttribute("users",users);
+        List<Article> hot = articleRepository.findAll();
+        hot.sort(comparing(Article::getlikes).reversed());
+        List<Article> sidebar = new ArrayList<>();
+        for(int i=0;i<5;i++){
+            sidebar.add(hot.get(i));
+        }
+        model.addAttribute("sidebar",sidebar);
         return "editor/article";
     }
     @GetMapping("/Course")
