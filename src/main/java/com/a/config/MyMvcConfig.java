@@ -14,14 +14,14 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/main").setViewName("home");
         registry.addViewController("/userspace").setViewName("userspace");
         registry.addViewController("/setting").setViewName("setting");
-        registry.addViewController("/mk").setViewName("editor/editormd");
+        registry.addViewController("/mk").setViewName("editor/editormd" );
         registry.addViewController("/register").setViewName("register");
         registry.addViewController("/retrivepassword").setViewName("retrivepassword");
         registry.addViewController("/retrievepassword").setViewName("retrievepassword");
         registry.addViewController("/Course").setViewName("Course");
         registry.addViewController("/chat").setViewName("chat");
         registry.addViewController("/chatting").setViewName("chatting");
-        registry.addViewController("/otheruserspace").setViewName("otheruserspace");
+        registry.addViewController("/administrators").setViewName("administrators");
     }
 
     @Override
