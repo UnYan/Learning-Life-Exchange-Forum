@@ -70,11 +70,12 @@
 
                     </div>
                     <div class="like-btn">
-                        <form id="like-it-form1" th:action="@{/reply/like/a} + ${article.id}" method="post" style="display: inline" name="dianzan">
-                            <button class="like-it" style="height: 30px" th:text="${article.likes}">66</button>
-                            <input type="hidden" name="post_id" th:value="${article.id}">
-                            <input type="hidden" name="action" value="like_it">
-                        </form>
+                        <button class="like-it" style="height: 30px"  th:onclick="'javascript:regist(\''+${0}+'\',\''+${article.id}+'\')'" th:text="${article.likes}">66</button>
+<!--                        <form id="like-it-form1" th:action="@{/reply/like/a} + ${article.id}" method="post" style="display: inline" name="dianzan">-->
+<!--                            <button class="like-it" style="height: 30px" th:text="${article.likes}">66</button>-->
+<!--                            <input type="hidden" name="post_id" th:value="${article.id}">-->
+<!--                            <input type="hidden" name="action" value="like_it">-->
+<!--                        </form>-->
                         <a href="#respond"><button class="diy-btn " style="margin-right: 0;margin-bottom: 0">回复</button></a>
                         <a href="" download><button class="diy-btn "  >下载文件</button></a>
                     </div>
@@ -236,12 +237,21 @@ function regist(replyId,articleId) {
     var localurl="http://" + window.location.host + "/Like/doLike";
     $.ajax({
         type:"post",
-        async:true,
+        async:false,
         // contentType: "application/json",
         data:{replyId,articleId
         },
         dataType:"json",
         url:localurl,
+        success:function(data){
+            var likeButton = $(this);
+            var likeHtml = likeButton.html();
+            var likeNum = parseInt(likeHtml, 10);
+            likeNum = data.likes;
+            //console.log(likeNum);
+            likeButton.html(likeNum);
+            //console.log(data.likes);
+        }
     });
 }
 </script>
