@@ -26,6 +26,8 @@ import java.util.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static java.util.Comparator.comparing;
+
 @Controller
 public class MKController {
     private static String UPLOADED_FOLDER = "E:\\";
@@ -120,6 +122,13 @@ public class MKController {
         model.addAttribute("articles", courses);
         Collection<Reply> replys = replyRepository.findAll();
         model.addAttribute("replys",replys);
+        List<Article> hot = articleRepository.findAll();
+        hot.sort(comparing(Article::getlikes).reversed());
+        List<Article> sidebar = new ArrayList<>();
+        for(int i=0;i<5;i++){
+            sidebar.add(hot.get(i));
+        }
+        model.addAttribute("sidebar",sidebar);
         return "Course";
     }
 }

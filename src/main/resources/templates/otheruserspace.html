@@ -66,8 +66,8 @@
             <label for="profile"><img alt="" src="../static/asserts/images/profile.png" style="border-radius:50%" height="100" width="100"><br></label>
             <input type="file" style="display: none" id="profile" formaction="">
         </div>
-        <h3 class="search-header">[[${session.loginuser}]]</h3>
-        <p class="search-tag-line">你的权限等级为 [[${session.level}]]</p>
+        <h3 class="search-header">[[${session.otherloginuser}]]</h3>
+        <p class="search-tag-line">你的权限等级为 [[${session.otherlevel}]]</p>
 
         <form id="search-form" class="search-form clearfix" method="get" action="#" autocomplete="off">
             <input class="search-term required" type="text" id="s" name="s" placeholder="搜索我的帖子" title="搜索我的帖子" />
@@ -92,7 +92,7 @@
                         <div class="span8 main-listing">
 
 
-                            <article class="format-standard type-post hentry clearfix" th:each="article:${articles}">
+                            <article class="format-standard type-post hentry clearfix" th:each="article:${otherarticles}">
 
                                 <header class="clearfix">
 
@@ -114,50 +114,50 @@
                                 </header>
                             </article>
 
-<!--                            <div id="pagination">-->
-<!--                                <a href="#" class="btn active">1</a>-->
-<!--                                <a href="#" class="btn">2</a>-->
-<!--                                <a href="#" class="btn">3</a>-->
-<!--                                <a href="#" class="btn">Next »</a>-->
-<!--                                <a href="#" class="btn">Last »</a>-->
-<!--                            </div>-->
+                            <!--                            <div id="pagination">-->
+                            <!--                                <a href="#" class="btn active">1</a>-->
+                            <!--                                <a href="#" class="btn">2</a>-->
+                            <!--                                <a href="#" class="btn">3</a>-->
+                            <!--                                <a href="#" class="btn">Next »</a>-->
+                            <!--                                <a href="#" class="btn">Last »</a>-->
+                            <!--                            </div>-->
 
                         </div>
-            <!-- end of page content -->
+                        <!-- end of page content -->
 
 
-            <!-- start of sidebar -->
-            <aside class="span4 page-sidebar">
+                        <!-- start of sidebar -->
+                        <aside class="span4 page-sidebar">
 
-                <section class="widget">
-                    <div class="support-widget">
-                        <a th:href="@{/mk}">发布帖子</a>
+                            <section class="widget">
+                                <div class="support-widget">
+                                    <a th:href="@{/mk}">发布帖子</a>
+                                </div>
+                            </section>
+
+
+                            <div class="userspacels">
+                                <section class="widget">
+                                    <ul>
+                                        <li></li>
+                                        <li></li>
+                                    </ul>
+
+                                </section>
+                                <a href="">回复我的</a><br><br><br>
+                                <a href="">我的主题</a><br><br><br>
+                                <a href="">我的点赞</a><br><br><br>
+                                <!--                    <input type="submit" formaction="" value="回复我的"><br><br>-->
+                                <!--                    <input type="submit" formaction="" value="我的主题"><br><br>-->
+                                <!--                    <input type="submit" formaction="" value="我的点赞"><br><br>-->
+                            </div>
+
+                        </aside>
+                        <!-- end of sidebar -->
                     </div>
-                </section>
-
-
-                <div class="userspacels">
-                   <section class="widget">
-                            <ul>
-                                    <li></li>
-                                    <li></li>
-                            </ul>
-
-                   </section>
-                    <a href="">回复我的</a><br><br><br>
-                    <a href="">我的主题</a><br><br><br>
-                    <a href="">我的点赞</a><br><br><br>
-<!--                    <input type="submit" formaction="" value="回复我的"><br><br>-->
-<!--                    <input type="submit" formaction="" value="我的主题"><br><br>-->
-<!--                    <input type="submit" formaction="" value="我的点赞"><br><br>-->
                 </div>
-
-            </aside>
-            <!-- end of sidebar -->
+            </div>
         </div>
-    </div>
-    </div>
-    </div>
     </div>
 </div>
 <!-- End of Page Container -->

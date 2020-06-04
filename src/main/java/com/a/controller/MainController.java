@@ -7,15 +7,16 @@ import com.a.repository.ArticleRepository;
 import com.a.repository.ReplyRepository;
 import com.a.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.querydsl.QSort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
+
+import static java.util.Comparator.comparing;
+
 @Controller
 public class MainController {
     @Autowired
@@ -61,6 +62,13 @@ public class MainController {
                 noticeBuff.add(new Notice(userRepository.findUserById(i.new_reply_id).username+s+"回复了你的一条回复","/showBlog/"+i.articleid));
             }
         }
+        List<Article> hot = articleRepository.findAll();
+        hot.sort(comparing(Article::getlikes).reversed());
+        List<Article> sidebar = new ArrayList<>();
+        for(int i=0;i<5;i++){
+            sidebar.add(hot.get(i));
+        }
+        model.addAttribute("sidebar",sidebar);
         model.addAttribute("notices",noticeBuff);
 
         model.addAttribute("user",user);

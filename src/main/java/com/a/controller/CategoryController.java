@@ -8,7 +8,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.Comparator.comparing;
 
 @Controller
 public class CategoryController {
@@ -18,6 +21,13 @@ public class CategoryController {
     public String search(@PathVariable("id") Integer id, Model model){
         List<Article> list=articleRepository.findArticleByCategory(id);
         model.addAttribute("articles",list);
+        List<Article> hot = articleRepository.findAll();
+        hot.sort(comparing(Article::getlikes).reversed());
+        List<Article> sidebar = new ArrayList<>();
+        for(int i=0;i<5;i++){
+            sidebar.add(hot.get(i));
+        }
+        model.addAttribute("sidebar",sidebar);
         if(id==5)
             return "course";
         return "home";

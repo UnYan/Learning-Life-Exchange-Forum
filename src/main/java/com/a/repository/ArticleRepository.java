@@ -18,6 +18,7 @@ public interface ArticleRepository extends JpaRepository<Article,Integer> {
     List<Article> findArticleByTitleContaining(String title);
     List<Article> findArticleByCategoryName(String category);
     List<Article> findArticleByCategory(int category);
+    List<Article> findAll();
     @Query(value="select * from article where author=?1 and (new_like>0 or new_reply>0) ", nativeQuery=true)
     List<Article> findArticleByNotice(String name);
     @Transactional

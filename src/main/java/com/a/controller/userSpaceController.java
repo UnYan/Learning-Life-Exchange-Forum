@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -17,13 +18,26 @@ import java.util.List;
 public class userSpaceController {
     @Autowired
     ArticleRepository articleRepository;
+    @Autowired
+    UserRepository userRepository;
     @GetMapping(value = {"/userspace"})
     public String login(Model model, HttpSession session){
         String username= (String) session.getAttribute("loginuser");
         List<Article> coursesList=null;
+        List<Article> articlesList=new ArrayList<>();
         coursesList=articleRepository.findArticleByAuthor(username);
         model.addAttribute("articles", coursesList);
         return "userspace";
         }
-
+    @GetMapping(value = {"/otheruserspace"})
+    public String visit(@RequestParam("username") String username,Model model, HttpSession session){
+        List<Article> coursesList=null;
+        List<Article> articlesList=new ArrayList<>();
+        coursesList=articleRepository.findArticleByAuthor(username);
+        model.addAttribute("otherarticles", coursesList);
+        session.setAttribute("otherloginuser",username);
+//        session.setAttribute("otheruserid",userRepository.findByUsername(username).get(0).id);
+        session.setAttribute("otherlevel",userRepository.findByUsername(username).get(0).level);
+        return "otheruserspace";
+    }
     }
