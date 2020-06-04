@@ -23,6 +23,14 @@ public interface ArticleRepository extends JpaRepository<Article,Integer> {
     List<Article> findArticleByNotice(String name);
     @Transactional
     @Modifying
+    @Query(value="update article set new_like=0,new_like_id=null where id=?1", nativeQuery=true)
+    void clearNewLike(Integer id);
+    @Transactional
+    @Modifying
+    @Query(value="update article set new_reply=0,new_reply_id=null where id=?1", nativeQuery=true)
+    void clearNewReply(Integer id);
+    @Transactional
+    @Modifying
     @Query(value="update article set reply_cnt=reply_cnt+1 where id=?1", nativeQuery=true)
     void addReply(Integer id);
     @Transactional
