@@ -235,7 +235,7 @@ jQuery(document).ready(function(e) {
     /* ---------------------------------------------------- */
     /*	Like Button JS
      /* ---------------------------------------------------- */
-    // $('#like-it-form .like-it').click(function(){
+    // $('.like-it').click(function(){
     //     var likeButton = $(this);
     //     var likeHtml = likeButton.html();
     //     var likeNum = parseInt(likeHtml, 10);
