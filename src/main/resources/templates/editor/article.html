@@ -70,11 +70,12 @@
 
                     </div>
                     <div class="like-btn">
-                        <form id="like-it-form1" th:action="@{/reply/like/a} + ${article.id}" method="post" style="display: inline" name="dianzan">
-                            <button class="like-it" style="height: 30px" th:text="${article.likes}">66</button>
-                            <input type="hidden" name="post_id" th:value="${article.id}">
-                            <input type="hidden" name="action" value="like_it">
-                        </form>
+                        <button class="like-it" style="height: 30px"  th:onclick="'javascript:regist(\''+${0}+'\',\''+${article.id}+'\')'" th:text="${article.likes}">66</button>
+<!--                        <form id="like-it-form1" th:action="@{/reply/like/a} + ${article.id}" method="post" style="display: inline" name="dianzan">-->
+<!--                            <button class="like-it" style="height: 30px" th:text="${article.likes}">66</button>-->
+<!--                            <input type="hidden" name="post_id" th:value="${article.id}">-->
+<!--                            <input type="hidden" name="action" value="like_it">-->
+<!--                        </form>-->
                         <a href="#respond"><button class="diy-btn " style="margin-right: 0;margin-bottom: 0">回复</button></a>
                         <a href="" download><button class="diy-btn "  >下载文件</button></a>
                     </div>
@@ -90,12 +91,13 @@
                                         <p th:text="${reply.content}" th:id="${reply.id}">回复</p>
                                     </blockquote>
                                     <div class="like-btn">
-                                        <form id="like-it-form" th:action="@{/reply/like/r} + ${reply.id}" method="post" style="display: inline">
-                                            <button class="like-it" style="height: 30px" >66</button>
-                                            <input type="hidden" name="post_id" th:value="${reply.id}">
-                                            <input type="hidden" name="article_id" th:value="${article.id}">
-                                            <input type="hidden" name="action" value="like_it">
-                                        </form>
+                                        <button class="like-it" style="height: 30px"  th:onclick="'javascript:regist(\''+${reply.id}+'\',\''+${article.id}+'\')'" th:text="${reply.likes}">66</button>
+<!--                                        <form id="like-it-form" th:action="@{/reply/like/r} + ${reply.id}" method="post" style="display: inline">-->
+<!--                                            <button class="like-it" style="height: 30px" >66</button>-->
+<!--                                            <input type="hidden" name="post_id" th:value="${reply.id}">-->
+<!--                                            <input type="hidden" name="article_id" th:value="${article.id}">-->
+<!--                                            <input type="hidden" name="action" value="like_it">-->
+<!--                                        </form>-->
 <!--                                        <button class="like-it "  style="height: 30px"  th:formaction="@{/reply/like/r} + ${reply.id}"  th:action="@{/reply/like/r} + ${reply.id}" th:method="post" th:text="${reply.likes}">66</button>-->
                                         <button class="diy-btn" formaction=""  th:onclick="'javascript:document.getElementById(\'comment-area' + ${reply.id}+'\').hidden=!(document.getElementById(\'comment-area' + ${reply.id}+'\').hidden)'">回复</button>
                                         <span th:each = "reply1:${reply1s}" >
@@ -224,5 +226,34 @@
 <script type='text/javascript' src='../../static/asserts/js/jquery.formd471.js?ver=3.18'></script>
 <script type='text/javascript' src='../../static/asserts/js/jquery.validate.minfc6b.js?ver=1.10.0'></script>
 <script type='text/javascript' src='../../static/asserts/js/custom5152.js?ver=1.0'></script>
+<script type="text/javascript" src="js/jquery-2.1.1.min.js"></script>
+<script type="text/javascript">
+    function fun() {
+        // alert(1)
+        // var a=document.getElementById("username").value();
+    }
+
+function regist(replyId,articleId) {
+    var localurl="http://" + window.location.host + "/Like/doLike";
+    $.ajax({
+        type:"post",
+        async:false,
+        // contentType: "application/json",
+        data:{replyId,articleId
+        },
+        dataType:"json",
+        url:localurl,
+        success:function(data){
+            var likeButton = $(this);
+            var likeHtml = likeButton.html();
+            var likeNum = parseInt(likeHtml, 10);
+            likeNum = data.likes;
+            //console.log(likeNum);
+            likeButton.html(likeNum);
+            //console.log(data.likes);
+        }
+    });
+}
+</script>
 </body>
 </html>
