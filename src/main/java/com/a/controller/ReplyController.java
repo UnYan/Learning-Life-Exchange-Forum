@@ -1,13 +1,7 @@
 package com.a.controller;
 
-import com.a.entity.Article;
-import com.a.entity.Likes;
-import com.a.entity.Reply;
-import com.a.entity.User;
-import com.a.repository.ArticleRepository;
-import com.a.repository.LikesRepository;
-import com.a.repository.ReplyRepository;
-import com.a.repository.UserRepository;
+import com.a.entity.*;
+import com.a.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -32,6 +26,8 @@ public class ReplyController {
     ArticleRepository articleRepository;
     @Autowired
     LikesRepository likesRepository;
+    @Autowired
+    NoticesRepository noticesRepository;
     @PostMapping("/reply/a{id}")
     public String replyA(@RequestParam("articleid") String articleid,
                         @RequestParam("rContent") String rContent,
@@ -61,6 +57,15 @@ public class ReplyController {
         reply.new_reply=0;
         reply.new_reply_id=0;
         reply.new_like_id=0;
+
+        Notices temp=new Notices();//yzx
+        temp.articleid=Integer.parseInt(articleid);
+        temp.flag=1;
+        temp.f=1;
+        temp.fromName=user.username;
+        temp.toid=(userRepository.findByUsername(article.author)).get(0).id;
+        noticesRepository.save(temp);
+
 
         reply = replyRepository.save(reply);
         System.out.println(reply.content);
@@ -100,6 +105,15 @@ public class ReplyController {
         reply.create_time = new Date();
         reply = replyRepository.save(reply);
         System.out.println(reply.content);
+
+        Notices temp=new Notices();//yzx
+        temp.articleid=Integer.parseInt(articleid);
+        temp.flag=1;
+        temp.f=0;
+        temp.fromName=user.username;
+        temp.toid=replyRepository.findReplyById(Integer.parseInt(replyid)).userid;
+        noticesRepository.save(temp);
+
         return "redirect:/showBlog/"+articleid;
 
     }
@@ -137,6 +151,15 @@ public class ReplyController {
             }
             likesRepository.save(likes);
         }
+
+        Notices temp=new Notices();//yzx
+        temp.articleid=Integer.parseInt(articleid);
+        temp.flag=0;
+        temp.f=1;
+        temp.fromName=user.username;
+        temp.toid=(userRepository.findByUsername(article.author)).get(0).id;
+        noticesRepository.save(temp);
+
         return "redirect:/showBlog/"+articleid;
     }
 
@@ -172,6 +195,15 @@ public class ReplyController {
             }
             likesRepository.save(likes);
         }
+
+        Notices temp=new Notices();//yzx
+        temp.articleid=Integer.parseInt(articleid);
+        temp.flag=0;
+        temp.f=0;
+        temp.fromName=user.username;
+        temp.toid=replyRepository.findReplyById(Integer.parseInt(replyid)).userid;
+        noticesRepository.save(temp);
+
         return "redirect:/showBlog/"+replyRepository.findReplyById(Integer.parseInt(replyid)).articleid;
     }
 }

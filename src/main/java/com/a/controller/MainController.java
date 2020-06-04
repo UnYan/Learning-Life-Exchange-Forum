@@ -42,11 +42,11 @@ public class MainController {
         for (Article i:nArticles){
             if (i.new_like>0){
                 String s=(i.new_like>1)?"等"+i.new_like+"人":"";
-                noticeBuff.add(new Notice(userRepository.findUserById(i.new_like_id).username+s+"赞了你的一篇文章","/showBlog/"+i.id));
+                noticeBuff.add(new Notice(userRepository.findUserById(i.new_like_id).username+s+"赞了你的一篇文章","clear/showBlog/"+i.id));
             }
             if (i.new_reply>0){
                 String s=(i.new_reply>1)?"等"+i.new_reply+"人":"";
-                noticeBuff.add(new Notice(userRepository.findUserById(i.new_reply_id).username+s+"回复了你的一篇文章","/showBlog/"+i.id));
+                noticeBuff.add(new Notice(userRepository.findUserById(i.new_reply_id).username+s+"回复了你的一篇文章","clear/showBlog/"+i.id));
             }
         }
 //
@@ -54,15 +54,15 @@ public class MainController {
         for (Reply i:nReply){
             if (i.new_like>0){
                 String s=(i.new_like>1)?"等"+i.new_like+"人":"";
-                noticeBuff.add(new Notice(userRepository.findUserById(i.new_like_id).username+s+"赞了你的一条回复","/showBlog/"+i.articleid));
+                noticeBuff.add(new Notice(userRepository.findUserById(i.new_like_id).username+s+"赞了你的一条回复","clear/showBlog/"+i.articleid));
             }
             if (i.new_reply>0){
                 String s=(i.new_reply>1)?"等"+i.new_reply+"人":"";
-                noticeBuff.add(new Notice(userRepository.findUserById(i.new_reply_id).username+s+"回复了你的一条回复","/showBlog/"+i.articleid));
+                noticeBuff.add(new Notice(userRepository.findUserById(i.new_reply_id).username+s+"回复了你的一条回复","clear/showBlog/"+i.articleid));
             }
         }
-        model.addAttribute("notices",noticeBuff);
-
+//        model.addAttribute("notices",noticeBuff);
+        session.setAttribute("notices",noticeBuff);
         model.addAttribute("user",user);
         Collection<Reply> replys = replyRepository.findAll();
         model.addAttribute("replys",replys);

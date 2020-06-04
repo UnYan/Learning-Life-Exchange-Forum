@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en-US" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!--    这段话-->
+    <div th:each= "notice:${spaceList}">
+        <a th:text="${notice.msg}" th:href="${notice.href}"></a>
+    </div>
+<!--    这段话结束-->
+</body>
+</html>
