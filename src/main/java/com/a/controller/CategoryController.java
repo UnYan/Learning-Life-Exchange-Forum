@@ -18,9 +18,11 @@ public class CategoryController {
     public String search(@PathVariable("id") Integer id, Model model){
         List<Article> list=articleRepository.findArticleByCategory(id);
         model.addAttribute("articles",list);
-        if(id==5)
-            return "course";
-        return "home";
+        // if (id == 5) return "course";
+        if (id == 1) return "home1";
+        else if (id == 2) return "home2";
+        else if (id == 4) return "home4";
+        else return "home";
 
     }
 }
