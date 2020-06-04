@@ -79,6 +79,7 @@ public class MainController {
         return "home";
     }
 }
+
 class Notice{
     public String msg;
     public String href;

@@ -16,6 +16,8 @@ public class User {
     public  int level;
     @Column(name = "email")
     public String email;
+    @Column(name = "status")
+    public boolean status;
 
     public int getId() {
         return id;
@@ -25,7 +27,6 @@ public class User {
         this.id = id;
     }
 
-
     public String getUsername() {
         return username;
     }
@@ -33,8 +34,6 @@ public class User {
     public void setUsername(String username) {
         this.username = username;
     }
-
-
 
     public String getPassword() {
         return password;
@@ -52,6 +51,11 @@ public class User {
         this.level = level;
     }
 
+    public boolean getStatus() {
+        return status;
+    }
 
-
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
 }

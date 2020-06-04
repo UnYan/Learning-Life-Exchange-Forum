@@ -71,10 +71,10 @@
                                                                 </h3>
 
                                                                 <div class="post-meta clearfix">
-                                                                        <span class="date"  th:text="${article.dateformat}==null?'暂无日期':${article.dateformat}"></span>
-                                                                        <span  class="author"><a th:href="@{/otheruserspace/}+${article.author}" th:text="${article.author}" ></a></span>
-                                                                        <span  class="category" th:text="${article.categoryName}" ></span>
-                                                                        <span class="comments"><a href="#" th:text="${article.reply_cnt}+回复" th:href="@{/showBlog/}+${article.id}"></a></span>
+                                                                        <span class="date" th:text="${article.dateformat}==null?'暂无日期':${article.dateformat}"></span>
+                                                                        <span class="author"><a th:href="@{/otheruserspace/}+${article.author}" th:text="${article.author}" ></a></span>
+                                                                        <span class="category" th:text="${article.categoryName}" ></span>
+                                                                        <span class="comments"><a href="#" th:text="${article.reply_cnt}+回复" th:href="@{/showBlog/}+${article.id}" th:if="${session.status}"></a></span>
                                                                         <span class="like-count" th:text="${article.likes}"></span>
                                                                 </div><!-- end of post meta -->
                                                                 <p th:text="${article.summary}==null?'暂无简介':${article.summary}"></p>
@@ -98,7 +98,8 @@
 
                                                 <section class="widget">
                                                         <div class="support-widget">
-                                                                <a th:href="@{/mk}">发布帖子</a>
+                                                                <a th:href="@{/mk}"
+                                                                   th:if="${session.status}">发布帖子</a>
                                                         </div>
                                                 </section>
 

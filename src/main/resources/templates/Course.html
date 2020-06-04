@@ -92,7 +92,7 @@
                             <span class="date" th:text="${article.dateformat}==null?'暂无日期':${article.dateformat}"></span>
                             <span class="author" th:text="${article.author}==null?'暂无作者':${article.author}"></span>
                             <span class="category" th:text="${article.categoryName}"></span>
-                            <span class="comments"><a href="#" title="Comment on Integrating WordPress with Your Website">3 回复</a></span>
+                            <span class="comments"><a href="#" title="Comment on Integrating WordPress with Your Website" th:if="${session.status}">3 回复</a></span>
                             <span class="like-count">66</span>
                         </div><!-- end of post meta -->
                     </header>
@@ -211,7 +211,8 @@
 
                 <section class="widget">
                     <div class="support-widget">
-                        <a th:href="@{/mk}">发布帖子</a>
+                        <a th:href="@{/mk}"
+                           th:if="${session.status}">发布帖子</a>
                         <!--                                                                <p class="intro">Need more support? If you did not found an answer, contact us for further help.</p>-->
                     </div>
                 </section>
