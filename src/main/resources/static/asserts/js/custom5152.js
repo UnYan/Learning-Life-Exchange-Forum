@@ -245,14 +245,14 @@ jQuery(document).ready(function(e) {
     //      //   $('#like-it-form').ajaxSubmit(options);
     // });
 
-    function subm(replyid,articleid) {
-        $.ajax({
-            type:"post",
-            url: ,
-            data:{replyid,articleid},
-            traditional:true,
-        })
-    }
+    // function subm(replyid,articleid) {
+    //     $.ajax({
+    //         type:"post",
+    //         url: ,
+    //         data:{replyid,articleid},
+    //         traditional:true,
+    //     })
+    // }
 
 
 

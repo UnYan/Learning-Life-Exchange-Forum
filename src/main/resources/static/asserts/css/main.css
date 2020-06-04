@@ -717,10 +717,10 @@ ul.articles li.article-entry:last-child {
   background: url("../images/like.png") no-repeat 4px -24px;
   color: #395996;
 }
-.like-btn .comment-btn {
+.diy-btn {
   font-weight: bold;
   display: inline-block;
-  height: 40px;
+  height: 30px;
   line-height: 20px;
   padding: 5px 13px;
   background-color: white;
@@ -730,10 +730,10 @@ ul.articles li.article-entry:last-child {
   border-radius: 3px;
   color: #535b61;
 }
-/*.like-btn .comment-btn :hover {*/
-/*  background: #b6b6b6 ;*/
-/*  color: #fff;*/
-/*}*/
+.diy-btn :hover {
+  background-color: #b6b6b6 ;
+  color: #fff;
+}
 /*.like-btn .comment-btn.already-voted {*/
 /*  cursor: default;*/
 /*}*/
