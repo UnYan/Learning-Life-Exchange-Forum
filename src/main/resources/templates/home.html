@@ -66,6 +66,7 @@
 
                                                         <header class="clearfix">
 
+                                                                <b style="color: #46A3FF; text-align: center; margin-left: 5px;" th:text="${res}" th:if="${not #strings.isEmpty(res)}"></b>
                                                                 <h3 class="post-title">
                                                                         <a href="single.html" th:text="${article.title}==null?${article.id}:${article.title}" th:href="@{/showBlog/}+${article.id}"></a>
                                                                 </h3>

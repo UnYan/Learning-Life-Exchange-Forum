@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 public interface ArticleRepository extends JpaRepository<Article,Integer> {
-    Article findArticleById(int  id);
+    Article findArticleById(int id);
     List<Article> findArticleByAuthor(String author);
 //    List<Article> findArticleByLevelGreaterThan(int i);
 //    List<Article> findArticleByLevelLessThan(int i);
