@@ -64,7 +64,7 @@
                 </article>
                 <!--    这段话-->
                 <div th:each= "notice:${spaceList}">
-                    <a th:text="${notice.msg}" th:href="${notice.href}" style="font-size: 14px;font-weight: 500"></a>
+                    <h5><a th:text="${notice.msg}" th:href="${notice.href}" style="font-size: 15px"></a></h5>
                 </div>
                 <!--    这段话结束 -->
             </div>
