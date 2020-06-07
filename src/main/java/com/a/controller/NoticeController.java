@@ -1,4 +1,5 @@
 package com.a.controller;
+import com.a.entity.Reply;
 import com.a.repository.ArticleRepository;
 import com.a.repository.ReplyRepository;
 import com.a.repository.UserRepository;
@@ -18,9 +19,16 @@ public class NoticeController {
     UserRepository userRepository ;
 
     @RequestMapping("/clear/showBlog/{id}")
-    public String clearNotice(@PathVariable("id") Integer id, Model model){
+    public String clearArticleNotice(@PathVariable("id") Integer id, Model model){
         articleRepository.clearNewLike(id);
         articleRepository.clearNewReply(id);
         return "redirect:/showBlog/"+id;
+    }
+    @RequestMapping("/clear/showBlog/r{id}")
+    public String clearReplyNotice(@PathVariable("id") Integer id, Model model){
+        Reply reply=replyRepository.findReplyById(id);
+        replyRepository.clearNewLike(id);
+        replyRepository.clearNewReply(id);
+        return "redirect:/showBlog/"+reply.articleid;
     }
 }

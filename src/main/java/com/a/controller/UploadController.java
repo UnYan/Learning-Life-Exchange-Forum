@@ -1,6 +1,7 @@
 package com.a.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -13,15 +14,9 @@ import java.io.IOException;
 @Controller
 public class UploadController {
 
-    @GetMapping("/upload")
-    public String upload() {
-        return "/upload";
-    }
-
-    @PostMapping("/upload")
-    @ResponseBody
-    public String upload(@RequestParam("file") MultipartFile file) throws IOException {
-        if (file.isEmpty()) return "上传失败";
+    @PostMapping(value = {"/uploadfile"})
+    public String upload(@RequestParam("file") MultipartFile file, Model model) throws IOException {
+        if (file.isEmpty()) model.addAttribute("msg", "上传失败");
 
         String fileName = file.getOriginalFilename();
         /* String filePath = "/Users/kxw/Desktop/SpringBoot Project/fileUpload/src/main/resources/upload/";
@@ -31,10 +26,12 @@ public class UploadController {
 
         try {
             file.transferTo(dest);
-            return "上传成功";
+            model.addAttribute("msg", "上传成功");
         } catch (IOException e) {
             e.printStackTrace();
-            return "上传失败";
+            model.addAttribute("msg", "上传失败");
         }
+
+        return "editormd";
     }
 }

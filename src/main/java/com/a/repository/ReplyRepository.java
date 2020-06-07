@@ -17,6 +17,17 @@ public interface ReplyRepository extends JpaRepository<Reply,Integer> {
     List<Reply> findReplyByNotice(Integer userid);
     @Transactional
     @Modifying
+    @Query(value="update reply set new_like=0,new_like_id=null where id=?1", nativeQuery=true)
+    void clearNewLike(Integer id);
+    @Transactional
+    @Modifying
+    @Query(value="update reply set new_reply=0,new_reply_id=null where id=?1", nativeQuery=true)
+    void clearNewReply(Integer id);
+
+
+
+    @Transactional
+    @Modifying
     @Query(value="update reply set likes=likes+1 where id=?1", nativeQuery=true)
     void addLikes(Integer id);
     @Transactional

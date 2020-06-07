@@ -60,13 +60,14 @@
                         禁言
                     </h1>
                     <hr><br>
-                    <form id="mute-form" class="row" action="" method="post">
+                    <form id="mute-form" class="row" action="/muted" th:action="@{/muted}" method="post">
 
                         <div class="span2">
                             <label for="mute username">禁言用户名<span>*</span> </label>
                         </div>
                         <div class="span6">
                             <input type="text" name="mute username" id="mute username" class="required input-xlarge" value="" title="* Please provide your old password">
+                            <b style="color: #46A3FF; text-align: center; margin-left: 5px;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></b>
                         </div>
 
                         <div class="span6 offset2 bm30">
@@ -76,17 +77,16 @@
                 </article>
 
                 <article class="type-page hentry clearfix">
-                    <h1 class="post-title">
-                        解除禁言
-                    </h1>
+                    <h1 class="post-title">解除禁言</h1>
                     <hr><br>
-                    <form id="no-mute-form" class="row" action="" method="post">
+                    <form id="no-mute-form" class="row" action="/freed" th:action="@{/freed}" method="post">
 
                         <div class="span2">
                             <label for="no mute username">解除禁言用户名<span>*</span> </label>
                         </div>
                         <div class="span6">
                             <input type="text" name="no mute username" id="no mute username" class="required input-xlarge" value="" title="* Please provide your old password">
+                            <b style="color: #46A3FF; text-align: center; margin-left: 5px;" th:text="${mssg}" th:if="${not #strings.isEmpty(mssg)}"></b>
                         </div>
                         <div class="span6 offset2 bm30">
                             <input type="submit" name="submit" value="确认" class="btn btn-inverse">

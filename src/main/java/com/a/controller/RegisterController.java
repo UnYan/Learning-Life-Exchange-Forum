@@ -31,13 +31,14 @@ public class RegisterController {
         if (password1.compareTo(password2)!=0){
             map.put("msg", "密码不一致");
             return "/register";
-
         }
+
         User tmp =new User();
         tmp.username=username;
         tmp.level=1;
         tmp.setPassword(password1);
         tmp.email=email;
+        tmp.setStatus(true);
         userRepository.save(tmp);
         return "redirect:/";
     }

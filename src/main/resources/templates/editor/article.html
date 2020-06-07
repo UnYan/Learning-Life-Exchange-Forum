@@ -60,7 +60,7 @@
 <!--                    <h2 style="margin: auto 0" ></h2>-->
                     <hr>
                     <div class="article-info">
-                        <h4>作者:  <a href="" th:text="${article.author}"></a> 标签:  <a href="" th:text="${article.author}"></a></h4>
+                        <h4>作者:  <a href="" th:text="${article.author}"></a> 标签:  <a  href="" th:text="${article.categoryName}"></a></h4>
                     </div>
                     <hr>
                     <div id="doc-content">
@@ -68,14 +68,10 @@
 
                     </div>
                     <div class="like-btn">
-                        <button class="like-it" style="height: 30px"  th:onclick="'javascript:regist(\''+${0}+'\',\''+${article.id}+'\')'" th:text="${article.likes}">66</button>
-<!--                        <form id="like-it-form1" th:action="@{/reply/like/a} + ${article.id}" method="post" style="display: inline" name="dianzan">-->
-<!--                            <button class="like-it" style="height: 30px" th:text="${article.likes}">66</button>-->
-<!--                            <input type="hidden" name="post_id" th:value="${article.id}">-->
-<!--                            <input type="hidden" name="action" value="like_it">-->
-<!--                        </form>-->
+                        <button class="like-it" style="height: 30px"  th:onclick="'javascript:regist(\''+${0}+'\',\''+${article.id}+'\')'" th:text="${article.likes}" id="like0">66</button>
                         <a href="#respond"><button class="diy-btn " style="margin-right: 0;margin-bottom: 0">回复</button></a>
                         <a href="" download><button class="diy-btn "  >下载文件</button></a>
+                        <button class="diy-btn " style="margin-right: 0;margin-bottom: 0">删除帖子</button>
                     </div>
 
 
@@ -90,18 +86,12 @@
                                     </blockquote>
                                     <div class="like-btn">
                                         <button class="like-it" style="height: 30px"  th:onclick="'javascript:regist(\''+${reply.id}+'\',\''+${article.id}+'\')'" th:text="${reply.likes}" th:id="@{like} + ${reply.id}">66</button>
-<!--                                        <form id="like-it-form" th:action="@{/reply/like/r} + ${reply.id}" method="post" style="display: inline">-->
-<!--                                            <button class="like-it" style="height: 30px" >66</button>-->
-<!--                                            <input type="hidden" name="post_id" th:value="${reply.id}">-->
-<!--                                            <input type="hidden" name="article_id" th:value="${article.id}">-->
-<!--                                            <input type="hidden" name="action" value="like_it">-->
-<!--                                        </form>-->
-<!--                                        <button class="like-it "  style="height: 30px"  th:formaction="@{/reply/like/r} + ${reply.id}"  th:action="@{/reply/like/r} + ${reply.id}" th:method="post" th:text="${reply.likes}">66</button>-->
                                         <button class="diy-btn" formaction=""  th:onclick="'javascript:document.getElementById(\'comment-area' + ${reply.id}+'\').hidden=!(document.getElementById(\'comment-area' + ${reply.id}+'\').hidden)'">回复</button>
                                         <span th:each = "reply1:${reply1s}" >
                                             <a th:href="@{#} + ${reply1.replyid}"><button class="diy-btn " formaction=""  th:if = "${reply1.replyid eq reply.id}" th:text="${reply1.content} + 回复了此贴" ></button></a>
                                         </span>
                                         <a href="" download><button class="diy-btn">下载文件</button></a>
+                                        <button class="diy-btn">删除回复</button>
                                     </div>
                                     <form th:action="@{/reply/r} + ${reply.id}" method="post" >
                                         <input name="articleid"
@@ -155,16 +145,15 @@
 
                 <section class="widget">
                     <h3 class="title">最热帖子</h3>
-                    <ol class="articles">
+                    <ul class="articles">
                         <li class="article-entry standard" th:each="course:${sidebar}">
                             <h4><a href="single.html" th:text="${course.title}==null?${course.id}:${course.title}" th:href="@{/showBlog/}+${course.id}"></a></h4>
-                            <span class="date" th:text="${course.dateformat}==null?'暂无日期':${course.dateformat}"></span>
-                            <span  class="author"><a th:href="@{/otheruserspace/}+${course.author}" th:text="${course.author}" ></a></span>
-                            <span class="category" th:text="${course.categoryName}"></span>
-                            <span class="like" th:text="${course.likes}" ></span>
-
+                            <span class="" th:text="${course.dateformat}==null?'暂无日期':${course.dateformat}"></span>
+                            <span class=""><a th:href="@{/otheruserspace/}+${course.author}" th:text="${course.author}" ></a></span>
+                            <span class=""><a th:text="${course.categoryName}"></a></span>
+                            <span class="like-count" th:text="${course.likes}" ></span>
                         </li>
-                    </ol>
+                    </ul>
                 </section>
             </aside>
             <!-- end of sidebar -->
