@@ -63,8 +63,12 @@
 <div class="search-area-wrapper">
     <div class="search-area container" th:switch="${session.status}">
         <div class="profile" style="margin:10px auto;text-align:center;width: 120px" >
-            <label for="profile"><img alt="" src="../static/asserts/images/profile.png" style="border-radius:50%" height="100" width="100"><br></label>
-            <input type="file" style="display: none" id="profile" formaction="">
+            <form>
+                <label for="profile"><img alt="" src="../static/asserts/images/profile.png" style="border-radius:50%" height="100" width="100"><br></label>
+                <input type="file" style="display: none" id="profile"><br>
+                <input type="submit" class="diy-btn" style="border: none" value="确认修改">
+            </form>
+
         </div>
         <h3 class="search-header">[[${session.loginuser}]]</h3>
         <p class="search-tag-line" th:text="你的权限等级为+':'+(${session.level}==0?管理员，权限拉满！:(${session.level}+','+距离下一等级还差+':'+${session.restExp}+经验))"> [[${session.level}]]</p>
