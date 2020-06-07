@@ -540,6 +540,20 @@ li.comment > article .avatar {
   padding: 0;
 }
 
+#file {
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 4px;
+  padding: 8px 8px 4px 8px;
+  overflow: hidden;
+  color: #4b5760;
+  font-size: 15px;
+  font-weight: 600;
+  text-decoration: none;
+  text-indent: 0;
+  line-height: 20px;
+}
+
 .quick-links-widget {
   border: 1px solid #d7d9dc;
   padding: 10px 15px 15px;
