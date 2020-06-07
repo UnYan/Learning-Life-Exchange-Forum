@@ -23,6 +23,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
         registry.addViewController("/chatting").setViewName("chatting");
         registry.addViewController("/administrators").setViewName("administrators");
         registry.addViewController("/otheruserspace").setViewName("otheruserspace");
+        registry.addViewController("/firstUse").setViewName("firstUse");
     }
 
     @Override
