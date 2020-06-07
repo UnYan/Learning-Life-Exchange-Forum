@@ -107,8 +107,16 @@ public class MKController {
         return resultMap;
     }
     @GetMapping("/showBlog/{id}")
-    public String show(@PathVariable("id") Integer id, Model model) {
+    public String show(@PathVariable("id") Integer id, Model model,HttpSession session) {
         Article article = articleRepository.findArticleById(id);
+        if(session.getAttribute("loginuser") == null){
+            model.addAttribute("msg", "请先注册");
+            return "index";
+        }
+        else if((Integer)session.getAttribute("level") < article.level){
+            model.addAttribute("msg", "您的权限不足，请多多水群");
+            return "redirect:/main";
+        }
         model.addAttribute("article", article);
         Collection<Reply> replys = replyRepository.findByArticleid(id);
         model.addAttribute("replys",replys);

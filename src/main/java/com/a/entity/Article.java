@@ -15,6 +15,8 @@ public class Article {
     public int authorId;
     @Column(name = "summary", length = 200)
     public String summary;
+    @Column(name = "level")
+    public Integer level;
     @Column(name = "content", length = 10000)
     public String content;
     @Column(name = "likes", length = 100)

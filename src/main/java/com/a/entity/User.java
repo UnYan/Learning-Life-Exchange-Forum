@@ -1,5 +1,7 @@
 package com.a.entity;
 
+import org.springframework.stereotype.Controller;
+
 import javax.persistence.*;
 
 @Entity
@@ -18,6 +20,8 @@ public class User {//yzx:登录1经验，发帖10经验，评论2经验，被点
     public String email;
     @Column(name = "status")
     public boolean status;
+    @Column(name = "first_use")
+    public int first_use;
     public int exp;
 
     public int getId() {
