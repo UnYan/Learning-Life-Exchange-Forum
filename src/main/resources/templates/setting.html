@@ -60,7 +60,6 @@
                         更改密码
                     </h1>
                     <hr>
-                    <p></p>
                 </article>
                 <form id="contact-form" class="row" th:action="@{/settingupdatepassword}" method="post">
                     <p class="error-msg" style="color: red; text-align: center; font-size: 12px; line-height: 5px" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
