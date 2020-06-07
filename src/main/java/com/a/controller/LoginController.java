@@ -4,6 +4,7 @@ import com.a.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
@@ -30,5 +31,13 @@ public class LoginController {
             model.addAttribute("msg", "用户名或密码错误");
             return "index";
         }
+    }
+    @GetMapping(value = {"/tourist_login"})
+    public String tourist_login(Model model, HttpSession session){
+            session.setAttribute("loginuser",null);
+            session.setAttribute("userid", null);
+            session.setAttribute("level", -1);
+            session.setAttribute("status", 1);
+            return "redirect:/main";
     }
 }
