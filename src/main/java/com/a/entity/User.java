@@ -4,7 +4,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "user")
-public class User {
+public class User {//yzx:登录1经验，发帖10经验，评论2经验，被点赞2经验，每级经验值递增10。10,20,30...
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
@@ -12,12 +12,13 @@ public class User {
     public String username;
     @Column(name = "password",length = 20)
     private String password;
-    @Column(name = "level")
+    @Column(name = "userlevel")
     public  int level;
     @Column(name = "email")
     public String email;
     @Column(name = "status")
     public boolean status;
+    public int exp;
 
     public int getId() {
         return id;

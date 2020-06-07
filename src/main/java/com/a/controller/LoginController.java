@@ -22,7 +22,8 @@ public class LoginController {
             session.setAttribute("userid", tmp.id);
             session.setAttribute("level", tmp.level);
             session.setAttribute("status", tmp.status);
-
+            userRepository.addExp(tmp.id,1);
+            userRepository.freshLevel(tmp.id);
             return "redirect:/main";
         }
         else {

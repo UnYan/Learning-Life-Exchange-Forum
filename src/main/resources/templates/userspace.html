@@ -67,7 +67,7 @@
             <input type="file" style="display: none" id="profile" formaction="">
         </div>
         <h3 class="search-header">[[${session.loginuser}]]</h3>
-        <p class="search-tag-line">你的权限等级为 [[${session.level}]]</p>
+        <p class="search-tag-line" th:text="你的权限等级为+':'+(${session.level}==0?管理员，权限拉满！:(${session.level}+','+距离下一等级还差+':'+${session.restExp}+经验))"> [[${session.level}]]</p>
         <p class="search-tag-line" th:case="true">你的状态为 畅所欲言</p>
         <p class="search-tag-line" th:case="false">你的状态为 禁言</p>
 

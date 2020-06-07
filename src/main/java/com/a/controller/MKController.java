@@ -67,9 +67,13 @@ public class MKController {
         article.likes=0;
         article.category=category;
         article.categoryName=catrgory_name[category];
+        article.authorId=userRepository.findByUsername(article.author).get(0).id;
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         article.dateformat=format.format(new Date());
         article.reply_cnt=0;
+        userRepository.addExp(article.authorId,10);
+        userRepository.freshLevel(article.authorId);
+
         for (int i=0;i<s.length;i++){
             content=replacemk(content,s[i],target[i]);
         }
