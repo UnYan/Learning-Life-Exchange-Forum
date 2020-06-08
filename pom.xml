@@ -104,133 +104,21 @@
     </dependencies>
     <build>
         <plugins>
-            <!-- 编译插件 这个可以不使用 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>2.3.2</version>
-                <configuration>
-                    <source>1.8</source>
-                    <target>1.8</target>
-                    <encoding>UTF-8</encoding>
-                    <compilerArguments>
-                        <verbose />
-                        <!-- <bootclasspath>${java.home}/lib/rt.jar</bootclasspath> -->
-                    </compilerArguments>
-                </configuration>
-            </plugin>
-
-            <!-- 项目依赖插件  -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-dependency-plugin</artifactId>
-                <configuration>
-                    <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                    <excludeTransitive>false</excludeTransitive> <!-- 表示是否不包含间接依赖的包 -->
-                    <stripVersion>false</stripVersion> <!-- 去除版本信息 -->
-                </configuration>
-
-                <executions>
-                    <execution>
-                        <id>copy-dependencies</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-dependencies</goal>
-                        </goals>
-                        <configuration>
-                            <!-- 拷贝项目依赖包到lib/目录下 -->
-                            <outputDirectory>${project.build.directory}/lib</outputDirectory>
-                            <excludeTransitive>false</excludeTransitive>
-                            <stripVersion>false</stripVersion>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- 项目资源插件 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-resources-plugin</artifactId>
-                <version>2.6</version>
-                <executions>
-                    <execution>
-                        <id>copy-resources</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <encoding>UTF-8</encoding>
-                            <!-- 拷贝项目src/main/resources/下，除.bat以外的所有文件到conf/目录下 -->
-                            <outputDirectory>${project.build.directory}/conf</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>resource</directory>
-                                    <filtering>true</filtering>
-                                    <excludes>
-                                        <exclude>*.bat</exclude>
-                                    </excludes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                    <execution>
-                        <id>copy-command</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>copy-resources</goal>
-                        </goals>
-                        <configuration>
-                            <encoding>UTF-8</encoding>
-                            <!-- 只拷贝项目src/main/resources/目录下的.bat文件到输出目录下 -->
-                            <outputDirectory>${project.build.directory}</outputDirectory>
-                            <resources>
-                                <resource>
-                                    <directory>src/main/resources/</directory>
-                                    <filtering>true</filtering>
-                                    <includes>
-                                        <include>*.bat</include>
-                                    </includes>
-                                </resource>
-                            </resources>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
-
-            <!-- 打包插件 -->
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-                <version>2.4</version>
-                <configuration>
-                    <archive>
-                        <!-- 生成MANIFEST.MF的设置 -->
-                        <manifest>
-                            <!-- 为依赖包添加路径, 这些路径会写在MANIFEST文件的Class-Path下 -->
-                            <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
-                            <!-- jar启动入口类-->
-                            <mainClass>test.data.com.pythonMain.PMain</mainClass>
-                        </manifest>
-                        <manifestEntries>
-                            <!-- 在Class-Path下添加配置文件的路径到MANIFEST -->
-                            <Class-Path>conf/</Class-Path>
-                        </manifestEntries>
-                    </archive>
-                    <includes>
-                        <!-- 打jar包时，只打包class文件 -->
-                        <include>**/*.class</include>
-                    </includes>
-                </configuration>
-            </plugin>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- 工程主入口-->
+                    <mainClass>com.a.HelloWorldApplication</mainClass>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
-
-
-
     </build>
    </project>

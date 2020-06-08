@@ -22,7 +22,7 @@
                         <li><a style="color: white" th:style="${activeUri=='Course'?'color: #46A3FF':''}" th:href="@{/Course}">课程推荐</a></li>
                         <li><a style="color: white" th:style="${activeUri=='category1'?'color: #46A3FF':''}" th:href="@{/category/1}">资源共享</a></li>
                         <li><a style="color: white" th:style="${activeUri=='main'?'color: #46A3FF':''}" th:href="@{/main}">全部帖子</a></li><!--class="current-menu-item"-->
-                        <li><a href="faq.html">通知</a>
+                        <li><a >通知</a>
                             <ul class="sub-menu" >
                                 <li th:each="notice:${session.notices}"><a th:href="@{${notice.href}}" href="/main" th:text="${notice.msg}" ></a></li>
                             </ul>
