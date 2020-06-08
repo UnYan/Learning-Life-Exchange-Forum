@@ -55,6 +55,6 @@ public class LoginController {
             session.setAttribute("userid", null);
             session.setAttribute("level", -1);
             session.setAttribute("status", 1);
-            return "redirect:/main";
+            return "redirect:/touristmain";
     }
 }

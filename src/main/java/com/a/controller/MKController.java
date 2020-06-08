@@ -59,10 +59,18 @@ public class MKController {
     public String upload(@RequestParam("title") String title,
                          @RequestParam("content") String content,
                          @RequestParam("category") int category,
+                         @RequestParam("level") int level,
                          HttpSession session){
         Article article=new Article();
+
         article.author=(String) session.getAttribute("loginuser");
+        User tmp =userRepository.findByUsername(article.author).get(0);
+        if(tmp.level<level) {
+            session.setAttribute("msg","不能设置比自己等级高的权限");
+            return "redirect:/mk";
+        }
         article.title=title;
+        article.level=level;
         article.content=content;
         article.likes=0;
         article.category=category;
@@ -115,7 +123,7 @@ public class MKController {
         }
         else if((Integer)session.getAttribute("level") < article.level){
             model.addAttribute("msg", "您的权限不足，请多多水群");
-            return "/home";
+            return "home";
         }
         model.addAttribute("article", article);
         Collection<Reply> replys = replyRepository.findByArticleid(id);

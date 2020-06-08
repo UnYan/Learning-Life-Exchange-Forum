@@ -111,7 +111,8 @@
                                         <span class="author" th:text="${article.author}==null?'暂无作者':${article.author}"></span>
                                         <span  class="category" th:text="${article.categoryName}" ></span>
                                         <span class="comments"><a href="#" th:text="${article.reply_cnt}+回复" th:href="@{/showBlog/}+${article.id}">3 回复</a></span>
-                                        <span class="like-count">66</span>
+                                        <span class="like-count" th:text="${article.likes}" ></span>
+                                        <span class="like-count" th:text="等级要求+${article.level}"></span>
                                     </div><!-- end of post meta -->
                                     <p th:text="${article.summary}==null?'暂无简介':${article.summary}"></p>
                                 </header>

@@ -77,6 +77,7 @@
                                                                         <span class="category" th:text="${article.categoryName}" ></span>
                                                                         <span class="comments"><a href="#" th:text="${article.reply_cnt}+回复" th:href="@{/showBlog/}+${article.id}" th:if="${session.status}"></a></span>
                                                                         <span class="like-count" th:text="${article.likes}"></span>
+                                                                        <span class="like-count" th:text="等级要求+${article.level}"></span>
                                                                 </div><!-- end of post meta -->
                                                                 <p th:text="${article.summary}==null?'暂无简介':${article.summary}"></p>
                                                         </header>
@@ -114,6 +115,7 @@
                                                                         <span class=""><a th:href="@{/otheruserspace/}+${course.author}" th:text="${course.author}" ></a></span>
                                                                         <span class=""><a th:text="${course.categoryName}"></a></span>
                                                                         <span class="like-count" th:text="${course.likes}" ></span>
+                                                                        <span class="like-count" th:text="等级要求+${course.level}"></span>
                                                                 </li>
                                                         </ul>
                                                 </section>

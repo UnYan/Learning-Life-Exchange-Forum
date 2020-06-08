@@ -45,11 +45,13 @@
                         <option  value="7" class="select-opt">课程</option>
                     </select>
 
+                    <span style="color: #4b5760; font-size: 17px;line-height: 19px;font-weight: 600;">要求等级<input type="text" name="level" style="margin-bottom: 0"></span><br /><br />
+
                     <span style="color: #4b5760; font-size: 17px;line-height: 19px;font-weight: 600;">标题：<input type="text" name="title" style="margin-bottom: 0"></span><br /><br />
 
 
                 </div><br>
-
+                <p  th:text="${session.msg}" th:if="${not #strings.isEmpty(session.msg)}"></p>
                 <div id="article-content">
                     <textarea name="content" id="content" style="display:none;"></textarea>
                 </div>
