@@ -9,8 +9,8 @@ body{
 
 #content{
     background-color: rgba(255, 255, 255, 0.95);
-    width: 520px;
-    height: 460px;
+    width: 650px;
+    height: 470px;
     border: 1px solid #000000;
     border-radius: 6px;
     padding: 10px;
@@ -87,7 +87,7 @@ body{
 }
 
 .login-button-box{
-    margin-top: 12px;
+    margin-top: 0px;
     width: 100%;
 
     display: inline-block;
@@ -138,4 +138,6 @@ body{
     /*width: 80%;*/
     text-align: center;
     margin: 20px;
+    height: 250px;
+    overflow-y:scroll;
 }
