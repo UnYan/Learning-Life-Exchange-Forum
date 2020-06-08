@@ -15,10 +15,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 @Component(value = "ChatRoomHandler")
 @ChannelHandler.Sharable
 public class ChatRoomHandler extends SimpleChannelInboundHandler<TextWebSocketFrame> {
+
+
     private static ChannelGroup channels = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
     protected static ConcurrentHashMap<String,ChannelHandlerContext> map = new ConcurrentHashMap<>();
     //广播
@@ -60,6 +63,8 @@ public class ChatRoomHandler extends SimpleChannelInboundHandler<TextWebSocketFr
         }
 
     }
+
+
 }
 
 
