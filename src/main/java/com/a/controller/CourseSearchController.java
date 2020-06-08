@@ -50,8 +50,7 @@ public class CourseSearchController {
         }
         model.addAttribute("courses", coursesList);
         model.addAttribute("articles", courseList);
+        model.addAttribute("category","Course");
         return "Course";
-
-
     }
 }
