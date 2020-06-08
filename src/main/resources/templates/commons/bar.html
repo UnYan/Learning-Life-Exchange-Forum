@@ -16,7 +16,7 @@
             <nav class="main-nav">
                 <div class="menu-top-menu-container">
                     <ul id="menu-top-menu" class="clearfix">
-                        <li><a style="color: white" th:style="${activeUri=='chatting'?'color: #46A3FF':''}" th:href="${session.loginuser}==null? @{/chatting}:@{/register}" onclick="submit()">讨论区</a></li>
+                        <li><a style="color: white" th:style="${activeUri=='chatting'?'color: #46A3FF':''}" th:href="@{/chatting}" onclick="submit()">讨论区</a></li>
                         <li><a style="color: white" th:style="${activeUri=='category4'?'color: #46A3FF':''}" th:href="@{/category/4}">刷题板块</a></li>
                         <li><a style="color: white" th:style="${activeUri=='category2'?'color: #46A3FF':''}" th:href="@{/category/2}">校园周边</a></li>
                         <li><a style="color: white" th:style="${activeUri=='Course'?'color: #46A3FF':''}" th:href="@{/Course}">课程推荐</a></li>
