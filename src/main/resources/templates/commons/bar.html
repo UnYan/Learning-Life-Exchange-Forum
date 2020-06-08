@@ -30,10 +30,10 @@
 
                         <li><a id="username" th:text="${session.loginuser}==null?'游客':${session.loginuser}"></a>
                             <ul class="sub-menu">
-                                <li ><a style="color: #46A3FF" th:style="${activeUri=='userspace'?'color: #46A3FF':''}" th:action="get" th:href="@{/userspace}" >个人中心</a></li>
-                                <li th:if="${session.level}==0"><a style="color: white" th:style="${activeUri=='administrators'?'color: #46A3FF':''}" th:href="@{/administrators}" >管理中心</a></li>  <!--th:if="${session.level == 0}"!-->
+                                <li ><a style="color: #46A3FF" th:style="${activeUri=='userspace'?'color: #46A3FF':''}" th:action="get" th:href="${session.loginuser}==null? @{/register}:@{/userspace}" >个人中心</a></li>
+                                <li th:if="${session.level}==0"><a style="color: white" th:style="${activeUri=='administrators'?'color: #46A3FF':''}" th:href="${session.loginuser}==null? @{/register}:@{/administrators}" >管理中心</a></li>  <!--th:if="${session.level == 0}"!-->
                                 <li><a th:href="@{/}">注销</a></li>
-                                <li><a style="color: white" th:style="${activeUri=='setting'?'color: #46A3FF':''}" th:href="@{/setting}">设置</a></li>
+                                <li><a style="color: white" th:style="${activeUri=='setting'?'color: #46A3FF':''}" th:href="${session.loginuser}==null? @{/register}:@{/setting}">设置</a></li>
                                 <!--                                                                                <li><a href="">Default Skin</a></li>-->
                             </ul>
                         </li>

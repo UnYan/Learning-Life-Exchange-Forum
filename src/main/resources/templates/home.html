@@ -101,7 +101,7 @@
 
                                                 <section class="widget">
                                                         <div class="support-widget">
-                                                                <a th:href="@{/mk}"
+                                                                <a th:href="${session.loginuser}==null? @{/register}:@{/mk}"
                                                                    th:if="${session.status}">发布帖子</a>
                                                         </div>
                                                 </section>
