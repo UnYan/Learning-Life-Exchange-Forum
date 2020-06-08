@@ -115,7 +115,7 @@ public class MKController {
         }
         else if((Integer)session.getAttribute("level") < article.level){
             model.addAttribute("msg", "您的权限不足，请多多水群");
-            return "redirect:/main";
+            return "/home";
         }
         model.addAttribute("article", article);
         Collection<Reply> replys = replyRepository.findByArticleid(id);
