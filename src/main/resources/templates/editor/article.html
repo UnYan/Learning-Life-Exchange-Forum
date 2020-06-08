@@ -38,7 +38,10 @@
             <input class="search-term required" type="text" id="s" name="searchname" placeholder="搜索帖子" title="搜索帖子" />
             <input class="search-btn" type="submit" value="搜索" />
             <div id="search-error-container"></div>
-            <p  th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+            <div style="color: #46A3FF; font-size: 17px; text-align: center; margin-top: 40px; margin-bottom: 0px">
+                <b th:text="${res}" th:if="${not #strings.isEmpty(res)}"></b>
+                <b th:text="${result}" th:if="${not #strings.isEmpty(result)}"></b>
+            </div>
         </form>
 
     </div>
@@ -47,7 +50,7 @@
 
 
 <!-- Start of Page Container -->
-<div class="page-container">
+<div class="page-container" th:if="${#strings.isEmpty(res)}">
     <div class="container">
         <div class="row">
 
@@ -71,7 +74,11 @@
                         <button class="like-it" style="height: 30px"  th:onclick="'javascript:regist(\''+${0}+'\',\''+${article.id}+'\')'" th:text="${article.likes}" id="like0">66</button>
                         <a href="#respond"><button class="diy-btn " style="margin-right: 0;margin-bottom: 0">回复</button></a>
 <!--                        <a href="" download><button class="diy-btn "  >下载文件</button></a>-->
-                        <button class="diy-btn " style="margin-right: 0;margin-bottom: 0">删除帖子</button>
+                        <form th:action="@{/delAtc/}+${article.id}" method="post" style="display:inline" th:if="${session.level}==0">
+                            <input type="hidden" name="_method" value="delete" />
+                            <button type="submit" class="diy-btn " style="margin-right: 0;margin-bottom: 0">删除帖子</button>
+                        </form>
+
                     </div>
 
 
@@ -91,7 +98,10 @@
                                             <a th:href="@{#} + ${reply1.replyid}"><button class="diy-btn " formaction=""  th:if = "${reply1.replyid eq reply.id}" th:text="${reply1.content} + 回复了此贴" ></button></a>
                                         </span>
 <!--                                        <a href="" download><button class="diy-btn">下载文件</button></a>-->
-                                        <button class="diy-btn">删除回复</button>
+                                        <form th:action="@{/delReply/}+${reply.id}" method="post" style="display:inline" th:if="${session.level}==0">
+                                            <input type="hidden" name="_delMethod" value="del" />
+                                            <button type="submit" class="diy-btn " style="margin-right: 0;margin-bottom: 0">删除回复</button>
+                                        </form>
                                     </div>
                                     <form th:action="@{/reply/r} + ${reply.id}" method="post" >
                                         <input name="articleid"
