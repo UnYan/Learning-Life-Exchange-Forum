@@ -2,12 +2,14 @@ package com.a.controller;
 
 import com.a.entity.Article;
 import com.a.repository.ArticleRepository;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.net.ssl.HttpsURLConnection;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class CategoryController {
     @Autowired
     ArticleRepository articleRepository;
     @GetMapping("/category/{id}")
-    public String search(@PathVariable("id") Integer id, Model model){
+    public String search(@PathVariable("id") Integer id, Model model, HttpSession session){
         List<Article> list=articleRepository.findArticleByCategory(id);
         model.addAttribute("articles",list);
         // if (id == 5) return "course";
@@ -29,10 +31,9 @@ public class CategoryController {
             sidebar.add(hot.get(i));
         }
         model.addAttribute("sidebar",sidebar);
-        if (id == 1) return "home1";
-        else if (id == 2) return "home2";
-        else if (id == 4) return "home4";
-        else return "home";
+       model.addAttribute("category","category"+String.valueOf(id));
+//        model.addAttribute("category","category"+String.valueOf(id));
+        return "home1";
 
     }
 }

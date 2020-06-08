@@ -20,7 +20,6 @@ public class LoginController {
         if (userRepository.findByUsernameAndPassword(username, password).size() == 1){
             User tmp = userRepository.findByUsername(username).get(0);
             if(tmp.first_use == 0){
-
                 session.setAttribute("loginuser",username);
                 session.setAttribute("userid", tmp.id);
                 session.setAttribute("level", tmp.level);
@@ -33,6 +32,7 @@ public class LoginController {
             session.setAttribute("userid", tmp.id);
             session.setAttribute("level", tmp.level);
             session.setAttribute("status", tmp.status);
+//            model.addAttribute("category","main");
             userRepository.addExp(tmp.id,1);
             userRepository.freshLevel(tmp.id);
             return "redirect:/main";

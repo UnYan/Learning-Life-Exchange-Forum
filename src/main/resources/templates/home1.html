@@ -28,7 +28,7 @@
 
         <body>
                 <!-- Start of Header -->
-                <div th:replace="commons/bar::topbar(activeUri='category1')"></div>
+                <div th:if="${not #strings.isEmpty(${session.category})}" th:replace="commons/bar::topbar(activeUri=${session.category})"></div>
                 <!-- End of Header -->
 
                 <!-- Start of Search Wrapper -->
