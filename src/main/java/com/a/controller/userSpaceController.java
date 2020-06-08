@@ -1,6 +1,7 @@
 package com.a.controller;
 import com.a.entity.Article;
 import com.a.entity.Reply;
+import com.a.entity.User;
 import com.a.repository.ArticleRepository;
 import com.a.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,6 +25,9 @@ public class userSpaceController {
     @GetMapping(value = {"/userspace"})
     public String login(Model model, HttpSession session){
         String username= (String) session.getAttribute("loginuser");
+        User user=userRepository.findByUsername(username).get(0);
+        session.setAttribute("level",user.level);
+        session.setAttribute("restExp",user.level*10-user.exp);
         List<Article> coursesList=null;
         coursesList=articleRepository.findArticleByAuthor(username);
         model.addAttribute("articles", coursesList);

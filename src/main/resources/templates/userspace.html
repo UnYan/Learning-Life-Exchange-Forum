@@ -63,11 +63,15 @@
 <div class="search-area-wrapper">
     <div class="search-area container" th:switch="${session.status}">
         <div class="profile" style="margin:10px auto;text-align:center;width: 120px" >
-            <label for="profile"><img alt="" src="../static/asserts/images/profile.png" style="border-radius:50%" height="100" width="100"><br></label>
-            <input type="file" style="display: none" id="profile" formaction="">
+            <form>
+                <label for="profile"><img alt="" src="../static/asserts/images/profile.png" style="border-radius:50%" height="100" width="100"><br></label>
+                <input type="file" style="display: none" id="profile" accept="image/png,image/jpg"><br>
+                <input type="submit" class="diy-btn" style="border: none" value="确认修改">
+            </form>
+
         </div>
         <h3 class="search-header">[[${session.loginuser}]]</h3>
-        <p class="search-tag-line">你的权限等级为 [[${session.level}]]</p>
+        <p class="search-tag-line" th:text="你的权限等级为+':'+(${session.level}==0?管理员，权限拉满！:(${session.level}+','+距离下一等级还差+':'+${session.restExp}+经验))"> [[${session.level}]]</p>
         <p class="search-tag-line" th:case="true">你的状态为 畅所欲言</p>
         <p class="search-tag-line" th:case="false">你的状态为 禁言</p>
 
@@ -112,47 +116,28 @@
                                     <p th:text="${article.summary}==null?'暂无简介':${article.summary}"></p>
                                 </header>
                             </article>
-
-<!--                            <div id="pagination">-->
-<!--                                <a href="#" class="btn active">1</a>-->
-<!--                                <a href="#" class="btn">2</a>-->
-<!--                                <a href="#" class="btn">3</a>-->
-<!--                                <a href="#" class="btn">Next »</a>-->
-<!--                                <a href="#" class="btn">Last »</a>-->
-<!--                            </div>-->
-
                         </div>
             <!-- end of page content -->
 
 
             <!-- start of sidebar -->
-            <aside class="span4 page-sidebar">
+                        <aside class="span4 page-sidebar">
 
-                <section class="widget">
-                    <div class="support-widget">
-                        <a th:href="@{/mk}"
-                           th:if="${session.status}">发布帖子</a>
-                    </div>
-                </section>
-
-
-                <div class="userspacels">
-                   <section class="widget">
-                            <ul>
-                                    <li></li>
-                                    <li></li>
-                            </ul>
-
-                   </section>
-                    <a th:href="@{/spaceReply}">回复我的</a><br><br><br>
-                    <a href="">我的主题</a><br><br><br>
-                    <a th:href="@{/spaceLike}">我的点赞</a><br><br><br>
-<!--                    <input type="submit" formaction="" value="回复我的"><br><br>-->
-<!--                    <input type="submit" formaction="" value="我的主题"><br><br>-->
-<!--                    <input type="submit" formaction="" value="我的点赞"><br><br>-->
-                </div>
-
-            </aside>
+                            <section class="widget">
+                                <div class="support-widget">
+                                    <a th:href="@{/mk}"
+                                       th:if="${session.status}">发布帖子</a>
+                                </div>
+                            </section>
+                            <br>
+                            <hr>
+                            <br>
+                            <div class="userspacels">
+                                <a th:href="@{/spaceReply}">回复我的</a><br><br><br>
+                                <a href="">我的主题</a><br><br><br>
+                                <a th:href="@{/spaceLike}">点赞我的</a><br><br><br>
+                            </div>
+                        </aside>
             <!-- end of sidebar -->
         </div>
     </div>

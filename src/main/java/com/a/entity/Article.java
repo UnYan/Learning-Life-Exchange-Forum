@@ -12,8 +12,11 @@ public class Article {
     public String title;
     @Column(name = "author", length = 100)
     public String author;
+    public int authorId;
     @Column(name = "summary", length = 200)
     public String summary;
+    @Column(name = "level")
+    public Integer level;
     @Column(name = "content", length = 10000)
     public String content;
     @Column(name = "likes", length = 100)

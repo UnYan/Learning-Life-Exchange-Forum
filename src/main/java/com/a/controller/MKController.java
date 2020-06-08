@@ -67,9 +67,13 @@ public class MKController {
         article.likes=0;
         article.category=category;
         article.categoryName=catrgory_name[category];
+        article.authorId=userRepository.findByUsername(article.author).get(0).id;
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         article.dateformat=format.format(new Date());
         article.reply_cnt=0;
+        userRepository.addExp(article.authorId,10);
+        userRepository.freshLevel(article.authorId);
+
         for (int i=0;i<s.length;i++){
             content=replacemk(content,s[i],target[i]);
         }
@@ -103,8 +107,16 @@ public class MKController {
         return resultMap;
     }
     @GetMapping("/showBlog/{id}")
-    public String show(@PathVariable("id") Integer id, Model model) {
+    public String show(@PathVariable("id") Integer id, Model model,HttpSession session) {
         Article article = articleRepository.findArticleById(id);
+        if(session.getAttribute("loginuser") == null){
+            model.addAttribute("msg", "请先注册");
+            return "index";
+        }
+        else if((Integer)session.getAttribute("level") < article.level){
+            model.addAttribute("msg", "您的权限不足，请多多水群");
+            return "redirect:/main";
+        }
         model.addAttribute("article", article);
         Collection<Reply> replys = replyRepository.findByArticleid(id);
         model.addAttribute("replys",replys);

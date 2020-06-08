@@ -58,7 +58,9 @@ public class ReplyController {
         reply.new_reply_id=0;
         reply.new_like_id=0;
 
-        Notices temp=new Notices();//yzx
+        userRepository.addExp(reply.userid,2);//yzx
+        userRepository.freshLevel(reply.userid);
+        Notices temp=new Notices();
         temp.articleid=Integer.parseInt(articleid);
         temp.flag=1;
         temp.f=1;
@@ -106,7 +108,9 @@ public class ReplyController {
         reply = replyRepository.save(reply);
         System.out.println(reply.content);
 
-        Notices temp=new Notices();//yzx
+        userRepository.addExp(reply.userid,2);//yzx
+        userRepository.freshLevel(reply.userid);
+        Notices temp=new Notices();
         temp.articleid=Integer.parseInt(articleid);
         temp.flag=1;
         temp.f=0;
@@ -152,6 +156,9 @@ public class ReplyController {
             likesRepository.save(likes);
         }
 
+        int id=articleRepository.findArticleById(Integer.parseInt(articleid)).authorId;
+        userRepository.addExp(id,2);//yzx
+        userRepository.freshLevel(id);
         Notices temp=new Notices();//yzx
         temp.articleid=Integer.parseInt(articleid);
         temp.flag=0;
@@ -195,7 +202,9 @@ public class ReplyController {
             }
             likesRepository.save(likes);
         }
-
+        int id=replyRepository.findReplyById(Integer.parseInt(replyid)).userid;//yzx
+        userRepository.addExp(id,2);
+        userRepository.freshLevel(id);
         Notices temp=new Notices();//yzx
         temp.articleid=Integer.parseInt(articleid);
         temp.flag=0;

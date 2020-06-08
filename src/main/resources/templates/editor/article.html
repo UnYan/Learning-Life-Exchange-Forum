@@ -70,7 +70,7 @@
                     <div class="like-btn">
                         <button class="like-it" style="height: 30px"  th:onclick="'javascript:regist(\''+${0}+'\',\''+${article.id}+'\')'" th:text="${article.likes}" id="like0">66</button>
                         <a href="#respond"><button class="diy-btn " style="margin-right: 0;margin-bottom: 0">回复</button></a>
-                        <a href="" download><button class="diy-btn "  >下载文件</button></a>
+<!--                        <a href="" download><button class="diy-btn "  >下载文件</button></a>-->
                         <button class="diy-btn " style="margin-right: 0;margin-bottom: 0">删除帖子</button>
                     </div>
 
@@ -90,7 +90,7 @@
                                         <span th:each = "reply1:${reply1s}" >
                                             <a th:href="@{#} + ${reply1.replyid}"><button class="diy-btn " formaction=""  th:if = "${reply1.replyid eq reply.id}" th:text="${reply1.content} + 回复了此贴" ></button></a>
                                         </span>
-                                        <a href="" download><button class="diy-btn">下载文件</button></a>
+<!--                                        <a href="" download><button class="diy-btn">下载文件</button></a>-->
                                         <button class="diy-btn">删除回复</button>
                                     </div>
                                     <form th:action="@{/reply/r} + ${reply.id}" method="post" >
