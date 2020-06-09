@@ -120,13 +120,13 @@
                 <section class="widget">
                     <h3 class="title">最热帖子</h3>
                     <ul class="articles">
-                        <li class="article-entry standard" th:each="article":${sidebar}">
-                            <span class="date" th:text="${article.dateformat}==null?'暂无日期':${article.dateformat}"></span>
-                            <span class="author"><a th:href="@{/otheruserspace/}+${article.author}" th:text="${article.author}" ></a></span>
-                            <span class="category" th:text="${article.categoryName}" ></span>
-                            <span class="comments"><a href="#" th:text="${article.reply_cnt}+回复" th:href="@{/showBlog/}+${article.id}" th:if="${session.status}"></a></span>
-                            <span class="like-count" th:text="${article.likes}"></span>
-                            <span class="like-count" th:text="等级要求+${article.level}"></span>
+                        <li class="article-entry standard" th:each="course:${sidebar}">
+                            <h4><a href="single.html" th:text="${course.title}==null?${course.id}:${course.title}" th:href="@{/showBlog/}+${course.id}"></a></h4>
+                            <span class="" th:text="${course.dateformat}==null?'暂无日期':${course.dateformat}"></span>
+                            <span class=""><a th:href="@{/otheruserspace/}+${course.author}" th:text="${course.author}" ></a></span>
+                            <span class=""><a th:text="${course.categoryName}"></a></span>
+                            <span class="" th:text="等级要求+${course.level}"></span>
+                            <span class="like-count" th:text="${course.likes}" ></span>
                         </li>
                     </ul>
                 </section>
