@@ -48,9 +48,11 @@
         socket.onopen = function(event) {
             var ta = document.getElementById('responseText');
             ta.value += "连接开启!";
+            socket.send(sessionStorage.getItem("username")+"上线了!");
         };
         socket.onclose = function(event) {
             var ta = document.getElementById('responseText');
+            socket.send(sessionStorage.getItem("username")+"下线了!");
             ta.value = ta.value + "连接被关闭";
         };
     } else {

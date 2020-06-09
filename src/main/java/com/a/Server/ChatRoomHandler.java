@@ -46,8 +46,7 @@ public class ChatRoomHandler extends SimpleChannelInboundHandler<TextWebSocketFr
         channels.add(ctx.channel());
 
         for (Channel channel : channels){
-            channel.writeAndFlush(new TextWebSocketFrame(df.format(new Date())+"\n"+ctx.name() + "已经进入聊天室"
-            +" 当前人数："+channels.size()));
+            channel.writeAndFlush(new TextWebSocketFrame(df.format(new Date())+"\n"+" 当前人数："+channels.size()));
         }
 
     }
@@ -58,8 +57,7 @@ public class ChatRoomHandler extends SimpleChannelInboundHandler<TextWebSocketFr
         SimpleDateFormat df=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         channels.remove(ctx.channel());
         for (Channel channel : channels) {
-            channel.writeAndFlush(new TextWebSocketFrame(df.format(new Date())+"\n"+ctx.channel() + "离开了聊天室"
-            +" 当前人数："+channels.size()));
+            channel.writeAndFlush(new TextWebSocketFrame(df.format(new Date())+"\n"+" 当前人数："+channels.size()));
         }
 
     }

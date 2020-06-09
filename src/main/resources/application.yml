@@ -1,5 +1,7 @@
 
 spring:
+  mvc:
+    static-path-pattern: /static/**
   datasource:
     url: jdbc:mysql://39.97.126.242:3307/buaa21
     username: root
