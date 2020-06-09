@@ -30,6 +30,7 @@ public class SpaceController {
             temp.add(new Notice(i.fromName+"赞了您的一篇"+((i.f==0)?"回复":"文章"),"/showBlog/"+i.articleid));
         }
         model.addAttribute("spaceList",temp);
+        model.addAttribute("title","点赞我的");
         return "space";
     }
     @RequestMapping("/spaceReply")
@@ -41,6 +42,7 @@ public class SpaceController {
             temp.add(new Notice(i.fromName+"回复了您的一篇"+((i.f==0)?"回复":"文章"),"/showBlog/"+i.articleid));
         }
         model.addAttribute("spaceList",temp);
+        model.addAttribute("title","回复我的");
         return "space";
     }
 }

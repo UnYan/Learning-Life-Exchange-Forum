@@ -52,4 +52,16 @@ public class SearchController {
 
 
     }
+    @GetMapping(value = {"/mytitle"})
+    public String mysearch(HttpSession session){
+        List<Article> articleList=null;
+        List<Article> sumList=new ArrayList<>();
+        String searchname = (String) session.getAttribute("loginuser");
+            articleList = articleRepository.findArticleByAuthor(searchname);
+
+        session.setAttribute("articles", articleList);
+        return "userspace";
+
+
+    }
 }

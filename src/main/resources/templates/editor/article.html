@@ -161,8 +161,8 @@
                             <span class="" th:text="${course.dateformat}==null?'暂无日期':${course.dateformat}"></span>
                             <span class=""><a th:href="@{/otheruserspace/}+${course.author}" th:text="${course.author}" ></a></span>
                             <span class=""><a th:text="${course.categoryName}"></a></span>
+                            <span class="" th:text="等级要求+${course.level}"></span>
                             <span class="like-count" th:text="${course.likes}" ></span>
-                            <span class="like-count" th:text="等级要求+${course.level}"></span>
                         </li>
                     </ul>
                 </section>
