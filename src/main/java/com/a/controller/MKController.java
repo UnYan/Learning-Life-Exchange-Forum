@@ -6,6 +6,7 @@ import com.a.entity.User;
 import com.a.repository.ArticleRepository;
 import com.a.repository.ReplyRepository;
 import com.a.repository.UserRepository;
+import org.apache.commons.io.FileUtils;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -30,7 +31,7 @@ import static java.util.Comparator.comparing;
 
 @Controller
 public class MKController {
-    private static String UPLOADED_FOLDER = "E:\\";
+    private static String UPLOADED_FOLDER = "uploadImg/";
     //TODO!!!!! 在添加到服务器之前要测试地址！！！
     String[] catrgory_name={"管理员帖子","资源共享","校园周边","讨论区","题解","课程推荐","公告","课程"};
 
@@ -95,17 +96,25 @@ public class MKController {
     @RequestMapping(value="/uploadimg")
     public @ResponseBody Map<String,Object> demo(@RequestParam(value = "editormd-image-file", required = false) MultipartFile file, HttpServletRequest request) {
         Map<String,Object> resultMap = new HashMap<String,Object>();
-        System.out.println(request.getContextPath());
-        String realPath = UPLOADED_FOLDER;
-        String fileName = file.getOriginalFilename();
-        System.out.println(fileName);
+        //保存
         try {
-            byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
-            Files.write(path, bytes);
+            File imageFolder= new File("/home/yzx/springboot/uploadImg");
+            File targetFile = new File(imageFolder,file.getOriginalFilename());
+            if(!targetFile.getParentFile().exists()){
+                targetFile.getParentFile().mkdirs();
+
+            }
+            System.out.println(targetFile.getAbsolutePath());
+            FileUtils.copyInputStreamToFile(file.getInputStream(), targetFile);
+//            BufferedImage img = ImageUtil.change2jpg(targetFile);
+//            ImageIO.write(img, "jpg", targetFile);
+            /*            file.transferTo(targetFile);*/
+//            byte[] bytes = file.getBytes();
+//            Path path = Paths.get(realPath + file.getOriginalFilename());
+//            Files.write(path, bytes);
             resultMap.put("success", 1);
             resultMap.put("message", "上传成功！");
-            resultMap.put("url",UPLOADED_FOLDER+fileName);
+            resultMap.put("url","/UploadImages/"+file.getOriginalFilename());
         } catch (Exception e) {
             resultMap.put("success", 0);
             resultMap.put("message", "上传失败！");

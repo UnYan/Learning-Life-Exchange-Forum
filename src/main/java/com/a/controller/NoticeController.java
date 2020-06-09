@@ -22,6 +22,9 @@ public class NoticeController {
     public String clearArticleNotice(@PathVariable("id") Integer id, Model model){
         articleRepository.clearNewLike(id);
         articleRepository.clearNewReply(id);
+        if (articleRepository.findArticleById(id)==null){
+            return "redirect:/main";
+        }
         return "redirect:/showBlog/"+id;
     }
     @RequestMapping("/clear/showBlog/r{id}")
@@ -29,6 +32,9 @@ public class NoticeController {
         Reply reply=replyRepository.findReplyById(id);
         replyRepository.clearNewLike(id);
         replyRepository.clearNewReply(id);
+        if (articleRepository.findArticleById(reply.articleid)==null){
+            return "redirect:/main";
+        }
         return "redirect:/showBlog/"+reply.articleid;
     }
 }

@@ -29,6 +29,7 @@ public class MyMvcConfig implements WebMvcConfigurer {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/UploadImages/**").addResourceLocations("file:/home/yzx/springboot/uploadImg/");
         registry.addResourceHandler("**").addResourceLocations("classpath:/static/");
     }
 }
