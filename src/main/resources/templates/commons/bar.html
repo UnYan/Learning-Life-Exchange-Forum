@@ -21,7 +21,7 @@
                         <li><a style="color: white" th:style="${activeUri=='category2'?'color: white;font-weight: bold;':''}" th:href="@{/category/2}">校园周边</a></li>
                         <li><a style="color: white" th:style="${activeUri=='Course'?'color: white;font-weight: bold;':''}" th:href="@{/Course}">课程推荐</a></li>
                         <li><a style="color: white" th:style="${activeUri=='category1'?'color: white;font-weight: bold;':''}" th:href="@{/category/1}">资源共享</a></li>
-                        <li><a style="color: white" th:style="${activeUri=='main'?'color: white;font-weight: bold;':''}" th:href="@{/main}">全部帖子</a></li><!--class="current-menu-item"-->
+                        <li><a style="color: white" th:style="${activeUri=='main'?'color: white;font-weight: bold;':''}" th:href="@{/main}">全部帖子</a></li>
                         <li><a >通知</a>
                             <ul class="sub-menu" >
                                 <li th:each="notice:${session.notices}"><a th:href="@{${notice.href}}" href="/main" th:text="${notice.msg}" ></a></li>
@@ -37,6 +37,7 @@
                                 <!--                                                                                <li><a href="">Default Skin</a></li>-->
                             </ul>
                         </li>
+                        <li><a style="color: white" th:style="${activeUri=='main'?'color: white;font-weight: bold;':''}" th:href="@{/main}">支持/帮助/Buy me a coffee</a></li>
                     </ul>
                 </div>
             </nav>
