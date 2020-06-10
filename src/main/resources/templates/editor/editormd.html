@@ -35,7 +35,7 @@
             <form name="mdEditorForm" >
                 <br>
                 <div align="center" class="editormd-class">
-                    <select name="category" class="search-class" style="height: 37px; margin-bottom: 0; width: 100px">
+                    <select name="category" class="search-class" style="height: 37px; margin-bottom: 0; width: 100px" required="required">
 <!--                        <option  value="1" class="select-opt">资源共享</option>-->
                         <option  value="2" class="select-opt">校园周边</option>
 <!--                        <option  value="3" class="select-opt">讨论区</option>-->
@@ -47,7 +47,7 @@
 
 <!--                    <span style="color: #4b5760; font-size: 17px;line-height: 19px;font-weight: 600;">要求等级<input type="text" name="level" style="margin-bottom: 0"></span><br /><br />-->
 
-                    <span style="color: #4b5760; font-size: 17px;line-height: 19px;font-weight: 600;">标题：<input type="text" name="title" style="margin-bottom: 0" required></span>
+                    <span style="color: #4b5760; font-size: 17px;line-height: 19px;font-weight: 600;">标题：<input type="text" name="title" style="margin-bottom: 0" onFocus="this.value=''" value="暂无标题"></span>
                     <select name="level" class="search-class" style="height: 37px; margin-bottom: 0; width: 120px">
                         <option  value="1" class="select-opt" selected>请选择权限</option>
                         <option  value="1" class="select-opt">1</option>
@@ -65,7 +65,7 @@
                 </div><br>
                 <p  th:text="${session.msg}" th:if="${not #strings.isEmpty(session.msg)}"></p>
                 <div id="article-content">
-                    <textarea name="content" id="content" style="display:none;"></textarea>
+                    <textarea name="content" id="content" style="display:none;" required="required"></textarea>
                 </div>
             </form>
         </div>
