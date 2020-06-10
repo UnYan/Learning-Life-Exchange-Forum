@@ -31,9 +31,14 @@ public class CategoryController {
             sidebar.add(hot.get(i));
         }
         model.addAttribute("sidebar",sidebar);
-       model.addAttribute("category","category"+String.valueOf(id));
-//        model.addAttribute("category","category"+String.valueOf(id));
+        model.addAttribute("category","category"+String.valueOf(id));
+       // model.addAttribute("category","category"+String.valueOf(id));
         return "home1";
 
+    }
+
+    @GetMapping("/resource")
+    public String search(){
+        return "resource";
     }
 }
