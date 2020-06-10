@@ -4,7 +4,11 @@ import com.a.entity.Resource;
 import com.a.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -39,7 +43,9 @@ public class UploadController {
 
             Resource resource = new Resource();
             resource.title = title;
+            System.out.println(resource.title);
             resource.author = (String)session.getAttribute("loginuser");
+            System.out.println(resource.author);
             resource.fileName = fileName;
             resource.filePath = path;
             resourceRepository.save(resource);
@@ -54,7 +60,7 @@ public class UploadController {
         return "resource";
     }
 
-    @PostMapping(value = {"/downloadfile/{id}"})
+    @RequestMapping("/downloadfile/{id}")
     public String downLoad(@PathVariable("id") Integer id, HttpServletResponse response, Model model) throws IOException {
         Resource resource = resourceRepository.findResourceById(id);
         String name = resource.fileName;
@@ -64,7 +70,7 @@ public class UploadController {
         if(file.exists()){ // 判断文件父目录是否存在
             response.setContentType("text/html;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
-            response.setHeader("Content-Disposition", "attachment;fileName=" +   java.net.URLEncoder.encode(name,"UTF-8"));
+            response.setHeader("Content-Disposition", "attachment;fileName=" + name);
 
             byte[] buffer = new byte[1024];
             FileInputStream fis = null; //文件输入流
@@ -78,6 +84,7 @@ public class UploadController {
                 int i = bis.read(buffer);
                 while(i != -1){
                     os.write(buffer);
+                    os.flush();
                     i = bis.read(buffer);
                 }
             } catch (Exception e) {
@@ -93,14 +100,19 @@ public class UploadController {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
+         }
+
         return "resource";
     }
 
     @PostMapping(value = {"/delReSrc/{id}"})
     public String delResource(@PathVariable("id") Integer id, Model model) throws IOException {
         Resource resource = resourceRepository.findResourceById(id);
+        File file = new File(resource.filePath + resource.fileName);
+
+        if (file.exists()) file.delete();
         resourceRepository.delete(resource);
+
         model.addAttribute("res", "删除成功");
 
         return "resource";

@@ -37,9 +37,9 @@ public class ArticleDelController {
         Reply reply = replyRepository.findReplyById(id);
         if (reply != null) {
             replyRepository.delete(reply);
-            model.addAttribute("result", "控评成功");
+            model.addAttribute("res", "控评成功");
         }
-        else model.addAttribute("result", "控评失败");
-        return "/editor/article";
+        else model.addAttribute("res", "控评失败");
+        return "editor/article";
     }
 }

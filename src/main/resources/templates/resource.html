@@ -55,7 +55,10 @@
             <input class="search-term required" type="text" id="s" name="searchname" placeholder="搜索帖子" title="搜索帖子" />
             <input class="search-btn" type="submit" value="搜索" />
             <div id="search-error-container"></div>
-            <p  th:text="${res}" th:if="${not #strings.isEmpty(res)}"></p>
+            <div style="color: #46A3FF; font-size: 17px; text-align: center; margin-top: 40px; margin-bottom: 0px">
+                <b th:text="${res}" th:if="${not #strings.isEmpty(res)}"></b>
+            </div>
+
         </form>
 
     </div>
@@ -68,14 +71,20 @@
         <div class="row">
 
             <!-- start of page content -->
-            <div class="span8 main-listing" >
+            <div class="span8 main-listing like-btn" >
                 <article class="format-standard type-post hentry clearfix" th:each="Resource:${resources}">
 
                     <h2 th:text="${Resource.title}"></h2>
                     <h4 >上传者：<a th:text="${Resource.author}"></a></h4>
                     <br><br>
-                    <button class="diy-btn">下载文件</button>
-                    <button class="diy-btn " style="margin-right: 0;margin-bottom: 0">删除</button>
+                    <form th:action="@{/downloadfile/}+${Resource.id}" method="post" style="display:inline">
+                        <input type="submit" class="diy-btn" value="下载文件" />
+                    </form>
+
+                    <form th:action="@{/delReSrc/}+${Resource.id}" method="post" style="display:inline">
+                        <button type="submit" class="diy-btn " style="margin-right: 0;margin-bottom: 0">删除</button>
+                    </form>
+
                     <hr>
 
                 </article>
