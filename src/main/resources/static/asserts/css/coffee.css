@@ -16,7 +16,7 @@ body{
 .show_us1 {
     background: #353b65 url("../images/coffee/bg.jpg") center top no-repeat;
     background-size: 100%;
-    min-height: 820px;
+    min-height: 900px;
     overflow-x: hidden;
 }
 .show_us2 {
@@ -34,13 +34,13 @@ body{
 .show_us4 {
     background: #353b65 url("../images/coffee/4.jpg");
     background-size: 100%;
-    min-height: 540px;
+    min-height: 570px;
     overflow-x: hidden;
 }
 .show_us5 {
      background: #353b65 url("../images/coffee/5.jpg");
      background-size: 100%;
-     min-height: 1120px;
+     min-height: 1240px;
      overflow-x: hidden;
  }
 .show_us .search-area {
