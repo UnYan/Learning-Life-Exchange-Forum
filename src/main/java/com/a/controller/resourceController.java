@@ -21,7 +21,7 @@ import java.io.*;
 import java.util.List;
 
 @Controller
-public class UploadController {
+public class resourceController {
 
     @Autowired
     ResourceRepository resourceRepository;
