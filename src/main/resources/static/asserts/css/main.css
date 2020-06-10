@@ -1,6 +1,7 @@
 /* General ------------------------------------------------------------------------------------------------------------*/
 body {
   background-color: #fff;
+  overflow-x: hidden;
 }
 
 a:hover {
@@ -1490,7 +1491,9 @@ a#scroll-top:hover {
 
   /* Profile */
   .profile{
-    margin:10px auto
+    margin:10px auto;
+    text-align:center;
+    width: 120px
   }
   .profile img{
     border-radius:50%
