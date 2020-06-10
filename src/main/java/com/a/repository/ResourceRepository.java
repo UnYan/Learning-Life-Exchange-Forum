@@ -1,13 +1,7 @@
 package com.a.repository;
-
 import com.a.entity.Resource;
+import org.springframework.data.jpa.repository.JpaRepository;
 
-public class ResourceRepository {
-    public void add(Resource resource) {
-    }
-
-    public Resource findResourceById(Integer id) {}
-
-    public void delete(Resource resource) {
-    }
+public interface ResourceRepository extends JpaRepository<Resource,Integer> {
+    Resource findResourceById(Integer id);
 }

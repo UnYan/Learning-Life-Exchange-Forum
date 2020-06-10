@@ -36,7 +36,7 @@ public class UploadController {
             Resource resource = new Resource();
             resource.fileName = fileName;
             resource.filePath = path;
-            resourceRepository.add(resource);
+            resourceRepository.save(resource);
 
             model.addAttribute("msg", "上传成功");
             System.out.println("----------file uploadload---" + fileName);
