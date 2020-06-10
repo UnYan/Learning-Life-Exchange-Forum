@@ -55,7 +55,7 @@
             <input class="search-term required" type="text" id="s" name="searchname" placeholder="搜索帖子" title="搜索帖子" />
             <input class="search-btn" type="submit" value="搜索" />
             <div id="search-error-container"></div>
-            <p  th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+            <p  th:text="${res}" th:if="${not #strings.isEmpty(res)}"></p>
         </form>
 
     </div>
@@ -71,8 +71,15 @@
             <div class="span8 main-listing">
                 <h2>期末复习资料</h2>
                 <h4>上传者：<a>yzx</a></h4>
-                <a href="" download><button class="diy-btn">下载文件</button></a>
-                <button class="diy-btn " style="margin-right: 0;margin-bottom: 0">删除</button>
+                <form th:action="@{/downloadfile}+${resource.id}" method="post">
+                    <input type="hidden" name="_method_" value="download" />
+                    <button type="submit" class="diy-btn">下载文件</button>
+                </form>
+
+                <form th:action="@{/delReSrc}+${resource.id}" method="post" style="display:inline" th:if="${session.level}==0">
+                    <input type="hidden" name="_method" value="delete" />
+                    <button type="submit" class="diy-btn " style="margin-right: 0;margin-bottom: 0">删除</button>
+                </form>
 
                 <hr>
 
