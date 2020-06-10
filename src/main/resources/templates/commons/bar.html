@@ -16,6 +16,7 @@
             <nav class="main-nav">
                 <div class="menu-top-menu-container">
                     <ul id="menu-top-menu" class="clearfix">
+                        <li><a style="color: white" th:style="${activeUri=='main'?'color: white;font-weight: bold;':''}" th:href="@{/coffee}">支持/帮助/Buy me a coffee</a></li>
                         <li><a style="color: white" th:style="${activeUri=='chatting'?'color: white;font-weight: bold;':''}" th:href="${session.loginuser}==null? @{/register}:@{/chatting}" onclick="submit()">讨论区</a></li>
                         <li><a style="color: white" th:style="${activeUri=='category4'?'color: white;font-weight: bold;':''}" th:href="@{/category/4}">刷题板块</a></li>
                         <li><a style="color: white" th:style="${activeUri=='category2'?'color: white;font-weight: bold;':''}" th:href="@{/category/2}">校园周边</a></li>
@@ -37,7 +38,7 @@
                                 <!--                                                                                <li><a href="">Default Skin</a></li>-->
                             </ul>
                         </li>
-                        <li><a style="color: white" th:style="${activeUri=='main'?'color: white;font-weight: bold;':''}" th:href="@{/main}">支持/帮助/Buy me a coffee</a></li>
+
                     </ul>
                 </div>
             </nav>

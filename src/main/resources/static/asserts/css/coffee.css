@@ -13,12 +13,36 @@ body{
     /*background: url(../images/bg.jpg) no-repeat center ; //repeat设置重复，center设置位置*/
 }
 
-.show_us {
-    background: #353b65 url("../images/bg.jpg") center top no-repeat;
+.show_us1 {
+    background: #353b65 url("../images/coffee/bg.jpg") center top no-repeat;
     background-size: 100%;
-    min-height: 720px;
+    min-height: 820px;
     overflow-x: hidden;
 }
+.show_us2 {
+    background: #353b65 url("../images/coffee/424.jpg") center top no-repeat;
+    background-size: 100%;
+    min-height: 820px;
+    overflow-x: hidden;
+}
+.show_us3 {
+    background: #353b65 url("../images/coffee/3.jpg");
+    background-size: 100%;
+    min-height: 280px;
+    overflow-x: hidden;
+}
+.show_us4 {
+    background: #353b65 url("../images/coffee/4.jpg");
+    background-size: 100%;
+    min-height: 540px;
+    overflow-x: hidden;
+}
+.show_us5 {
+     background: #353b65 url("../images/coffee/5.jpg");
+     background-size: 100%;
+     min-height: 1120px;
+     overflow-x: hidden;
+ }
 .show_us .search-area {
     padding: 50px 0;
 }
