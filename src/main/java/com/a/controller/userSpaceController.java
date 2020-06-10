@@ -34,15 +34,72 @@ public class userSpaceController {
         return "userspace";
         }
     @GetMapping("/otheruserspace/{author}")
-    public String show(@PathVariable("author") String username, Model model,HttpSession session) {
+    public String show(@PathVariable("author") String otherusername, Model model,HttpSession session) {
+        User user=userRepository.findByUsername(otherusername).get(0);
+        session.setAttribute("otherlevel",user.level);
+        session.setAttribute("otherrestExp",user.level*10-user.exp);
+        session.setAttribute("otherloginuser",otherusername);
         List<Article> coursesList=null;
-        List<Article> articlesList=new ArrayList<>();
-        coursesList=articleRepository.findArticleByAuthor(username);
+        coursesList=articleRepository.findArticleByAuthor(otherusername);
         model.addAttribute("otherarticles", coursesList);
-        session.setAttribute("otherloginuser",username);
-//        session.setAttribute("otheruserid",userRepository.findByUsername(username).get(0).id);
-        session.setAttribute("otherlevel",userRepository.findByUsername(username).get(0).level);
         return "otheruserspace";
+    }
+//    @GetMapping("/otheruserspace/search/{otherloginuser}")
+//    public String showother(@RequestParam("searchname") String searchname,@PathVariable("otherloginuser") String otherusername,
+//                         Model model,HttpSession session) {
+//        User user=userRepository.findByUsername(otherusername).get(0);
+//        session.setAttribute("level",user.level);
+//        session.setAttribute("restExp",user.level*10-user.exp);
+//        List<Article> coursesList=null;
+//        List<Article> articleList=new ArrayList<>();
+//        coursesList=articleRepository.findArticleByTitleContaining(searchname);
+//        int l=coursesList.size();
+//        for(int i=0;i<l;i++){
+//            if(coursesList.get(i).author.compareTo(otherusername)==0)
+//                articleList.add(coursesList.get(i));
+//        }
+//        model.addAttribute("otherarticles", articleList);
+//        model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
+//        return "otheruserspace";
+//    }
+@GetMapping("/otheruserspace/search")
+public String showother(@RequestParam("searchname") String searchname,
+                        Model model,HttpSession session) {
+        String otherusername = (String) session.getAttribute("otherloginuser");
+    User user=userRepository.findByUsername(otherusername).get(0);
+    session.setAttribute("level",user.level);
+    session.setAttribute("restExp",user.level*10-user.exp);
+    List<Article> coursesList=null;
+    List<Article> articleList=new ArrayList<>();
+    coursesList=articleRepository.findArticleByTitleContaining(searchname);
+    int l=coursesList.size();
+    for(int i=0;i<l;i++){
+        if(coursesList.get(i).author.compareTo(otherusername)==0)
+            articleList.add(coursesList.get(i));
+    }
+    model.addAttribute("otherarticles", articleList);
+    model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
+    return "otheruserspace";
+}
+    @GetMapping("/userspace/search")
+    public String showmy(@RequestParam("searchname") String searchname,
+                                 Model model,HttpSession session) {
+        String username= (String) session.getAttribute("loginuser");
+        User user=userRepository.findByUsername(username).get(0);
+        session.setAttribute("level",user.level);
+        session.setAttribute("restExp",user.level*10-user.exp);
+        List<Article> coursesList=null;
+        List<Article> articleList=new ArrayList<>();
+        coursesList=articleRepository.findArticleByTitleContaining(searchname);
+        int l=coursesList.size();
+        for(int i=0;i<l;i++){
+            if(coursesList.get(i).author.compareTo(username)==0)
+                articleList.add(coursesList.get(i));
+        }
+        model.addAttribute("articles", articleList);
+        model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
+
+        return "userspace";
     }
 
     }

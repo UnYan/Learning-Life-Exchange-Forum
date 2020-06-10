@@ -13,6 +13,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+
+import static java.util.Comparator.comparing;
+
 //这个不知道是干啥的，问倪某
 @Controller
 public class CourseSearchController {
@@ -27,12 +30,10 @@ public class CourseSearchController {
         List<Article> coursesList=null;
         if(way.compareTo("title")==0) {
             articleList = articleRepository.findArticleByTitleContaining(searchname);
-            model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
-        }
+            }
         else if(way.compareTo("author")==0) {
             articleList = articleRepository.findArticleByAuthorContaining(searchname);
-            model.addAttribute("msg", "作者关键词:"+searchname+"。已找到"+articleList.size()+"个相关帖子");
-        }
+            }
 //            else if(way.compareTo("levelmore")==0) {
 //                articleList = articleRepository.findArticleByLevelGreaterThan(Integer.parseInt(searchname));
 //                model.addAttribute("msg", "等级关键词:大于"+searchname+"。已找到"+articleList.size()+"个相关帖子");
@@ -48,9 +49,22 @@ public class CourseSearchController {
                 courseList.add(articleList.get(i));
             }
         }
+        if(way.compareTo("title")==0) {
+            model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+courseList.size()+"个相关帖子");
+        }
+        else if(way.compareTo("author")==0) {
+            model.addAttribute("msg", "作者关键词:"+searchname+"。已找到"+courseList.size()+"个相关帖子");
+        }
         model.addAttribute("courses", coursesList);
         model.addAttribute("articles", courseList);
         model.addAttribute("category","Course");
+        List<Article> hot = articleRepository.findAll();
+        hot.sort(comparing(Article::getlikes).reversed());
+        List<Article> sidebar = new ArrayList<>();
+        for(int i=0;i<5;i++){
+            sidebar.add(hot.get(i));
+        }
+        model.addAttribute("sidebar",sidebar);
         return "Course";
     }
 }

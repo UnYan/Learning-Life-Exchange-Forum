@@ -75,11 +75,12 @@
         <p class="search-tag-line" th:case="true">你的状态为 畅所欲言</p>
         <p class="search-tag-line" th:case="false">你的状态为 禁言</p>
 
-        <form id="search-form" class="search-form clearfix" method="get" action="#" autocomplete="off">
-            <input class="search-term required" type="text" id="s" name="s" placeholder="搜索我的帖子" title="搜索我的帖子" />
+        <form id="search-form" class="search-form clearfix" method="get" th:action="@{/userspace/search}" autocomplete="off">
+            <input class="search-term required" type="text" id="s" name="searchname" placeholder="搜索我的帖子" title="搜索我的帖子" />
             <input class="search-btn" type="submit" value="搜索" />
             <div id="search-error-container"></div>
         </form>
+        <div style="color: #46A3FF; font-size: 17px; text-align: center; margin-top: 40px; margin-bottom: 0px"><b th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></b></div>
     </div>
 </div>
 <!-- End of Search Wrapper -->

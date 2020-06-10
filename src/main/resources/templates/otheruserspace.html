@@ -61,18 +61,26 @@
 
 <!-- Start of Search Wrapper -->
 <div class="search-area-wrapper">
-    <div class="search-area container">
-        <div class="profile" style="margin:10px auto;text-align:center;width: 120px">
-            <label for="profile"><img alt="" src="../static/asserts/images/profile.png" style="border-radius:50%" height="100" width="100"><br></label>
-            <input type="file" style="display: none" id="profile" formaction="">
+    <div class="search-area container" th:switch="${session.status}">
+        <div class="profile" style="margin:10px auto;text-align:center;width: 120px" >
+            <form>
+                <label for="profile"><img alt="" src="../static/asserts/images/profile.png" style="border-radius:50%" height="100" width="100"><br></label>
+                <input type="file" style="display: none" id="profile" accept="image/png,image/jpg"><br>
+                <input type="submit" class="diy-btn" style="border: none" value="确认修改">
+            </form>
+
         </div>
         <h3 class="search-header">[[${session.otherloginuser}]]</h3>
-        <p class="search-tag-line">你的权限等级为 [[${session.otherlevel}]]</p>
-        <form id="search-form" class="search-form clearfix" method="get" action="#" autocomplete="off">
-            <input class="search-term required" type="text" id="s" name="s" placeholder="搜索我的帖子" title="搜索我的帖子" />
+        <p class="search-tag-line" th:text="你的权限等级为+':'+(${session.otherlevel}==0?管理员，权限拉满！:(${session.otherlevel}+','+距离下一等级还差+':'+${session.otherrestExp}+经验))"> [[${session.otherlevel}]]</p>
+        <p class="search-tag-line" th:case="true">你的状态为 畅所欲言</p>
+        <p class="search-tag-line" th:case="false">你的状态为 禁言</p>
+
+        <form id="search-form" class="search-form clearfix" method="get" th:action="@{/otheruserspace/search}" autocomplete="off">
+            <input class="search-term required" type="text" id="s" name="searchname" placeholder="搜索我的帖子" title="搜索我的帖子" />
             <input class="search-btn" type="submit" value="搜索" />
             <div id="search-error-container"></div>
         </form>
+        <div style="color: #46A3FF; font-size: 17px; text-align: center; margin-top: 40px; margin-bottom: 0px"><b th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></b></div>
     </div>
 </div>
 <!-- End of Search Wrapper -->
@@ -101,24 +109,15 @@
 
                                     <div class="post-meta clearfix">
                                         <span class="date" th:text="${article.dateformat}==null?'暂无日期':${article.dateformat}"></span>
-                                        <span  class="author"><a th:href="@{/otheruserspace/}+${article.author}" th:text="${article.author}" ></a></span>
+                                        <span class="author" th:text="${article.author}==null?'暂无作者':${article.author}"></span>
                                         <span  class="category" th:text="${article.categoryName}" ></span>
-                                        <span class="comments"><a href="#" th:text="${article.reply_cnt}+回复" th:href="@{/showBlog/}+${article.id}"></a></span>
-                                        <span class="like-count" th:text="${article.likes}"></span>
+                                        <span class="comments"><a href="#" th:text="${article.reply_cnt}+回复" th:href="@{/showBlog/}+${article.id}">3 回复</a></span>
+                                        <span class="like-count" th:text="${article.likes}" ></span>
                                         <span class="like-count" th:text="等级要求+${article.level}"></span>
                                     </div><!-- end of post meta -->
                                     <p th:text="${article.summary}==null?'暂无简介':${article.summary}"></p>
                                 </header>
                             </article>
-
-                            <!--                            <div id="pagination">-->
-                            <!--                                <a href="#" class="btn active">1</a>-->
-                            <!--                                <a href="#" class="btn">2</a>-->
-                            <!--                                <a href="#" class="btn">3</a>-->
-                            <!--                                <a href="#" class="btn">Next »</a>-->
-                            <!--                                <a href="#" class="btn">Last »</a>-->
-                            <!--                            </div>-->
-
                         </div>
                         <!-- end of page content -->
 
@@ -128,27 +127,18 @@
 
                             <section class="widget">
                                 <div class="support-widget">
-                                    <a th:href="@{/mk}">发布帖子</a>
+                                    <a th:href="@{/mk}"
+                                       th:if="${session.status}">发布帖子</a>
                                 </div>
                             </section>
-
-
+                            <br>
+                            <hr>
+                            <br>
                             <div class="userspacels">
-                                <section class="widget">
-                                    <ul>
-                                        <li></li>
-                                        <li></li>
-                                    </ul>
-
-                                </section>
-                                <a th:href="@{/spaceReply}">回复我的</a><br><br><br>
-                                <a href="">我的主题</a><br><br><br>
-                                <a th:href="@{/spaceLike}">我的点赞</a><br><br><br>
-                                <!--                    <input type="submit" formaction="" value="回复我的"><br><br>-->
-                                <!--                    <input type="submit" formaction="" value="我的主题"><br><br>-->
-                                <!--                    <input type="submit" formaction="" value="我的点赞"><br><br>-->
+                                <a th:href="@{/otherspaceReply}">回复他的</a><br><br><br>
+                                <a th:href="@{/otheruserspace/}+${session.otherloginuser}">他的主题</a><br><br><br>
+                                <a th:href="@{/otherspaceLike}">点赞他的</a><br><br><br>
                             </div>
-
                         </aside>
                         <!-- end of sidebar -->
                     </div>

@@ -33,6 +33,30 @@ public class SpaceController {
         model.addAttribute("title","点赞我的");
         return "space";
     }
+    @RequestMapping("/otherspaceReply")
+    public String otherspaceReply(Model model, HttpSession session){
+        User user=userRepository.findByUsername((String) session.getAttribute("otherloginuser")).get(0);
+        List<Notices> list=noticesRepository.findReply(user.id);
+        List<Notice> temp=new ArrayList<>();
+        for (Notices i:list){
+            temp.add(new Notice(i.fromName+"回复了您的一篇"+((i.f==0)?"回复":"文章"),"/showBlog/"+i.articleid));
+        }
+        model.addAttribute("spaceList",temp);
+        model.addAttribute("title","回复我的");
+        return "space";
+    }
+    @RequestMapping("/otherspaceLike")
+    public String otherspaceLike(Model model, HttpSession session){
+        User user=userRepository.findByUsername((String) session.getAttribute("otherloginuser")).get(0);
+        List<Notices> list=noticesRepository.findLike(user.id);
+        List<Notice> temp=new ArrayList<>();
+        for (Notices i:list){
+            temp.add(new Notice(i.fromName+"赞了您的一篇"+((i.f==0)?"回复":"文章"),"/showBlog/"+i.articleid));
+        }
+        model.addAttribute("spaceList",temp);
+        model.addAttribute("title","点赞我的");
+        return "space";
+    }
     @RequestMapping("/spaceReply")
     public String spaceReply(Model model, HttpSession session){
         User user=userRepository.findByUsername((String) session.getAttribute("loginuser")).get(0);

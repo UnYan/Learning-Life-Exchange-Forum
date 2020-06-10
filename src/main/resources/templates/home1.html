@@ -36,7 +36,7 @@
                         <div class="search-area container">
                                 <h3 class="search-header">来 ! 发 现 !</h3>
                                 <p class="search-tag-line">If you have any question you can ask below or enter what you are looking for!</p>
-                                <form action="/search" id="search-form" class="search-form clearfix" method="get"  th:action="@{/search}" autocomplete="off">
+                                <form action="/search" id="search-form" class="search-form clearfix" method="get"  th:action="${category}==null?@{/search}:@{/search/}+${category}" autocomplete="off">
                                         <select name="way" class="search-class">
                                                 <option  value="title" class="select-opt">帖子</option>
                                                 <option  value="author" class="select-opt">作者</option>
@@ -46,7 +46,7 @@
                                         <input class="search-term required" type="text" id="s" name="searchname" placeholder="搜索帖子" title="搜索帖子" />
                                         <input class="search-btn" type="submit" value="搜索" />
                                         <div id="search-error-container"></div>
-                                        <p  th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
+                                        <div style="color: #46A3FF; font-size: 17px; text-align: center; margin-top: 40px; margin-bottom: 0px"><b th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></b></div>
                                 </form>
 
                         </div>
@@ -113,8 +113,8 @@
                                                                         <span class="" th:text="${course.dateformat}==null?'暂无日期':${course.dateformat}"></span>
                                                                         <span class=""><a th:href="@{/otheruserspace/}+${course.author}" th:text="${course.author}" ></a></span>
                                                                         <span class=""><a th:text="${course.categoryName}"></a></span>
+                                                                        <span class="" th:text="等级要求+${course.level}"></span>
                                                                         <span class="like-count" th:text="${course.likes}" ></span>
-                                                                        <span class="like-count" th:text="等级要求+${course.level}"></span>
                                                                 </li>
                                                         </ul>
                                                 </section>
