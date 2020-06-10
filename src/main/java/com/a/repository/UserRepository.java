@@ -17,7 +17,7 @@ public interface UserRepository extends JpaRepository<User,Integer> {
     List<User> findByUsernameAndEmail(String name, String email);
     @Transactional
     @Modifying
-    @Query(value="update user set exp=exp+?2 where id=?1", nativeQuery=true)
+    @Query(value="update user set exp=exp+?2 where userlevel!=0 and id=?1", nativeQuery=true)
     void addExp(Integer id,Integer exp);
     @Transactional
     @Modifying

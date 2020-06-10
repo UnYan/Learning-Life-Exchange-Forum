@@ -37,7 +37,7 @@
 
 <body>
 <!-- Start of Header -->
-<div th:replace="commons/bar::topbar(activeUri='main')"></div>
+<div th:replace="commons/bar::topbar(activeUri='resource')"></div>
 <!-- End of Header -->
 
 <!-- Start of Search Wrapper -->
@@ -95,6 +95,10 @@
                         <input type="submit" class="diy-btn" value="上传资源">
 <!--                        <b style="color: #46A3FF; text-align: center; margin-left: 5px;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></b>-->
                     </form>
+
+                    <div style="color: #46A3FF; font-size: 17px; text-align: center; margin-top: 40px; margin-bottom: 0px">
+                        <b th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></b>
+                    </div>
                 </section>
             </aside>
             <!-- end of sidebar -->

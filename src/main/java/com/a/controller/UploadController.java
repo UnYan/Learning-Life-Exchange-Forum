@@ -19,10 +19,13 @@ public class UploadController {
         if (file.isEmpty()) model.addAttribute("msg", "上传失败");
 
         String fileName = file.getOriginalFilename();
-        /* String filePath = "/Users/kxw/Desktop/SpringBoot Project/fileUpload/src/main/resources/upload/";
-            路径自定义，别忘修改下面一行代码,最好将路径定义到专门的文件夹里
-        */
-        File dest = new File(fileName);
+
+        File direct = new File("./src");
+        String path = direct.getCanonicalPath() + "/main/resources/static/Upload/";
+
+        // String path = "/Users/kxw/Desktop/springBoot Project/test1/src/main/resources/static/Upload/";
+
+        File dest = new File(path + fileName);
 
         try {
             file.transferTo(dest);
@@ -32,6 +35,6 @@ public class UploadController {
             model.addAttribute("msg", "上传失败");
         }
 
-        return "editormd";
+        return "resource";
     }
 }
