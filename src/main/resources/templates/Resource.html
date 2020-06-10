@@ -68,16 +68,18 @@
         <div class="row">
 
             <!-- start of page content -->
-            <div class="span8 main-listing">
-                <h2>期末复习资料</h2>
-                <h4>上传者：<a>yzx</a></h4>
-                <button class="diy-btn">下载文件</button>
-                <button class="diy-btn " style="margin-right: 0;margin-bottom: 0">删除</button>
-                <hr>
+            <div class="span8 main-listing" >
+                <article class="format-standard type-post hentry clearfix" th:each="Resource:${resources}">
 
-                <h2>航概习题集</h2>
-                <a href="" download><button class="diy-btn">下载文件</button></a>
-                <button class="diy-btn " style="margin-right: 0;margin-bottom: 0">删除</button>
+                    <h2 th:text="${Resource.title}"></h2>
+                    <h4 >上传者：<a th:text="${Resource.author}"></a></h4>
+                    <br><br>
+                    <button class="diy-btn">下载文件</button>
+                    <button class="diy-btn " style="margin-right: 0;margin-bottom: 0">删除</button>
+                    <hr>
+
+                </article>
+
             </div>
             <!-- end of page content -->
 
@@ -87,8 +89,8 @@
 
                 <section class="widget">
                     <form action="/uploadfile" th:action="@{/uploadfile}" method="post" enctype="multipart/form-data">
-                        <h3>资源名称</h3>
-                        <input type="text" style="width:285px" required>
+                        <h3>资源标题</h3>
+                        <input type="text" name="title" style="width:285px" required>
                         <input type="file" name="file" id="file" required>
                         <br><br>
                         <input type="submit" class="diy-btn" value="上传资源">

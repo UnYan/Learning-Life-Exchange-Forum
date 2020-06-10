@@ -12,7 +12,9 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.*;
+import java.util.List;
 
 @Controller
 public class UploadController {
@@ -21,7 +23,9 @@ public class UploadController {
     ResourceRepository resourceRepository;
 
     @PostMapping(value = {"/uploadfile"})
-    public String upload(@RequestParam("file") MultipartFile file, Model model) throws IOException {
+    public String upload(@RequestParam("file") MultipartFile file,
+                         @RequestParam("title") String title,
+                         Model model, HttpSession session) throws IOException {
         if (file.isEmpty()) model.addAttribute("msg", "上传失败");
 
         String fileName = file.getOriginalFilename();
@@ -34,6 +38,8 @@ public class UploadController {
             file.transferTo(dest);
 
             Resource resource = new Resource();
+            resource.title = title;
+            resource.author = (String)session.getAttribute("loginuser");
             resource.fileName = fileName;
             resource.filePath = path;
             resourceRepository.save(resource);

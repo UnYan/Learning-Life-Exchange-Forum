@@ -8,6 +8,10 @@ public class Resource {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public int id;
+    @Column(name = "author", length = 20)
+    public String author;
+    @Column(name = "title", length = 20)
+    public String title;
     @Column(name = "fileName", length = 20)
     public String fileName;
     @Column(name = "filePath", length = 500)

@@ -1,8 +1,10 @@
 package com.a.controller;
 
 import com.a.entity.Article;
+import com.a.entity.Resource;
 import com.a.repository.ArticleRepository;
 
+import com.a.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,6 +21,10 @@ import static java.util.Comparator.comparing;
 public class CategoryController {
     @Autowired
     ArticleRepository articleRepository;
+
+    @Autowired
+    ResourceRepository resourceRepository;
+
     @GetMapping("/category/{id}")
     public String search(@PathVariable("id") Integer id, Model model, HttpSession session){
         List<Article> list=articleRepository.findArticleByCategory(id);
@@ -39,7 +45,9 @@ public class CategoryController {
     }
 
     @GetMapping("/resource")
-    public String Resource() {
+    public String resourceList(Model model) {
+        List<Resource> srcList = resourceRepository.findAll();
+        model.addAttribute("resources", srcList);
         return "resource";
     }
 }
