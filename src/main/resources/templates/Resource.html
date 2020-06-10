@@ -89,8 +89,8 @@
                 <section class="widget">
                     <form action="/uploadfile" th:action="@{/uploadfile}" method="post" enctype="multipart/form-data">
                         <h3>资源名称</h3>
-                        <input type="text" style="width:285px">
-                        <input type="file" name="file" id="file">
+                        <input type="text" style="width:285px" required>
+                        <input type="file" name="file" id="file" required>
                         <br><br>
                         <input type="submit" class="diy-btn" value="上传资源">
 <!--                        <b style="color: #46A3FF; text-align: center; margin-left: 5px;" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></b>-->
