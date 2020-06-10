@@ -10,7 +10,6 @@ public class Resource {
     public int id;
     @Column(name = "fileName", length = 20)
     public String fileName;
-    @Column(name = "filePath", length = 50)
+    @Column(name = "filePath", length = 500)
     public String filePath;
-
 }

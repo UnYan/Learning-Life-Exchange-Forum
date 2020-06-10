@@ -37,4 +37,9 @@ public class CategoryController {
         return "home1";
 
     }
+
+    @GetMapping("/resource")
+    public String Resource() {
+        return "resource";
+    }
 }

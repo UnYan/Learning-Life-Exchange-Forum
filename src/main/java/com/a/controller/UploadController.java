@@ -3,6 +3,9 @@ package com.a.controller;
 import com.a.entity.Resource;
 import com.a.repository.ResourceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.core.io.ResourceLoader;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +28,6 @@ public class UploadController {
 
         File direct = new File("./src");
         String path = direct.getCanonicalPath() + "/main/resources/static/Upload/";
-
-        // String path = "/Users/kxw/Desktop/springBoot Project/test1/src/main/resources/static/Upload/";
-
         File dest = new File(path + fileName);
 
         try {
@@ -39,7 +39,7 @@ public class UploadController {
             resourceRepository.save(resource);
 
             model.addAttribute("msg", "上传成功");
-            System.out.println("----------file uploadload---" + fileName);
+            System.out.println("----------file upload---" + fileName);
         } catch (IOException e) {
             e.printStackTrace();
             model.addAttribute("msg", "上传失败");
