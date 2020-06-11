@@ -25,24 +25,6 @@ body{
     min-height: 820px;
     overflow-x: hidden;
 }
-.show_us3 {
-    background: #353b65 url("../images/coffee/3.jpg");
-    background-size: 100%;
-    min-height: 280px;
-    overflow-x: hidden;
-}
-.show_us4 {
-    background: #353b65 url("../images/coffee/4.jpg");
-    background-size: 100%;
-    min-height: 570px;
-    overflow-x: hidden;
-}
-.show_us5 {
-     background: #353b65 url("../images/coffee/5.jpg");
-     background-size: 100%;
-     min-height: 1240px;
-     overflow-x: hidden;
- }
 .show_us .search-area {
     padding: 50px 0;
 }
