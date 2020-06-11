@@ -43,6 +43,7 @@ public class UploadController {
             resourceRepository.save(resource);
 
             model.addAttribute("msg", "上传成功");
+            session.setAttribute("fileName", fileName);
             System.out.println("----------file upload---" + fileName);
         } catch (IOException e) {
             e.printStackTrace();
