@@ -40,7 +40,7 @@
         window.WebSocket = window.MozWebSocket;
     }
     if (window.WebSocket) {
-        socket = new WebSocket("ws://39.97.126.242:8080/websocket");
+        socket = new WebSocket("ws://39.97.126.242:8888/websocket");
         socket.onmessage = function(event) {
             var ta = document.getElementById('responseText');
             ta.value = ta.value + '\n' + event.data
