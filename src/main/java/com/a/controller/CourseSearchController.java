@@ -27,6 +27,7 @@ public class CourseSearchController {
                          @RequestParam("searchname") String searchname,Model model){
         List<Article> articleList=null;
         List<Article> courseList=new ArrayList<>();
+        List<Article> commentList=new ArrayList<>();
         List<Article> coursesList=null;
         if(way.compareTo("title")==0) {
             articleList = articleRepository.findArticleByTitleContaining(searchname);
@@ -42,21 +43,25 @@ public class CourseSearchController {
 //                articleList = articleRepository.findArticleByLevelLessThan(Integer.parseInt(searchname));
 //                model.addAttribute("msg", "等级关键词:小于"+searchname+"。已找到"+articleList.size()+"个相关帖子");
 //            }
-        coursesList=articleRepository.findArticleByCategoryName("课程");
+
         int l=articleList.size();
         for(int i=0;i<l;i++){
             if(articleList.get(i).categoryName.compareTo("课程推荐")==0){
+                commentList.add(articleList.get(i));
+            }
+            else if(articleList.get(i).categoryName.compareTo("课程")==0){
                 courseList.add(articleList.get(i));
             }
         }
+        int t=courseList.size()+commentList.size();
         if(way.compareTo("title")==0) {
-            model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+courseList.size()+"个相关帖子");
+            model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+t+"个相关帖子");
         }
         else if(way.compareTo("author")==0) {
-            model.addAttribute("msg", "作者关键词:"+searchname+"。已找到"+courseList.size()+"个相关帖子");
+            model.addAttribute("msg", "作者关键词:"+searchname+"。已找到"+t+"个相关帖子");
         }
-        model.addAttribute("courses", coursesList);
-        model.addAttribute("articles", courseList);
+        model.addAttribute("courses", courseList);
+        model.addAttribute("articles", commentList);
         model.addAttribute("category","Course");
         List<Article> hot = articleRepository.findAll();
         hot.sort(comparing(Article::getlikes).reversed());
