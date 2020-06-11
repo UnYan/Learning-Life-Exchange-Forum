@@ -62,10 +62,14 @@
         if (!window.WebSocket) {
             return;
         }
-        if (socket.readyState == WebSocket.OPEN) {
+        if (socket.readyState == WebSocket.OPEN&&message&&message.length>1) {
             socket.send(sessionStorage.getItem("username")+message);
-        } else {
-            alert("连接没有开启.");
+        }
+        else if(!message||message.length<=1){
+            alert("发送消息不能为空。");
+        }
+        else {
+            alert("连接没有开启。");
         }
     }
 </script>

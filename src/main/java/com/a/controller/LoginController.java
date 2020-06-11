@@ -1,5 +1,7 @@
 package com.a.controller;
+import com.a.entity.Article;
 import com.a.entity.User;
+import com.a.repository.ArticleRepository;
 import com.a.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -8,11 +10,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
+
+import static java.util.Comparator.comparing;
 
 @Controller
 public class LoginController {
     @Autowired
     UserRepository userRepository;
+    @Autowired
+    ArticleRepository articleRepository;
     @PostMapping(value = {"/index_login"})
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
@@ -55,6 +63,6 @@ public class LoginController {
             session.setAttribute("userid", null);
             session.setAttribute("level", -1);
             session.setAttribute("status", 1);
-            return "redirect:/main";
+        return "redirect:/main";
     }
 }

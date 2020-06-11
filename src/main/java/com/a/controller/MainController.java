@@ -85,7 +85,7 @@ public class MainController {
             for (int i = 0; i < 5; i++) {
                 sidebar.add(hot.get(i));
             }
-            session.setAttribute("sidebar", sidebar);
+            model.addAttribute("sidebar", sidebar);
         }
         return "home";
     }

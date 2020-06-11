@@ -70,6 +70,10 @@ public class MKController {
             session.setAttribute("msg","不能设置比自己等级高的权限");
             return "redirect:/mk";
         }
+        if(content.length()==0) {
+            session.setAttribute("msg","帖子内容不能为空");
+            return "redirect:/mk";
+        }
         article.title=title;
         article.level=level;
         article.content=content;
