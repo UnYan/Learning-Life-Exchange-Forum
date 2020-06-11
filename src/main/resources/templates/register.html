@@ -15,19 +15,19 @@
         <p class="error-msg" style="color: red; text-align: center; font-size: 12px; line-height: 5px" th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></p>
         <div class="login-input-box">
             <span class="icon icon-user"></span>
-            <input type="text" name="username" placeholder="Please enter your username">
+            <input type="text" name="username" placeholder="Please enter your username" required>
         </div>
         <div class="login-input-box">
             <span class="icon icon-password"></span>
-            <input type="password" name="password1" placeholder="Please enter your password">
+            <input type="password" name="password1" placeholder="Please enter your password" required>
         </div>
         <div class="login-input-box">
             <span class="icon icon-password"></span>
-            <input type="password" name="password2" placeholder="Please enter your password again">
+            <input type="password" name="password2" placeholder="Please enter your password again" required>
         </div>
         <div class="login-input-box">
             <span class="icon icon-email"></span>
-            <input type="email" name="email" placeholder="Please enter your email address">
+            <input type="email" name="email" placeholder="Please enter your email address" required>
         </div>
     </form>
     <!--    <div class="remember-box">-->
