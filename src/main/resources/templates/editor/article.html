@@ -224,13 +224,6 @@ function regist(replyId,articleId) {
         url:localurl,
         success:function(data){
             document.getElementById("like" + replyId).innerText=data.likes;
-            // var likeButton = $(this);
-            // var likeHtml = likeButton.html();
-            // var likeNum = parseInt(likeHtml, 10);
-            // likeNum = data.likes;
-            // //console.log(likeNum);
-            // likeButton.html(likeNum);
-            // //console.log(data.likes);
         }
     });
 }
