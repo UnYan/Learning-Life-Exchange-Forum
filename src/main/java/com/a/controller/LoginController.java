@@ -63,6 +63,7 @@ public class LoginController {
             session.setAttribute("userid", null);
             session.setAttribute("level", -1);
             session.setAttribute("status", 1);
+            model.addAttribute("msg","欢迎游客！");
         return "redirect:/main";
     }
 }
