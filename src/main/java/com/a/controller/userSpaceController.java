@@ -32,6 +32,7 @@ public class userSpaceController {
         List<Article> coursesList=null;
         coursesList=articleRepository.findArticleByAuthor(username);
         model.addAttribute("articles", coursesList);
+
         return "userspace";
         }
     @GetMapping("/otheruserspace/{author}")

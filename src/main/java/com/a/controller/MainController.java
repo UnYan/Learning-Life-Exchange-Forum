@@ -29,7 +29,7 @@ public class MainController {
     UserRepository userRepository ;
     @RequestMapping("/main")
     public String home(Model model, HttpSession session) {
-        List<Article> articles =articleRepository.findAll();
+        List<Article> articles =articleRepository.findAllArticle();
         List<Article> sumList = new ArrayList<>();
         int l=articles.size();
         for(int i=0;i<l;i++){
@@ -66,6 +66,9 @@ public class MainController {
                 }
             }
 //        model.addAttribute("notices",noticeBuff);
+            if (noticeBuff.size()==0){
+                noticeBuff.add(new Notice("暂无通知",null));
+            }
             session.setAttribute("notices", noticeBuff);
             List<Article> hot = articleRepository.findAll();
             hot.sort(comparing(Article::getlikes).reversed());

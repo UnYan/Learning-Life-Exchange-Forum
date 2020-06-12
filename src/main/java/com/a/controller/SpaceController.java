@@ -29,6 +29,7 @@ public class SpaceController {
         for (Notices i:list){
             temp.add(new Notice(i.fromName+"赞了您的一篇"+((i.f==0)?"回复":"文章"),"/showBlog/"+i.articleid));
         }
+        if (temp.size()==0) temp.add(new Notice("暂无点赞",null));
         model.addAttribute("spaceList",temp);
         model.addAttribute("title","点赞我的");
         return "space";
@@ -65,6 +66,7 @@ public class SpaceController {
         for (Notices i:list){
             temp.add(new Notice(i.fromName+"回复了您的一篇"+((i.f==0)?"回复":"文章"),"/showBlog/"+i.articleid));
         }
+        if (temp.size()==0) temp.add(new Notice("暂无回复",null));
         model.addAttribute("spaceList",temp);
         model.addAttribute("title","回复我的");
         return "space";

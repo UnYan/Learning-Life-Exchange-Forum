@@ -84,6 +84,8 @@ public class MKController {
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         article.dateformat=format.format(new Date());
         article.reply_cnt=0;
+        if (category==6) article.pinned=1;
+        else article.pinned=0;
         userRepository.addExp(article.authorId,10);
         userRepository.freshLevel(article.authorId);
 

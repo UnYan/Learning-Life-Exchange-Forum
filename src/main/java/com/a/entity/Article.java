@@ -43,6 +43,7 @@ public class Article {
                             */
     public Integer new_reply;
     public Integer new_reply_id;
+    public int pinned;
 //    @Column(name = "level")
 //    public int level;
 }
