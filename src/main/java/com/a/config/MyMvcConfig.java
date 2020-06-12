@@ -39,6 +39,6 @@ public class MyMvcConfig implements WebMvcConfigurer {
     public void addInterceptors(InterceptorRegistry registry){
         registry.addInterceptor(new LoginHandlerInterceptor()).
                 addPathPatterns("/userspace","/setting","/mk","/retrivepassword","/retrievepassword","/Course",
-                        "/chat","/chatting","/administrators","/otheruserspace","/firstUse","/touristmain");
+                        "/chat","/chatting","/administrators","/otheruserspace","/firstUse","/touristmain","/resource");
     }
 }
