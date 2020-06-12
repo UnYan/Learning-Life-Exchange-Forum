@@ -32,42 +32,43 @@ public class headImgController {
     public String upload(@RequestParam("file") MultipartFile file,
                          Model model, HttpSession session) throws IOException {
         if (file.isEmpty()) model.addAttribute("msg", "上传失败");
+        else {
+            String fileName = file.getOriginalFilename();
 
-        String fileName = file.getOriginalFilename();
+            File direct = new File("./src");
+            String path = direct.getCanonicalPath() + "/main/resources/static/Upload/HeadImg/";
+            File dest = new File(path + fileName);
 
-        File direct = new File("./src");
-        String path = direct.getCanonicalPath() + "/main/resources/static/Upload/";
-        File dest = new File(path + fileName);
+            User user = userRepository.findUserById((Integer) session.getAttribute("userid"));
+            if (!user.headImgName.equals("profile.png")) {
+                File f = new File(path + user.headImgName);
+                f.delete();
+                System.out.println("----------file delete---" + user.headImgName);
+            }
+            user.headImgName = fileName;
+            userRepository.save(user);
 
-        User user = userRepository.findUserById((Integer) session.getAttribute("userid"));
-        if (!user.headImgName.equals("profile.png")) {
-            File f = new File(path + user.headImgName);
-            f.delete();
-            System.out.println("----------file delete---" + user.headImgName);
+            try {
+                file.transferTo(dest);
+
+                com.a.entity.Resource resource = new com.a.entity.Resource();
+                resource.title = "headImg";
+                System.out.println(resource.title);
+                resource.author = (String) session.getAttribute("loginuser");
+                System.out.println(resource.author);
+                resource.fileName = fileName;
+                resource.filePath = path;
+                resource.type = "headImg";
+                resourceRepository.save(resource);
+
+                model.addAttribute("msg", "上传成功");
+                session.setAttribute("fileName", fileName);
+                System.out.println("----------file upload---" + fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+                model.addAttribute("msg", "上传失败");
+            }
         }
-        user.headImgName = fileName;
-        userRepository.save(user);
-
-        try {
-            file.transferTo(dest);
-
-            com.a.entity.Resource resource = new com.a.entity.Resource();
-            resource.title = "headImg";
-            System.out.println(resource.title);
-            resource.author = (String)session.getAttribute("loginuser");
-            System.out.println(resource.author);
-            resource.fileName = fileName;
-            resource.filePath = path;
-            resourceRepository.save(resource);
-
-            model.addAttribute("msg", "上传成功");
-            session.setAttribute("fileName", fileName);
-            System.out.println("----------file upload---" + fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-            model.addAttribute("msg", "上传失败");
-        }
-
         return "userspace";
     }
 
@@ -75,7 +76,7 @@ public class headImgController {
     @ResponseBody
     public ResponseEntity<Resource> showImg(@PathVariable("fileName") String name, HttpSession session) {
         File direct = new File("./src");
-        String path = direct.getPath() + "/main/resources/static/Upload/";
+        String path = direct.getPath() + "/main/resources/static/Upload/HeadImg/";
 
         return ResponseEntity.ok(resourceLoader.getResource("file:" + path + name));
     }

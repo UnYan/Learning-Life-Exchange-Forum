@@ -27,7 +27,7 @@ public class UploadController {
         String fileName = file.getOriginalFilename();
 
         File direct = new File("./src");
-        String path = direct.getCanonicalPath() + "/main/resources/static/Upload/";
+        String path = direct.getCanonicalPath() + "/main/resources/static/Upload/Resource/";
         File dest = new File(path + fileName);
 
         try {
@@ -40,10 +40,11 @@ public class UploadController {
             System.out.println(resource.author);
             resource.fileName = fileName;
             resource.filePath = path;
+            resource.type = "resource";
             resourceRepository.save(resource);
 
             model.addAttribute("msg", "上传成功");
-            session.setAttribute("fileName", fileName);
+            // session.setAttribute("fileName", fileName);
             System.out.println("----------file upload---" + fileName);
         } catch (IOException e) {
             e.printStackTrace();

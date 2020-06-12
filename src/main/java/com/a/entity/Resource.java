@@ -16,4 +16,6 @@ public class Resource {
     public String fileName;
     @Column(name = "filePath", length = 500)
     public String filePath;
+    @Column(name = "type", length = 20)
+    public String type;
 }
