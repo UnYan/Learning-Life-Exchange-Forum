@@ -64,16 +64,14 @@
     <div class="search-area container" th:switch="${session.status}">
         <div class="profile" style="margin:10px auto;text-align:center;width: 120px" >
             <form>
-                <label for="profile"><img alt="" src="../static/asserts/images/coffee/profile.png" style="border-radius:50%" height="100" width="100"><br></label>
-                <input type="file" style="display: none" id="profile" accept="image/png,image/jpg"><br>
-                <input type="submit" class="diy-btn" style="border: none" value="确认修改">
+                <img alt="" src="../static/asserts/images/coffee/profile.png" style="border-radius:50%" height="100" width="100"><br>
             </form>
 
         </div>
         <h3 class="search-header">[[${session.otherloginuser}]]</h3>
-        <p class="search-tag-line" th:text="你的权限等级为+':'+(${session.otherlevel}==0?管理员，权限拉满！:(${session.otherlevel}+','+距离下一等级还差+':'+${session.otherrestExp}+经验))"> [[${session.otherlevel}]]</p>
-        <p class="search-tag-line" th:case="true">你的状态为 畅所欲言</p>
-        <p class="search-tag-line" th:case="false">你的状态为 禁言</p>
+        <p class="search-tag-line" th:text="ta的权限等级为+':'+(${session.otherlevel}==0?管理员，权限拉满！:(${session.otherlevel}+','+距离下一等级还差+':'+${session.otherrestExp}+经验))"> [[${session.otherlevel}]]</p>
+        <p class="search-tag-line" th:case="true">ta的状态为 畅所欲言</p>
+        <p class="search-tag-line" th:case="false">ta的状态为 禁言</p>
 
         <form id="search-form" class="search-form clearfix" method="get" th:action="@{/otheruserspace/search}" autocomplete="off">
             <input class="search-term required" type="text" id="s" name="searchname" placeholder="搜索我的帖子" title="搜索我的帖子" />
