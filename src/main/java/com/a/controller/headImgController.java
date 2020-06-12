@@ -36,7 +36,7 @@ public class headImgController {
         String fileName = file.getOriginalFilename();
 
         File direct = new File("./src");
-        String path = direct.getCanonicalPath() + "/main/resources/static/Upload/";
+        String path = direct.getCanonicalPath() + "/main/resources/static/Upload/HeadImg/";
         File dest = new File(path + fileName);
 
         User user = userRepository.findUserById((Integer) session.getAttribute("userid"));
@@ -58,6 +58,7 @@ public class headImgController {
             System.out.println(resource.author);
             resource.fileName = fileName;
             resource.filePath = path;
+            resource.type = "headImg";
             resourceRepository.save(resource);
 
             model.addAttribute("msg", "上传成功");
@@ -75,7 +76,7 @@ public class headImgController {
     @ResponseBody
     public ResponseEntity<Resource> showImg(@PathVariable("fileName") String name, HttpSession session) {
         File direct = new File("./src");
-        String path = direct.getPath() + "/main/resources/static/Upload/";
+        String path = direct.getPath() + "/main/resources/static/Upload/HeadImg/";
 
         return ResponseEntity.ok(resourceLoader.getResource("file:" + path + name));
     }

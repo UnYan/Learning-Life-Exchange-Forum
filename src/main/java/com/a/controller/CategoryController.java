@@ -46,7 +46,7 @@ public class CategoryController {
 
     @GetMapping("/resource")
     public String resourceList(Model model) {
-        List<Resource> srcList = resourceRepository.findAll();
+        List<Resource> srcList = resourceRepository.findResourceByType("resource");
         model.addAttribute("resources", srcList);
         return "resource";
     }
