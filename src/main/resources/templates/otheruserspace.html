@@ -63,7 +63,7 @@
 <div class="search-area-wrapper">
     <div class="search-area container" th:switch="${session.status}">
         <div class="profile" style="margin:10px auto;text-align:center;width: 120px" >
-                <img alt="" src="../static/asserts/images/coffee/profile.png" style="border-radius:50%" height="100" width="100"><br>
+            <img alt="" src="../static/asserts/images/coffee/profile.png" style="border-radius:50%" height="100" width="100"><br>
         </div>
         <h3 class="search-header">[[${session.otherloginuser}]]</h3>
         <p class="search-tag-line" th:text="你的权限等级为+':'+(${session.otherlevel}==0?管理员，权限拉满！:(${session.otherlevel}+','+距离下一等级还差+':'+${session.otherrestExp}+经验))"> [[${session.otherlevel}]]</p>
