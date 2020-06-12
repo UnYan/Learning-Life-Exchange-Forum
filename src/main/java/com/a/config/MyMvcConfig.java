@@ -1,6 +1,8 @@
 package com.a.config;
 
+import com.a.component.LoginHandlerInterceptor;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
@@ -32,5 +34,11 @@ public class MyMvcConfig implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/UploadImages/**").addResourceLocations("file:/home/yzx/springboot/uploadImg/");
         registry.addResourceHandler("**").addResourceLocations("classpath:/static/");
+    }
+    @Override
+    public void addInterceptors(InterceptorRegistry registry){
+        registry.addInterceptor(new LoginHandlerInterceptor()).
+                addPathPatterns("/userspace","/setting","/mk","/retrivepassword","/retrievepassword","/Course",
+                        "/chat","/chatting","/administrators","/otheruserspace","/firstUse","/touristmain","/coffee");
     }
 }
