@@ -39,6 +39,10 @@ public interface ArticleRepository extends JpaRepository<Article,Integer> {
     void addReply(Integer id);
     @Transactional
     @Modifying
+    @Query(value="update article set reply_cnt=reply_cnt-1 where id=?1", nativeQuery=true)
+    void reduceReply(Integer id);
+    @Transactional
+    @Modifying
     @Query(value="update article set likes=likes+1 where id=?1", nativeQuery=true)
     void addLikes(Integer id);
     @Transactional
