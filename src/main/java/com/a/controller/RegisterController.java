@@ -39,6 +39,7 @@ public class RegisterController {
         tmp.setPassword(password1);
         tmp.email=email;
         tmp.setStatus(true);
+        tmp.headImgName = "profile.png";
         userRepository.save(tmp);
         return "redirect:/";
     }

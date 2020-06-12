@@ -1,6 +1,8 @@
 package com.a.controller;
 
+import com.a.entity.User;
 import com.a.repository.ResourceRepository;
+import com.a.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
@@ -23,6 +25,9 @@ public class headImgController {
     @Autowired
     ResourceRepository resourceRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     @PostMapping(value = {"/uploadImg"})
     public String upload(@RequestParam("file") MultipartFile file,
                          Model model, HttpSession session) throws IOException {
@@ -33,6 +38,15 @@ public class headImgController {
         File direct = new File("./src");
         String path = direct.getCanonicalPath() + "/main/resources/static/Upload/";
         File dest = new File(path + fileName);
+
+        User user = userRepository.findUserById((Integer) session.getAttribute("userid"));
+        if (!user.headImgName.equals("profile.png")) {
+            File f = new File(path + user.headImgName);
+            f.delete();
+            System.out.println("----------file delete---" + user.headImgName);
+        }
+        user.headImgName = fileName;
+        userRepository.save(user);
 
         try {
             file.transferTo(dest);
@@ -59,7 +73,7 @@ public class headImgController {
 
     @RequestMapping(value = {"/showImg/{fileName}"})
     @ResponseBody
-    public ResponseEntity<Resource> showImg(@PathVariable("fileName") String name) {
+    public ResponseEntity<Resource> showImg(@PathVariable("fileName") String name, HttpSession session) {
         File direct = new File("./src");
         String path = direct.getPath() + "/main/resources/static/Upload/";
 

@@ -106,6 +106,7 @@ public class UploadController {
         if (file.exists()) file.delete();
         resourceRepository.delete(resource);
 
+        System.out.println("----------file download---" + resource.fileName);
         model.addAttribute("res", "删除成功");
 
         return "resource";

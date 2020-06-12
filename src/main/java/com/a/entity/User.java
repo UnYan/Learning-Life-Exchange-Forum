@@ -23,6 +23,8 @@ public class User {//yzx:登录1经验，发帖10经验，评论2经验，被点
     @Column(name = "first_use")
     public int first_use;
     public int exp;
+    @Column(name = "headImg")
+    public String headImgName;
 
     public int getId() {
         return id;

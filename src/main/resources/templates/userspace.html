@@ -65,7 +65,7 @@
     <div class="search-area container" th:switch="${session.status}">
         <div class="profile" style="margin:10px auto;text-align:center;width: 120px" >
             <label for="profile">
-                <img alt="" src="/showImg/+${fileName}" style="border-radius:50%" height="100" width="100"><br>
+                <img alt="" th:src="@{/showImg/}+${session.fileName}" style="border-radius:50%" height="100" width="100"><br>
             </label>
 
             <form th:action="@{/uploadImg}" method="post" enctype="multipart/form-data">

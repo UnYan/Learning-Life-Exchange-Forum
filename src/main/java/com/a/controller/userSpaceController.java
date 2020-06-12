@@ -28,7 +28,7 @@ public class userSpaceController {
         User user=userRepository.findByUsername(username).get(0);
         session.setAttribute("level",user.level);
         session.setAttribute("restExp",user.level*10-user.exp);
-        // session.setAttribute("fileName", "profile.png");
+        session.setAttribute("fileName", user.headImgName);
         List<Article> coursesList=null;
         coursesList=articleRepository.findArticleByAuthor(username);
         model.addAttribute("articles", coursesList);
