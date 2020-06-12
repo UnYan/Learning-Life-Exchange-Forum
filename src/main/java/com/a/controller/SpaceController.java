@@ -43,7 +43,7 @@ public class SpaceController {
         }
         model.addAttribute("spaceList",temp);
         model.addAttribute("title","回复我的");
-        return "space";
+        return "otheruserspace";
     }
     @RequestMapping("/otherspaceLike")
     public String otherspaceLike(Model model, HttpSession session){
@@ -55,7 +55,7 @@ public class SpaceController {
         }
         model.addAttribute("spaceList",temp);
         model.addAttribute("title","点赞我的");
-        return "space";
+        return "otheruserspace";
     }
     @RequestMapping("/spaceReply")
     public String spaceReply(Model model, HttpSession session){
