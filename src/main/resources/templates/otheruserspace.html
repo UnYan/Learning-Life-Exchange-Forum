@@ -66,7 +66,7 @@
             <img alt="" src="../static/asserts/images/coffee/profile.png" style="border-radius:50%" height="100" width="100"><br>
         </div>
         <h3 class="search-header">[[${session.otherloginuser}]]</h3>
-        <p class="search-tag-line" th:text="你的权限等级为+':'+(${session.otherlevel}==0?管理员，权限拉满！:(${session.otherlevel}+','+距离下一等级还差+':'+${session.otherrestExp}+经验))"> [[${session.otherlevel}]]</p>
+        <p class="search-tag-line" th:text="ta的权限等级为+':'+(${session.otherlevel}==0?神圣的管理员:(${session.otherlevel}+','+距离下一等级还差+':'+${session.otherrestExp}+经验))"> [[${session.otherlevel}]]</p>
         <p class="search-tag-line" th:case="true">你的状态为 畅所欲言</p>
         <p class="search-tag-line" th:case="false">你的状态为 禁言</p>
 
@@ -114,28 +114,7 @@
                                 </header>
                             </article>
                         </div>
-                        <!-- end of page content -->
 
-
-                        <!-- start of sidebar -->
-                        <aside class="span4 page-sidebar">
-
-                            <section class="widget">
-                                <div class="support-widget">
-                                    <a th:href="@{/mk}"
-                                       th:if="${session.status}">发布帖子</a>
-                                </div>
-                            </section>
-                            <br>
-                            <hr>
-                            <br>
-                            <div class="userspacels">
-                                <a th:href="@{/otherspaceReply}">回复他的</a><br><br><br>
-                                <a th:href="@{/otheruserspace/}+${session.otherloginuser}">他的主题</a><br><br><br>
-                                <a th:href="@{/otherspaceLike}">点赞他的</a><br><br><br>
-                            </div>
-                        </aside>
-                        <!-- end of sidebar -->
                     </div>
                 </div>
             </div>
