@@ -136,6 +136,9 @@ public class MKController {
             model.addAttribute("msg", "请先注册");
             return "index";
         }
+        else if (article==null){
+            return "redirect:/main";
+        }
         else if((Integer)session.getAttribute("level") < article.level&&(Integer)session.getAttribute("level")!=0){
             model.addAttribute("msg", "您的权限不足，请多多水群");
             return "home";
