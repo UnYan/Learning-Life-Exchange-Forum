@@ -79,6 +79,8 @@ public class MKController {
         article.content=content;
         article.likes=0;
         article.category=category;
+        article.new_reply=0;
+        article.new_like=0;
         article.categoryName=catrgory_name[category];
         article.authorId=userRepository.findByUsername(article.author).get(0).id;
         DateFormat format = new SimpleDateFormat("yyyy-MM-dd");

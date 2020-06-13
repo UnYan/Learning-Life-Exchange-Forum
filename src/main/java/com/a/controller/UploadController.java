@@ -62,7 +62,7 @@ public class UploadController {
         String path = resource.filePath;
 
         File file = new File(path + name);
-        if(file.exists()){ // 判断文件父目录是否存在
+        if (file.exists()) { // 判断文件父目录是否存在
             response.setContentType("text/html;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
             response.setHeader("Content-Disposition", "attachment;fileName=" + name);
@@ -77,7 +77,7 @@ public class UploadController {
                 fis = new FileInputStream(file);
                 bis = new BufferedInputStream(fis);
                 int i = bis.read(buffer);
-                while(i != -1){
+                while (i != -1) {
                     os.write(buffer);
                     os.flush();
                     i = bis.read(buffer);
