@@ -27,7 +27,7 @@ public class UploadController {
         String fileName = file.getOriginalFilename();
 
         File direct = new File("./src");
-        String path = direct.getCanonicalPath() + "/main/resources/static/Upload/Resource/";
+        String path = "/home/yzx/springboot/resource/";
         File dest = new File(path + fileName);
 
         try {
