@@ -23,32 +23,33 @@ public class UploadController {
                          @RequestParam("title") String title,
                          Model model, HttpSession session) throws IOException {
         if (file.isEmpty()) model.addAttribute("msg", "上传失败");
+        else {
+            String fileName = file.getOriginalFilename();
 
-        String fileName = file.getOriginalFilename();
+            File direct = new File("./src");
+            String path = "/home/yzx/springboot/resource/";
+            File dest = new File(path + fileName);
 
-        File direct = new File("./src");
-        String path = "/home/yzx/springboot/resource/";
-        File dest = new File(path + fileName);
+            try {
+                file.transferTo(dest);
 
-        try {
-            file.transferTo(dest);
+                Resource resource = new Resource();
+                resource.title = title;
+                System.out.println(resource.title);
+                resource.author = (String)session.getAttribute("loginuser");
+                System.out.println(resource.author);
+                resource.fileName = fileName;
+                resource.filePath = path;
+                resource.type = "resource";
+                resourceRepository.save(resource);
 
-            Resource resource = new Resource();
-            resource.title = title;
-            System.out.println(resource.title);
-            resource.author = (String)session.getAttribute("loginuser");
-            System.out.println(resource.author);
-            resource.fileName = fileName;
-            resource.filePath = path;
-            resource.type = "resource";
-            resourceRepository.save(resource);
-
-            model.addAttribute("msg", "上传成功");
-            // session.setAttribute("fileName", fileName);
-            System.out.println("----------file upload---" + fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-            model.addAttribute("msg", "上传失败");
+                model.addAttribute("msg", "上传成功");
+                // session.setAttribute("fileName", fileName);
+                System.out.println("----------file upload---" + fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+                model.addAttribute("msg", "上传失败");
+            }
         }
 
         return "resource";
