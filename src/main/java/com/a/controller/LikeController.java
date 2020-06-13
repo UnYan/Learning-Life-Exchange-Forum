@@ -1,11 +1,10 @@
 package com.a.controller;
 
+import com.a.entity.Article;
 import com.a.entity.Likes;
+import com.a.entity.Notices;
 import com.a.entity.User;
-import com.a.repository.ArticleRepository;
-import com.a.repository.LikesRepository;
-import com.a.repository.ReplyRepository;
-import com.a.repository.UserRepository;
+import com.a.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -29,6 +28,8 @@ public class LikeController {
     ArticleRepository articleRepository;
     @Autowired
     LikesRepository likesRepository;
+    @Autowired
+    NoticesRepository noticesRepository;
 /*    @RequestMapping("/regist")
     @ResponseBody
     public void regist(){
@@ -78,6 +79,17 @@ public class LikeController {
                 likesRepository.save(likes);
                 num = articleRepository.findArticleById(articleId).likes;
             }
+            int id=articleRepository.findArticleById(articleId).authorId;
+            Article article=articleRepository.findArticleById(id);
+            userRepository.addExp(id,2);//yzx
+            userRepository.freshLevel(id);
+            Notices temp=new Notices();//yzx
+            temp.articleid=articleId;
+            temp.flag=0;
+            temp.f=1;
+            temp.fromName=user.username;
+            temp.toid=(userRepository.findByUsername(article.author)).get(0).id;
+            noticesRepository.save(temp);
         } else {
             User user = userRepository.findByUsername((String) session.getAttribute("loginuser")).get(0);
             Likes likes = likesRepository.findByReplyidAndUserid(replyId, user.id);
@@ -106,6 +118,17 @@ public class LikeController {
                 likesRepository.save(likes);
                 num = replyRepository.findReplyById(replyId).likes;
             }
+            int id=articleRepository.findArticleById(articleId).authorId;
+            Article article=articleRepository.findArticleById(id);
+            userRepository.addExp(id,2);//yzx
+            userRepository.freshLevel(id);
+            Notices temp=new Notices();//yzx
+            temp.articleid=articleId;
+            temp.flag=0;
+            temp.f=0;
+            temp.fromName=user.username;
+            temp.toid=(userRepository.findByUsername(article.author)).get(0).id;
+            noticesRepository.save(temp);
         }
 //
 //        System.out.println("前端传递过来的名字是" + request.getParameter("name"));

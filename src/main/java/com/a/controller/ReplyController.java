@@ -160,6 +160,7 @@ public class ReplyController {
         userRepository.addExp(id,2);//yzx
         userRepository.freshLevel(id);
         Notices temp=new Notices();//yzx
+        System.out.println("--------------------------开始");
         temp.articleid=Integer.parseInt(articleid);
         temp.flag=0;
         temp.f=1;
