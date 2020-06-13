@@ -71,11 +71,11 @@
                                                                 </h3>
 
                                                                 <div class="post-meta clearfix">
-                                                                        <span class="date"  th:text="${article.dateformat}==null?'暂无日期':${article.dateformat}"></span>
-                                                                        <span  class="author"><a th:href="@{/otheruserspace/}+${article.author}" th:text="${article.author}" ></a></span>
-                                                                        <span  class="category" th:text="${article.categoryName}" ></span>
-                                                                        <span class="comments"><a href="#" th:text="${article.reply_cnt}+回复" th:href="@{/showBlog/}+${article.id}" th:if="${session.status}"></a></span>
-                                                                        <span class="like-count" th:text="${article.likes}"></span>
+                                                                        <span class=""  th:text="${article.dateformat}==null?'暂无日期':${article.dateformat}"></span>
+                                                                        <span  class=""><a th:href="@{/otheruserspace/}+${article.author}" th:text="${article.author}" ></a></span>
+                                                                        <span  class="" th:text="${article.categoryName}" ></span>
+                                                                        <span class=""><a href="#" th:text="${article.reply_cnt}+回复" th:href="@{/showBlog/}+${article.id}" th:if="${session.status}"></a></span>
+                                                                        <span class="" th:text="${article.likes}"></span>
                                                                         <span class="like-count" th:text="等级要求+${article.level}"></span>
                                                                 </div><!-- end of post meta -->
                                                                 <p th:text="${article.summary}==null?'暂无简介':${article.summary}"></p>
