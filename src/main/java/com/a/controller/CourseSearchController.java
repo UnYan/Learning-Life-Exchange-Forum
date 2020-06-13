@@ -67,7 +67,7 @@ public class CourseSearchController {
         hot.sort(comparing(Article::getlikes).reversed());
         List<Article> sidebar = new ArrayList<>();
         for(int i=0;i<5;i++){
-            if(hot.get(i)==null)
+            if(hot.size()<=i)
                 break;
             sidebar.add(hot.get(i));
         }
