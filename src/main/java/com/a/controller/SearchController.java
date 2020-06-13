@@ -1,6 +1,8 @@
 package com.a.controller;
 import com.a.entity.Article;
+import com.a.entity.Resource;
 import com.a.repository.ArticleRepository;
+import com.a.repository.ResourceRepository;
 import com.a.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,6 +24,8 @@ import static java.util.Comparator.comparing;
 public class SearchController {
     @Autowired
     ArticleRepository articleRepository;
+    @Autowired
+    ResourceRepository resourceRepository;
     @GetMapping(value = {"/search"})
     public String search(@RequestParam("way") String way,
                          @RequestParam("searchname") String searchname,
@@ -123,5 +127,25 @@ public class SearchController {
         return "userspace";
 
 
+    }
+    @GetMapping("/resource/search")
+    public String resourceList( @RequestParam("way") String way,
+                                @RequestParam("searchname") String searchname,
+                                Model model) {
+        List<Resource> srcList = null;
+        if(way.compareTo("title")==0) {
+            srcList = resourceRepository.findResourceByTitleContaining(searchname);
+        }
+        else if(way.compareTo("author")==0) {
+            srcList = resourceRepository.findResourceByAuthorContaining(searchname);
+        }
+        model.addAttribute("resources", srcList);
+        if(way.compareTo("title")==0) {
+            model.addAttribute("msg", "标题关键词:"+searchname+"。已找到"+srcList.size()+"个相关资源");
+        }
+        else if(way.compareTo("author")==0) {
+            model.addAttribute("msg", "作者关键词:"+searchname+"。已找到"+srcList.size()+"个相关资源");
+        }
+        return "resource";
     }
 }

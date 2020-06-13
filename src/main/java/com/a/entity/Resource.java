@@ -10,7 +10,7 @@ public class Resource {
     public int id;
     @Column(name = "author", length = 20)
     public String author;
-    @Column(name = "title", length = 20)
+    @Column(name = "title", length = 50)
     public String title;
     @Column(name = "fileName", length = 20)
     public String fileName;
