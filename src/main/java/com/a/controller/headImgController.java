@@ -36,7 +36,7 @@ public class headImgController {
             String fileName = file.getOriginalFilename();
 
             File direct = new File("./src");
-            String path = direct.getCanonicalPath() + "/main/resources/static/Upload/HeadImg/";
+            String path = "/home/yzx/springboot/headImg/";
             File dest = new File(path + fileName);
 
             User user = userRepository.findUserById((Integer) session.getAttribute("userid"));
@@ -75,8 +75,7 @@ public class headImgController {
     @RequestMapping(value = {"/showImg/{fileName}"})
     @ResponseBody
     public ResponseEntity<Resource> showImg(@PathVariable("fileName") String name, HttpSession session) {
-        File direct = new File("./src");
-        String path = direct.getPath() + "/main/resources/static/Upload/HeadImg/";
+        String path = "/home/yzx/springboot/headImg/";
 
         return ResponseEntity.ok(resourceLoader.getResource("file:" + path + name));
     }

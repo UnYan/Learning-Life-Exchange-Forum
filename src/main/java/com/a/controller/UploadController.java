@@ -23,32 +23,33 @@ public class UploadController {
                          @RequestParam("title") String title,
                          Model model, HttpSession session) throws IOException {
         if (file.isEmpty()) model.addAttribute("msg", "上传失败");
+        else {
+            String fileName = file.getOriginalFilename();
 
-        String fileName = file.getOriginalFilename();
+            File direct = new File("./src");
+            String path = "/home/yzx/springboot/resource/";
+            File dest = new File(path + fileName);
 
-        File direct = new File("./src");
-        String path = direct.getCanonicalPath() + "/main/resources/static/Upload/Resource/";
-        File dest = new File(path + fileName);
+            try {
+                file.transferTo(dest);
 
-        try {
-            file.transferTo(dest);
+                Resource resource = new Resource();
+                resource.title = title;
+                System.out.println(resource.title);
+                resource.author = (String)session.getAttribute("loginuser");
+                System.out.println(resource.author);
+                resource.fileName = fileName;
+                resource.filePath = path;
+                resource.type = "resource";
+                resourceRepository.save(resource);
 
-            Resource resource = new Resource();
-            resource.title = title;
-            System.out.println(resource.title);
-            resource.author = (String)session.getAttribute("loginuser");
-            System.out.println(resource.author);
-            resource.fileName = fileName;
-            resource.filePath = path;
-            resource.type = "resource";
-            resourceRepository.save(resource);
-
-            model.addAttribute("msg", "上传成功");
-            // session.setAttribute("fileName", fileName);
-            System.out.println("----------file upload---" + fileName);
-        } catch (IOException e) {
-            e.printStackTrace();
-            model.addAttribute("msg", "上传失败");
+                model.addAttribute("msg", "上传成功");
+                // session.setAttribute("fileName", fileName);
+                System.out.println("----------file upload---" + fileName);
+            } catch (IOException e) {
+                e.printStackTrace();
+                model.addAttribute("msg", "上传失败");
+            }
         }
 
         return "resource";
@@ -61,7 +62,7 @@ public class UploadController {
         String path = resource.filePath;
 
         File file = new File(path + name);
-        if(file.exists()){ // 判断文件父目录是否存在
+        if (file.exists()) { // 判断文件父目录是否存在
             response.setContentType("text/html;charset=UTF-8");
             response.setCharacterEncoding("UTF-8");
             response.setHeader("Content-Disposition", "attachment;fileName=" + name);
@@ -76,13 +77,14 @@ public class UploadController {
                 fis = new FileInputStream(file);
                 bis = new BufferedInputStream(fis);
                 int i = bis.read(buffer);
-                while(i != -1){
+                while (i != -1) {
                     os.write(buffer);
                     os.flush();
                     i = bis.read(buffer);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                model.addAttribute("res", "下载失败");
             }
 
             System.out.println("----------file download---" + name);
@@ -95,6 +97,7 @@ public class UploadController {
                 e.printStackTrace();
             }
          }
+        else model.addAttribute("res", "下载失败");
 
         return "resource";
     }
