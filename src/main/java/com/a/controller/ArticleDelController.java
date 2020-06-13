@@ -36,6 +36,7 @@ public class ArticleDelController {
     public String deleteReply(@PathVariable("id") Integer id, Model model) {
         Reply reply = replyRepository.findReplyById(id);
         if (reply != null) {
+            articleRepository.reduceReply(reply.articleid);
             replyRepository.delete(reply);
             model.addAttribute("res", "控评成功");
         }
