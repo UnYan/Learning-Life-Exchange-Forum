@@ -81,7 +81,7 @@
                         <input type="submit" class="diy-btn" value="下载文件" />
                     </form>
 
-                    <form th:action="@{/delReSrc/}+${Resource.id}" method="post" style="display:inline">
+                    <form th:action="@{/delReSrc/}+${Resource.id}" method="post" style="display:inline" th:if="${session.level}==0">
                         <button type="submit" class="diy-btn " style="margin-right: 0;margin-bottom: 0">删除</button>
                     </form>
 
