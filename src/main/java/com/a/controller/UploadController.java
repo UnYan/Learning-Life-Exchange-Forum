@@ -83,6 +83,7 @@ public class UploadController {
                 }
             } catch (Exception e) {
                 e.printStackTrace();
+                model.addAttribute("res", "下载失败");
             }
 
             System.out.println("----------file download---" + name);
@@ -95,6 +96,7 @@ public class UploadController {
                 e.printStackTrace();
             }
          }
+        else model.addAttribute("res", "下载失败");
 
         return "resource";
     }
