@@ -25,6 +25,14 @@ public class LoginController {
     public String login(@RequestParam("username") String username,
                         @RequestParam("password") String password,
                         Model model, HttpSession session){
+        if(username == null){
+            model.addAttribute("msg", "请填写账号");
+            return "register";
+        }
+        if(password == null ){
+            model.addAttribute("msg", "请填写密码");
+            return "register";
+        }
         if (userRepository.findByUsernameAndPassword(username, password).size() == 1){
             User tmp = userRepository.findByUsername(username).get(0);
             if(tmp.first_use == 0){

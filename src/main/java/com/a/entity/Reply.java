@@ -12,6 +12,8 @@ public class Reply {
     public int id;
     @Column(name = "userid")
     public int userid;
+    @Column(name = "username")
+    public String username;
     @Column(name = "create_time")
     public Date create_time;
     @Column(name = "content")

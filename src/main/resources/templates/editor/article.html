@@ -94,7 +94,7 @@
                                         <button class="like-it" style="height: 30px"  th:onclick="'javascript:regist(\''+${reply.id}+'\',\''+${article.id}+'\')'" th:text="${reply.likes}" th:id="@{like} + ${reply.id}">66</button>
                                         <button class="diy-btn" formaction=""  th:onclick="'javascript:document.getElementById(\'comment-area' + ${reply.id}+'\').hidden=!(document.getElementById(\'comment-area' + ${reply.id}+'\').hidden)'">回复</button>
                                         <span th:each = "reply1:${reply1s}" >
-                                            <a th:href="@{#} + ${reply1.replyid}"><button class="diy-btn " formaction=""  th:if = "${reply1.replyid eq reply.id}" th:text="${reply1.content} + 回复了此贴" ></button></a>
+                                            <a th:href="@{#} + ${reply1.replyid}"><button class="diy-btn " formaction=""  th:if = "${reply1.replyid eq reply.id}" th:text="${reply1.username} + 回复了此贴" ></button></a>
                                         </span>
 <!--                                        <a href="" download><button class="diy-btn">下载文件</button></a>-->
                                         <form th:action="@{/delReply/}+${reply.id}" method="post" style="display:inline" th:if="${session.level}==0">

@@ -48,6 +48,7 @@ public class ReplyController {
         System.out.println(rContent);
         reply.content = rContent;
         reply.userid = user.id;
+        reply.username = user.username;
         reply.likes = 0;
         Article article = articleRepository.findArticleById(Integer.parseInt(articleid));
         reply.articleid = article.id;
@@ -100,6 +101,7 @@ public class ReplyController {
         System.out.println(rContent);
         reply.content = rContent;
         reply.userid = user.id;
+        reply.username = user.username;
         reply.likes = 0;
         Article article = articleRepository.findArticleById(Integer.parseInt(articleid));
         reply.replyid = Integer.parseInt(replyid);

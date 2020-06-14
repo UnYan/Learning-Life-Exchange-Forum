@@ -7,8 +7,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Map;
+import java.util.regex.Pattern;
 
 @Controller
 
@@ -16,6 +18,9 @@ public class RegisterController {
     @Autowired
     UserRepository userRepository;
     int s;
+    String usernamePattern = "[a-zA-Z]*\\d+";
+    String passwordPattern = "[a-zA-Z]*\\d+";
+    String emailPattern;
     @PostMapping(value = "/register_apply")
     public String login(@RequestParam("username") String username,
                         @RequestParam("password1") String password1,
