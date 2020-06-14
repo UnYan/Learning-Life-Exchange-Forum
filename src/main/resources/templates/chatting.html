@@ -40,7 +40,8 @@
         window.WebSocket = window.MozWebSocket;
     }
     if (window.WebSocket) {
-        socket = new WebSocket("ws://39.97.126.242:8888/websocket");
+        socket = new WebSocket("ws://39.97.126.242:8888/websocket")
+      //  socket = new WebSocket("ws://localhost:8888/websocket");
         socket.onmessage = function(event) {
             var ta = document.getElementById('responseText');
             ta.value = ta.value + '\n' + event.data
@@ -77,7 +78,7 @@
     <h1><center>讨论区</center></h1>
     <center><textarea id="responseText" style="width: 1000px; height: 600px;font-size: 15px;font-weight: bold"></textarea></center>
     <center><input type="text" name="message"  style="width: 800px;margin-bottom: auto" value="">
-    <input type="button" value="发送消息" class="diy-btn" onclick="send(':'+this.form.message.value);this.form.message.value=''">
+    <input th:if="${session.status}" type="button" value="发送消息" class="diy-btn" onclick="send(':'+this.form.message.value);this.form.message.value=''">
     <input type="button" class="diy-btn" onclick="javascript:document.getElementById('responseText').value=''" value="清空聊天记录"></center>
 </form>
 <br>

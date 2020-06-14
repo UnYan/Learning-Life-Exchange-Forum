@@ -140,6 +140,14 @@
                         function setInfo(name) {
                                 sessionStorage.setItem("username", name);
                         }
+                        function submitstatus(){
+                                var str = document.getElementById("status").innerHTML;
+                                setstatus(str);
+                        }
+                        //储存数据  
+                        function setstatus(name) {
+                                sessionStorage.setItem("status",name);
+                        }
                 </script>
                 <!-- script -->
                 <script type='text/javascript' src='../static/asserts/js/jquery-1.8.3.min.js'></script>
