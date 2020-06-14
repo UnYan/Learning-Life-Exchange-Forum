@@ -76,7 +76,16 @@ public class headImgController {
     @ResponseBody
     public ResponseEntity<Resource> showImg(@PathVariable("fileName") String name, HttpSession session) {
         String path = "/home/yzx/springboot/headImg/";
-
         return ResponseEntity.ok(resourceLoader.getResource("file:" + path + name));
+    }
+
+    @RequestMapping(value = {"/showRpyImg/{id}"})
+    @ResponseBody
+    public ResponseEntity<Resource> showRpyImg(@PathVariable("id") Integer id, HttpSession session) {
+        String path = "/home/yzx/springboot/headImg/";
+        User user = userRepository.findUserById(id);
+        String headImg = user.headImgName;
+
+        return ResponseEntity.ok(resourceLoader.getResource("file:" + path + headImg));
     }
 }

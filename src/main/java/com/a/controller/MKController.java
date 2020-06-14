@@ -141,7 +141,6 @@ public class MKController {
     public String show(@PathVariable("id") Integer id, Model model,HttpSession session) {
         Article article = articleRepository.findArticleById(id);
 
-
         if(session.getAttribute("loginuser") == null){
             model.addAttribute("msg", "请先注册");
             return "index";
