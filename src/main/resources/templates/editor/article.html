@@ -40,6 +40,7 @@
             <div id="search-error-container"></div>
             <div style="color: #46A3FF; font-size: 17px; text-align: center; margin-top: 40px; margin-bottom: 0px">
                 <b th:text="${res}" th:if="${not #strings.isEmpty(res)}"></b>
+                <b th:text="${session.msg}" th:if="${not #strings.isEmpty(session.msg)}"></b>
             </div>
         </form>
 
@@ -109,7 +110,7 @@
                                         <br>
                                         <div th:id="@{comment-area} + ${reply.id}" hidden="hidden">
                                             <textarea class="span8" name="rContent" th:id = "${reply.id}" cols="20" rows="5"></textarea>
-                                            <input class="btn" name="submit" type="submit"  value="发布">
+                                            <input class="btn" name="submit" type="submit"  value="发布" >
                                         </div>
                                     </form>
                                 </div>
@@ -224,6 +225,22 @@ function regist(replyId,articleId) {
         url:localurl,
         success:function(data){
             document.getElementById("like" + replyId).innerText=data.likes;
+        }
+    });
+}
+function reply_a0(rContent,articleId) {
+    var localurl="http://" + window.location.host + "/reply/a" + articleId;
+    $.ajax({
+        type:"post",
+        async:false,
+        // contentType: "application/json",
+        data:{rContent,articleId
+        },
+        dataType:"json",
+        url:localurl,
+        success:function(data){
+            alert(data.msg)
+            //document.getElementById("like" + replyId).innerText=data.likes;
         }
     });
 }

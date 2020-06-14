@@ -50,7 +50,7 @@ public class LikeController {
         int replyId = Integer.parseInt(request.getParameter("replyId"));
         int articleId = Integer.parseInt(request.getParameter("articleId"));
         //int userId = Integer.parseInt(request.getParameter("userId"));
-        System.out.println("1");
+        //System.out.println("1");
         int num = 0;
         if (replyId == 0) {//表示是给article的赞
             User user = userRepository.findByUsername((String) session.getAttribute("loginuser")).get(0);

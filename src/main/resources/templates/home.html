@@ -48,6 +48,7 @@
                                         <input class="search-btn" type="submit" value="搜索" />
                                         <div id="search-error-container"></div>
                                         <div style="color: white; font-size: 17px; text-align: center; margin-top: 40px; margin-bottom: 0px"><b th:text="${msg}" th:if="${not #strings.isEmpty(msg)}"></b></div>
+                                        <div style="color: white; font-size: 17px; text-align: center; margin-top: 40px; margin-bottom: 0px"><b th:text="${session.msg}" th:if="${not #strings.isEmpty(session.msg)}"></b></div>
                                 </form>
 
                         </div>

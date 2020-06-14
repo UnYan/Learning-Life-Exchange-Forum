@@ -61,11 +61,16 @@ public class MKController {
                          @RequestParam("content") String content,
                          @RequestParam("category") int category,
                          @RequestParam("level") int level,
+                         Model model,
                          HttpSession session){
         Article article=new Article();
 
         article.author=(String) session.getAttribute("loginuser");
         User tmp =userRepository.findByUsername(article.author).get(0);
+        if(!tmp.status){
+            session.setAttribute("msg","您处于禁言状态，无法操作！");
+            return "redirect:/main";
+        }
         if(tmp.level<level&&tmp.level!=0) {
             session.setAttribute("msg","不能设置比自己等级高的权限");
             return "redirect:/mk";

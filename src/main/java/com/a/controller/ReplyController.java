@@ -4,6 +4,7 @@ import com.a.entity.*;
 import com.a.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.*;
 
 @Controller
@@ -31,9 +33,11 @@ public class ReplyController {
     @PostMapping("/reply/a{id}")
     public String replyA(@RequestParam("articleid") String articleid,
                         @RequestParam("rContent") String rContent,
+                         HttpServletResponse response,
+                        Model model,
                         HttpServletRequest request,
                         //String[] rContent,
-                        HttpSession session){
+                        HttpSession session) throws IOException {
         Reply reply = new Reply();
         //System.out.println("1:");
         User user = userRepository.findByUsername((String)session.getAttribute("loginuser")).get(0);
@@ -43,6 +47,17 @@ public class ReplyController {
             System.out.println("0");
             return "redirect:/main";
         }*/
+        if(!user.status){
+//            String s = "{\"msg\":\"" + "您已被禁言，无法回复！";
+//            s +=   "\"}";
+//            response.setCharacterEncoding("utf-8");
+//            response.setContentType("application/json; charset=utf-8");//返回的格式必须设置为application/json
+//            response.getWriter().write(s);//写入到返回结果中
+////        //完成，执行到这里就会返回数据给前端，前端结果为success，调用success里面的内容
+            session.setAttribute("msg","您处于禁言状态，无法操作！");
+            return "redirect:/showBlog/"+articleid;
+
+        }
         if(rContent == null || rContent.length() == 0 )
             return "redirect:/main";
         System.out.println(rContent);
@@ -71,7 +86,7 @@ public class ReplyController {
 
 
         reply = replyRepository.save(reply);
-        System.out.println(reply.content);
+        //System.out.println(reply.content);
 
         articleRepository.addReply(Integer.parseInt(articleid));//给newreply属性加一
         articleRepository.addNewReply(Integer.parseInt(articleid));
@@ -84,6 +99,7 @@ public class ReplyController {
     public String replyR(@PathVariable("id") String replyid,
                          @RequestParam("articleid") String articleid,
                         @RequestParam("rContent") String rContent,
+                        Model model,
                         HttpServletRequest request,
                         //String[] rContent,
                         HttpSession session){
@@ -96,6 +112,10 @@ public class ReplyController {
             System.out.println("0");
             return "redirect:/main";
         }*/
+        if(!user.status){
+            session.setAttribute("msg","您处于禁言状态，无法操作！");
+            return "redirect:/showBlog/"+articleid;
+        }
         if(rContent == null || rContent.length() == 0 )
             return "redirect:/main";
         System.out.println(rContent);
