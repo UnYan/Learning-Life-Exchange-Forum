@@ -93,7 +93,7 @@
                                     <div class="profile" style="width: 30px;float: left;transform: translateY(-7px);margin-right: 5px">
                                         <img th:href="@{/otheruserspace/}+${user.username}" alt="头像" th:src="@{/showRpyImg/}+${user.id}" style="border-radius:50%" height="30" width="30"><br>
                                     </div>
-                                    <h4 ><a href="@{/otheruserspace/}+${user.username}" th:text="${user.username}">回复用户名</a></h4>
+                                    <h4 ><a th:href="@{/otheruserspace/}+${user.username}" th:text="${user.username}">回复用户名</a></h4>
                                     <blockquote>
                                         <p th:text="${reply.content}" th:id="${reply.id}">回复</p>
                                     </blockquote>

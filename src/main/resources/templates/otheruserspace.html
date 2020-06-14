@@ -67,8 +67,8 @@
         </div>
         <h3 class="search-header">[[${session.otherloginuser}]]</h3>
         <p class="search-tag-line" th:text="ta的权限等级为+':'+(${session.otherlevel}==0?神圣的管理员:(${session.otherlevel}+','+距离下一等级还差+':'+${session.otherrestExp}+经验))"> [[${session.otherlevel}]]</p>
-        <p class="search-tag-line" th:case="true">你的状态为 畅所欲言</p>
-        <p class="search-tag-line" th:case="false">你的状态为 禁言</p>
+        <p class="search-tag-line" th:case="true">ta的状态为 畅所欲言</p>
+        <p class="search-tag-line" th:case="false">ta的状态为 禁言</p>
 
         <form id="search-form" class="search-form clearfix" method="get" th:action="@{/otheruserspace/search}" autocomplete="off">
             <input class="search-term required" type="text" id="s" name="searchname" placeholder="搜索我的帖子" title="搜索我的帖子" />
