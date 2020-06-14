@@ -58,6 +58,7 @@ public class ReplyController {
             return "redirect:/showBlog/"+articleid;
 
         }
+        session.removeAttribute("msg");
         if(rContent == null || rContent.length() == 0 )
             return "redirect:/main";
         System.out.println(rContent);
@@ -116,6 +117,7 @@ public class ReplyController {
             session.setAttribute("msg","您处于禁言状态，无法操作！");
             return "redirect:/showBlog/"+articleid;
         }
+        session.removeAttribute("msg");
         if(rContent == null || rContent.length() == 0 )
             return "redirect:/main";
         System.out.println(rContent);

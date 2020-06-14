@@ -45,6 +45,8 @@ public class LoginController {
                 userRepository.freshLevel(tmp.id);
                 return "firstUse";
             }
+            if(tmp.status)
+                session.removeAttribute("msg");
             session.setAttribute("loginuser",username);
             session.setAttribute("userid", tmp.id);
             session.setAttribute("level", tmp.level);
