@@ -139,6 +139,8 @@ public class MKController {
     @GetMapping("/showBlog/{id}")
     public String show(@PathVariable("id") Integer id, Model model,HttpSession session) {
         Article article = articleRepository.findArticleById(id);
+
+
         if(session.getAttribute("loginuser") == null){
             model.addAttribute("msg", "请先注册");
             return "index";
@@ -150,6 +152,11 @@ public class MKController {
             model.addAttribute("msg", "您的权限不足，请多多水群");
             return "home";
         }
+
+        String name = article.author;
+        List<User> uList = userRepository.findByUsername(name);
+        session.setAttribute("otherusrheadImg", uList.get(0).headImgName);
+
         model.addAttribute("article", article);
         Collection<Reply> replys = replyRepository.findByArticleid(id);
         model.addAttribute("replys",replys);

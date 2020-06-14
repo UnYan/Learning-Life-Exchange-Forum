@@ -34,13 +34,14 @@ public class userSpaceController {
         model.addAttribute("articles", coursesList);
 
         return "userspace";
-        }
+    }
     @GetMapping("/otheruserspace/{author}")
     public String show(@PathVariable("author") String otherusername, Model model,HttpSession session) {
         User user=userRepository.findByUsername(otherusername).get(0);
         session.setAttribute("otherlevel",user.level);
         session.setAttribute("otherrestExp",user.level*10-user.exp);
         session.setAttribute("otherloginuser",otherusername);
+        session.setAttribute("otherusrheadImg", user.headImgName);
         List<Article> coursesList=null;
         coursesList=articleRepository.findArticleByAuthor(otherusername);
         model.addAttribute("otherarticles", coursesList);

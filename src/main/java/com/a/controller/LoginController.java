@@ -40,6 +40,7 @@ public class LoginController {
                 session.setAttribute("userid", tmp.id);
                 session.setAttribute("level", tmp.level);
                 session.setAttribute("status", tmp.status);
+                session.setAttribute("fileName", tmp.headImgName);
                 userRepository.addExp(tmp.id,1);
                 userRepository.freshLevel(tmp.id);
                 return "firstUse";
@@ -48,6 +49,7 @@ public class LoginController {
             session.setAttribute("userid", tmp.id);
             session.setAttribute("level", tmp.level);
             session.setAttribute("status", tmp.status);
+            session.setAttribute("fileName", tmp.headImgName);
 //            model.addAttribute("category","main");
             userRepository.addExp(tmp.id,1);
             userRepository.freshLevel(tmp.id);
