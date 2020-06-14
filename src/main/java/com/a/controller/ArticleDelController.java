@@ -28,7 +28,7 @@ public class ArticleDelController {
         replyRepository.deleteAll(relist);
         Article article = articleRepository.findArticleById(id);
         articleRepository.delete(article);
-        model.addAttribute("res", "删帖成功");
+        model.addAttribute("res", "删帖成功") ;
         return "editor/article";
     }
 
