@@ -3,9 +3,9 @@ spring:
   mvc:
     static-path-pattern: /static/**
   datasource:
-    url: jdbc:mysql://39.97.126.242:3307/buaa21
-    username: root
-    password: 123456
+    url: jdbc:mysql://49.232.157.22:3306/ndsnb
+    username: ndsnb
+    password: ndsnb
     driver-class-name: com.mysql.cj.jdbc.Driver
   jpa:
     hibernate:
