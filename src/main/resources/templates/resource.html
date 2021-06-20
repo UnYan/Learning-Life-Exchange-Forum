@@ -74,7 +74,6 @@
 
                     <h2 th:text="${Resource.title}"></h2>
                     <h4 >上传者：<a th:text="${Resource.author}"></a></h4>
-                    <br><br>
                     <form th:action="@{/downloadfile/}+${Resource.id}" method="post" style="display:inline">
                         <input type="submit" class="diy-btn" value="下载文件" />
                     </form>
@@ -97,7 +96,7 @@
                 <section class="widget">
                     <form action="/uploadfile" th:action="@{/uploadfile}" method="post" enctype="multipart/form-data">
                         <h3>资源标题</h3>
-                        <input type="text" name="title" style="width:285px" required>
+                        <input type="text" name="title" autocomplete="off" style="width:285px" required >
                         <input type="file" name="file" id="file" required>
                         <br><br>
                         <input type="submit" class="diy-btn" value="上传资源">

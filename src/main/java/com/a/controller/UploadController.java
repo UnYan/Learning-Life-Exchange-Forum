@@ -27,9 +27,14 @@ public class UploadController {
             String fileName = file.getOriginalFilename();
 
             File direct = new File("./src");
-            String path = "/home/yzx/springboot/resource/";
+            String path = "d:/images/";
             File dest = new File(path + fileName);
-
+            if(!dest.getParentFile().exists()){
+                //不存在就创建一个
+                dest.getParentFile().mkdir();
+            }
+            System.out.println();
+            System.out.println(dest.getAbsolutePath());
             try {
                 file.transferTo(dest);
 
